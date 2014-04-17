@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+.dropdown-menu, .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+#data-table tr, #data-table td {
+    min-width: 12em !important;
+    max-width: none !important;
+    width: 12em !important;
+}
+
+/**
+ * Extra large button extensions. Extends `.btn`.
+ */
+
+.btn-xlarge {
+    padding: 20px 50px;
+    font-size: 36px;
+    font-weight: normal;
+    line-height: normal;
+    -webkit-border-radius: 14px;
+       -moz-border-radius: 14px;
+            border-radius: 14px;
+}
+
+.round-border {
+    border:2px solid !important;
+    border-radius:25px !important;
+}

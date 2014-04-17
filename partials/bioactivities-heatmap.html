@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <p>
+                Bioactivities Compound Heat Map
+            </p>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-condensed table-hover table-bordered"
+                   id="data-table">
+                <tr data-ng-repeat="row in result track by $index">
+                    <td data-ng-repeat="col in row track by $index"
+                        data-ng-style="set_cell_color(col)">
+                        {{ col }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

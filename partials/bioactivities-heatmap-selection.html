@@ -1,0 +1,162 @@
+<form data-ng-submit="submit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="text-center">
+                    <button class="btn btn-xlarge btn-primary text-center"
+                            type="submit">
+                        Generate Heatmap
+                    </button>
+
+                    <hr>
+
+                    <p>
+                        Large dataset searches may take several minutes to
+                        complete on slow machines. Please be patient.
+                    </p>
+
+                </div>
+
+                <hr>
+
+                <div class="container">
+                    <div class="col-lg-4">
+
+                        <p class="text-center">
+                            <label>
+                                Bioactivities Filter:
+                                <input data-ng-model="bioactivities_search_name">
+                            </label>
+                        </p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered
+                            table-condensed">
+
+                                <thead>
+                                <th style="width: 10%;">
+                                    <three-state-checkbox
+                                            checkboxes="bioactivities_heatmap_filter.bioactivities">
+                                    </three-state-checkbox>
+                                </th>
+                                <th style="width: 90%;">
+                                    Select Bioactivities
+                                </th>
+                                </thead>
+
+                                <tbody>
+                                <tr data-ng-repeat="bioactivity in
+                                bioactivities_heatmap_filter.bioactivities
+                                | filter: {name: bioactivities_search_name}">
+
+                                    <td>
+                                        <input type="checkbox"
+                                               data-ng-model="bioactivity
+                                                   .is_selected"/>
+                                    </td>
+
+                                    <td>
+                                        {{ bioactivity.name }}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+
+                        <p class="text-center">
+                            Targets Filter:
+                            <input data-ng-model="targets_search_name">
+                        </p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered
+                            table-condensed">
+
+                                <thead>
+                                <th style="width: 10%;">
+                                    <three-state-checkbox
+                                            checkboxes="bioactivities_heatmap_filter.targets">
+                                    </three-state-checkbox>
+                                </th>
+                                <th style="width: 90%;">
+                                    Select Targets
+                                </th>
+                                </thead>
+
+                                <tbody>
+                                <tr data-ng-repeat="target in
+                                bioactivities_heatmap_filter.targets
+                                | filter: {name: targets_search_name}">
+
+                                    <td>
+                                        <input type="checkbox"
+                                               data-ng-model="target
+                                                   .is_selected"/>
+                                    </td>
+
+                                    <td>
+                                        {{ target.name }}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+
+                        <p class="text-center">
+                            Compounds Filter:
+                            <input data-ng-model="compounds_search_name">
+                        </p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered
+                            table-condensed">
+
+                                <thead>
+                                <th style="width: 10%;">
+                                    <three-state-checkbox
+                                            checkboxes="bioactivities_heatmap_filter.compounds">
+                                    </three-state-checkbox>
+                                </th>
+                                <th style="width: 90%;">
+                                    Select Compounds
+                                </th>
+                                </thead>
+
+                                <tbody>
+                                <tr data-ng-repeat="compound in
+                                bioactivities_heatmap_filter.compounds
+                                | filter: {name: compounds_search_name}">
+
+                                    <td>
+                                        <input type="checkbox"
+                                               data-ng-model="compound
+                                                   .is_selected"/>
+                                    </td>
+
+                                    <td>
+                                        {{ compound.name }}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
