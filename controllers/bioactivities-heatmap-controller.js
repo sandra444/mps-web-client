@@ -28,13 +28,9 @@ MPS.controller(
                     var j;
                     var result;
                     var row = [];
-                    var payload_data_length;
                     var payload_columns_length;
                     var payload_index_length;
                     var payload = JSON.parse(JSON.parse(data));
-
-                    // data [row id] [column id]
-                    payload_data_length = payload["data"].length;
 
                     // column header [column id] [[target, bioactivity]]
                     payload_columns_length = payload["columns"].length;
