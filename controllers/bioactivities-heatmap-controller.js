@@ -43,9 +43,7 @@ MPS.controller(
                     // create column headers
                     row.push(''); // create offset for table top left corner
                     for (i = 0; i < payload_index_length; i += 1) {
-                        //noinspection JSUnresolvedVariable
                         if (payload["columns"][i]) {
-                            //noinspection JSUnresolvedVariable
                             row.push(
                                     payload["columns"][i][0]
                                     + ' '
@@ -58,7 +56,6 @@ MPS.controller(
                     // left to right
                     for (i = 0; i < payload_columns_length; i += 1) {
                         row = [];
-                        //noinspection JSUnresolvedVariable
                         row.push(payload["index"][i]);
                         // top to bottom
 
