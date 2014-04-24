@@ -48,7 +48,8 @@
                                 <tbody>
                                 <tr data-ng-repeat="bioactivity in
                                 bioactivities_heatmap_filter.bioactivities
-                                | filter: {name: bioactivities_search_name}">
+                                | filter: {name: bioactivities_search_name}
+                                | orderBy: 'name'">
 
                                     <td>
                                         <input type="checkbox"
@@ -92,7 +93,8 @@
                                 <tbody>
                                 <tr data-ng-repeat="target in
                                 bioactivities_heatmap_filter.targets
-                                | filter: {name: targets_search_name}">
+                                | filter: {name: targets_search_name}
+                                | orderBy: 'name'">
 
                                     <td>
                                         <input type="checkbox"
@@ -137,7 +139,8 @@
                                 <tbody>
                                 <tr data-ng-repeat="compound in
                                 bioactivities_heatmap_filter.compounds
-                                | filter: {name: compounds_search_name}">
+                                | filter: {name: compounds_search_name}
+                                | orderBy: 'name'">
 
                                     <td>
                                         <input type="checkbox"
