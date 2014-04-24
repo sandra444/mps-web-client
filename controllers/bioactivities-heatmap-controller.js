@@ -42,14 +42,14 @@ MPS.controller(
 
                     // create column headers
                     row.push(''); // create offset for table top left corner
-                    for (j = 0; j < payload_index_length; j += 1) {
+                    for (i = 0; i < payload_index_length; i += 1) {
                         //noinspection JSUnresolvedVariable
-                        if (payload.columns[j]) {
+                        if (payload["columns"][i]) {
                             //noinspection JSUnresolvedVariable
                             row.push(
-                                    payload.columns[j][0]
+                                    payload["columns"][i][0]
                                     + ' '
-                                    + payload.columns[j][1]
+                                    + payload["columns"][i][1]
                             );
                         }
                     }
@@ -59,20 +59,17 @@ MPS.controller(
                     for (i = 0; i < payload_columns_length; i += 1) {
                         row = [];
                         //noinspection JSUnresolvedVariable
-                        row.push(payload.index[i]);
+                        row.push(payload["index"][i]);
                         // top to bottom
 
                         for (j = 1; j <= payload_columns_length; j += 1) {
-                            //noinspection JSUnresolvedVariable
-
-                            if (payload.data[i][j] == null) {
+                            if (payload["data"][i][j] == null) {
                                 row.push('');
                             } else {
-                                row.push(payload.data[i][j]);
+                                row.push(payload["data"][i][j]);
                             }
 
                         }
-
                         result.push(row);
                     }
 
