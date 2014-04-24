@@ -28,17 +28,24 @@ MPS.controller(
                     var j;
                     var result;
                     var row = [];
+                    var payload_data_length;
                     var payload_columns_length;
                     var payload_index_length;
                     var payload = JSON.parse(JSON.parse(data));
 
-                    //noinspection JSUnresolvedVariable
-                    payload_columns_length = payload.columns.length;
-                    payload_index_length = payload.index.length;
+                    // data [row id] [column id]
+                    payload_data_length = payload["data"].length;
+
+                    // column header [column id] [[target, bioactivity]]
+                    payload_columns_length = payload["columns"].length;
+
+                    // compound name
+                    payload_index_length = payload["index"].length;
 
                     result = [];
 
                     // create column headers
+                    row.push(''); // create offset for table top left corner
                     for (j = 0; j < payload_index_length; j += 1) {
                         //noinspection JSUnresolvedVariable
                         if (payload.columns[j]) {
@@ -58,10 +65,18 @@ MPS.controller(
                         //noinspection JSUnresolvedVariable
                         row.push(payload.index[i]);
                         // top to bottom
-                        for (j = 0; j < payload_index_length; j += 1) {
+
+                        for (j = 1; j <= payload_columns_length; j += 1) {
                             //noinspection JSUnresolvedVariable
-                            row.push(payload.data[i][j]);
+
+                            if (payload.data[i][j] == null) {
+                                row.push('');
+                            } else {
+                                row.push(payload.data[i][j]);
+                            }
+
                         }
+
                         result.push(row);
                     }
 
