@@ -10,7 +10,7 @@ MPS.factory(
             $http({method: 'GET', url: resource_url}).
                 success(
                     function (data) {
-                        var MINIMUM_FEATS_COUNT = 25;
+                        var MINIMUM_FEATS_COUNT = 10;
                         var max_length = data.length;
                         for (i = 0; i < max_length; i += 1) {
 
