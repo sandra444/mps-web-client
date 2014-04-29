@@ -45,10 +45,8 @@ MPS.controller(
                         return;
                     }
 
-                    $scope.add_alert('Server returned data!',
-                                     'success');
-
-                    $scope.add_alert('Processing server data...',
+                    $scope.add_alert('Server returned data! ' +
+                                     'Please wait while processing data.',
                                      'success');
 
                     // column header [column id] [[target, bioactivity]]
