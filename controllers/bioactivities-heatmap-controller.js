@@ -9,6 +9,12 @@ MPS.controller(
             var targets_filter = bioactivities_heatmap_filter.targets;
             var compounds_filter = bioactivities_heatmap_filter.compounds;
 
+            $scope.alerts = [];
+
+            $scope.add_alert = function(message, level) {
+                $scope.alerts.push({type: level, msg: message});
+            };
+
             $http(
                 {
                     url: '/bioactivities/gen_heatmap/',
@@ -34,9 +40,16 @@ MPS.controller(
                     try {
                         payload = JSON.parse(JSON.parse(data));
                     } catch (e) {
-                        alert("There is no data to display!");
+                        $scope.add_alert('Server returned no results!',
+                                         'danger');
                         return;
                     }
+
+                    $scope.add_alert('Server returned data!',
+                                     'success');
+
+                    $scope.add_alert('Processing server data...',
+                                     'success');
 
                     // column header [column id] [[target, bioactivity]]
                     payload_columns_length = payload["columns"].length;
@@ -77,7 +90,9 @@ MPS.controller(
                     }
 
                     if(!result.length) {
-                        alert("There is no data to display!");
+                        $scope.add_alert('Something went very wrong when ' +
+                                         'processing server data!',
+                                         'danger');
                     }
 
                     $scope.result = result;
