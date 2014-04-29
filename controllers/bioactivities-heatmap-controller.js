@@ -15,6 +15,10 @@ MPS.controller(
                 $scope.alerts.push({type: level, msg: message});
             };
 
+            $scope.close_alert = function () {
+                $scope.alerts.pop();
+            };
+
             $http(
                 {
                     url: '/bioactivities/gen_heatmap/',
@@ -87,11 +91,8 @@ MPS.controller(
                         result.push(row);
                     }
 
-                    if(!result.length) {
-                        $scope.add_alert('Something went very wrong when ' +
-                                         'processing server data!',
-                                         'danger');
-                    }
+                    // Close the data processing alert
+                    $scope.close_alert();
 
                     $scope.result = result;
                 }
