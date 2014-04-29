@@ -30,7 +30,13 @@ MPS.controller(
                     var row = [];
                     var payload_columns_length;
                     var payload_index_length;
-                    var payload = JSON.parse(JSON.parse(data));
+                    var payload;
+                    try {
+                        payload = JSON.parse(JSON.parse(data));
+                    } catch (e) {
+                        alert("There is no data to display!");
+                        return;
+                    }
 
                     // column header [column id] [[target, bioactivity]]
                     payload_columns_length = payload["columns"].length;
@@ -68,6 +74,10 @@ MPS.controller(
 
                         }
                         result.push(row);
+                    }
+
+                    if(!result.length) {
+                        alert("There is no data to display!");
                     }
 
                     $scope.result = result;
