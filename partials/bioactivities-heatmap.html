@@ -16,17 +16,16 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
-            <table class="table table-condensed table-hover table-bordered"
-                   id="data-table">
-                <tr data-ng-repeat="row in result track by $index">
-                    <td data-ng-repeat="col in row track by $index"
-                        data-ng-style="set_cell_color(col)">
-                        {{ col }}
-                    </td>
-                </tr>
-            </table>
+
+        <div class="col-xs-12" data-ng-if="heatmap_plot">
+            <img data-ng-src="{{heatmap_plot}}"/>
         </div>
+
+        <!--
+        <div class="col-xs-12" ng-if="result">
+            <adjacency-matrix matrix-data="result"></adjacency-matrix>
+        </div>
+        -->
     </div>
 </div>
 
