@@ -22,7 +22,7 @@ MPS.directive(
             // we don't want to overwrite our directive declaration
             // in the HTML mark-up
 
-            replace: false,
+            replace: true,
 
             // our data source would be an array
             // passed thru chart-data attribute
@@ -32,16 +32,16 @@ MPS.directive(
             scope: {data: '=heatmapData'},
             link: function (scope, element, attrs) {
 
-                $(document).ready(function () {
-                    $('#heatmap').heatmap(
+                    alert('YO');
+                    element[0].heatmap(
                         {
                             data: {
                                 values: new jheatmap.readers.TableHeatmapReader(
                                     { url: scope.heatmap_data_url }
                                 )
                             }
-                        });
-                });
+                        }
+                    );
 
             }
         };

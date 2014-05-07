@@ -12,11 +12,30 @@
 <br/>
 <div class="container-fluid">
     <div class="row">
-
-        <div class="col-xs-12" ng-if="heatmap_data_url">
-            <heatmap heatmap-data="heatmap_data_url"></heatmap>
+        <div class="col-xs-12" >
+            <div id="heatmap"></div>
         </div>
-
     </div>
 </div>
 
+<script>
+
+    $(document).ready(function () {
+        $('#heatmap').heatmap(
+                {
+                    data: {
+                        values: new jheatmap.readers.TableHeatmapReader(
+                                { url: "/media/heatmap/64a400f3d2.tsv" }
+                        )
+                    },
+
+                    init: function (heatmap) {
+
+                        // Setup default zoom
+                        heatmap.cols.zoom = 12;
+                        heatmap.rows.zoom = 12;
+                    }
+                });
+    });
+
+</script>
