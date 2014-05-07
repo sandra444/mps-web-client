@@ -4,37 +4,19 @@
             <p>
                 Bioactivities Compound Heat Map
             </p>
-            <hr/>
-            <alert ng-repeat="alert in alerts"
-                   type="alert.type">
-                {{alert.msg}}
-            </alert>
         </div>
     </div>
 </div>
-
-<br>
+<br/>
+<hr/>
+<br/>
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-xs-12" data-ng-if="heatmap_plot">
-            <img data-ng-src="{{heatmap_plot}}"/>
+        <div class="col-xs-12" ng-if="heatmap_data_url">
+            <heatmap heatmap-data="heatmap_data_url"></heatmap>
         </div>
 
-        <!--
-        <div class="col-xs-12" ng-if="result">
-            <adjacency-matrix matrix-data="result"></adjacency-matrix>
-        </div>
-        -->
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <div>
-
-            </div>
-        </div>
-    </div>
-</div>

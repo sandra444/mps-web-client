@@ -34,7 +34,7 @@ MPS.controller(
                 }
             ).success(
                 function (data) {
-                    $scope.heatmap_plot = data["url"];
+                    $scope.heatmap_data_url = data["url"];
                 }
             ).error(
                 function() {
