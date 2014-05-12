@@ -1,6 +1,6 @@
 <div class="container-fluid">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8 text-center">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10 text-center">
         <div ng-if="data_url">
             <div id="heatmap"></div>
             <script>
@@ -19,8 +19,8 @@
                             init: function (heatmap) {
 
                                 // Setup default zoom
-                                heatmap.cols.zoom = 12;
-                                heatmap.rows.zoom = 12;
+                                heatmap.cols.zoom = 10;
+                                heatmap.rows.zoom = 10;
 
                                 heatmap.cells.decorators["value"] = new
                                         jheatmap.decorators.Heat(
@@ -55,6 +55,6 @@
                 );
             </script>
         </div>
-        <div class="col-lg-2"></div>
+        <div class="col-lg-1"></div>
     </div>
 </div>
