@@ -1,51 +1,65 @@
-// Defines a new HTML directive <adjacency-matrix>
-// Directive *MUST BE IN CAMEL CASE* for AngularJS to pick it up!
 
 MPS.directive(
     'heatmap',
-    function ($parse) {
+    function () {
         'use strict';
 
-        // explicitly creating a directive definition variable
-        // this may look verbose but is good for clarification purposes
-        // in real life you'd want to simply return the object {...}
-
-        var directive_definition_object = {
-
-            // We restrict its use to an element
-            // as usually  <adjacency-matrix> is semantically
-            // more understandable
+        return {
 
             restrict: 'E',
 
-            // this is important,
-            // we don't want to overwrite our directive declaration
-            // in the HTML mark-up
+            link: function(scope, element, attrs) {
 
-            replace: true,
+                $(element).heatmap(
+                    {
+                        data: {
+                            values: new jheatmap.readers.TableHeatmapReader(
+                                { url: scope.data_url }
+                            )
+                        },
 
-            // our data source would be an array
-            // passed thru chart-data attribute
+                        init: function (heatmap) {
 
-            // !!! must use camelcase in order to translate correctly !!!
+                            // Setup default zoom
+                            heatmap.cols.zoom = 12;
+                            heatmap.rows.zoom = 12;
 
-            scope: {data: '=heatmapData'},
-            link: function (scope, element, attrs) {
+                            heatmap.cells.decorators["value"] = new
+                                jheatmap.decorators.Heat(
+                                {
+                                    minValue: 0,
+                                    midValue: 15000,
+                                    maxValue: 30000,
+                                    minColor: [85, 0, 136],
+                                    nullColor: [255, 255, 255],
+                                    maxColor: [255, 204, 0],
+                                    midColor: [240, 240, 240]
 
-                    alert('YO');
-                    element[0].heatmap(
-                        {
-                            data: {
-                                values: new jheatmap.readers.TableHeatmapReader(
-                                    { url: scope.heatmap_data_url }
-                                )
-                            }
+                                }
+                            );
+
+                            heatmap.cells.decorators["bioactivity"] = new
+                                jheatmap.decorators.Heat(
+                                {
+                                    minValue: 0,
+                                    midValue: 20,
+                                    maxValue: 200,
+                                    nullColor: [255, 255, 255],
+                                    minColor: [255, 0, 0],
+                                    midColor: [255, 255, 0],
+                                    maxColor: [0, 255, 0]
+                                }
+                            );
+
+
                         }
-                    );
-
+                    }
+                );
             }
-        };
+        }
 
-        return directive_definition_object;
     }
 );
+
+
+
