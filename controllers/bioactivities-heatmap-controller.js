@@ -34,8 +34,10 @@ MPS.controller(
                 }
             ).success(
                 function (data) {
-                    $scope.data_url = "/media/heatmap/" + data["tsv"] + ".tsv" ;
-                    console.log($scope.data_url);
+                    $scope.data_url = window.data_url = "/media/heatmap/"
+                        + data["tsv"]
+                        + ".tsv";
+                    console.log("data url :: " + window.data_url);
                 }
             ).error(
                 function() {

@@ -31,12 +31,6 @@
     border-radius: 25px !important;
 }
 
-#heatmap {
-    margin: 0 auto !important;
-    width: 100% !important;
-}
-
-
 /*** Heatmap ***/
 
 svg {

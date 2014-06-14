@@ -1,3 +1,6 @@
+
+
+
 var margin = { top: 150, right: 10, bottom: 50, left: 100 },
     cellSize = 10;
 col_number = 60;
@@ -50,9 +53,8 @@ colLabel = [
         'con193', 'con194', 'con199', 'con2', 'con200', 'con201', 'con21'
     ]; // change to contrast name
 
-console.log(data_url);
 d3.tsv(
-    "test.tsv",
+    window.data_url,
     function (d) {
         return {
             row: +d.row_idx,
@@ -65,7 +67,7 @@ d3.tsv(
             .domain([-10 , 0, 10])
             .range(colors);
 
-        var svg = d3.select("#chart").append("svg")
+        var svg = d3.select("#heatmap").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom)
                 .append("g")
@@ -114,8 +116,7 @@ d3.tsv(
                     sortbylabel("r", i, rowSortOrder);
                     d3.select("#order").property(
                         "selectedIndex", 4
-                    ).node().focus();
-                    ;
+                    ).node();
                 }
             )
             ;
@@ -314,7 +315,7 @@ d3.tsv(
 // Change ordering of cells
 
         function sortbylabel(rORc, i, sortOrder) {
-            var t = svg.transition().duration(3000);
+            var t = svg.transition().duration(5000);
             var log2r = [];
             var sorted; // sorted is zero-based index
             d3.selectAll(".c" + rORc + i)
@@ -383,7 +384,7 @@ d3.tsv(
 
         function order(value) {
             if (value == "hclust") {
-                var t = svg.transition().duration(3000);
+                var t = svg.transition().duration(5000);
                 t.selectAll(".cell")
                     .attr(
                     "x", function (d) {
@@ -414,7 +415,7 @@ d3.tsv(
                 ;
 
             } else if (value == "probecontrast") {
-                var t = svg.transition().duration(3000);
+                var t = svg.transition().duration(5000);
                 t.selectAll(".cell")
                     .attr(
                     "x", function (d) {
@@ -449,7 +450,7 @@ d3.tsv(
                 ;
 
             } else if (value == "probe") {
-                var t = svg.transition().duration(3000);
+                var t = svg.transition().duration(5000);
                 t.selectAll(".cell")
                     .attr(
                     "y", function (d) {
@@ -468,7 +469,7 @@ d3.tsv(
                 )
                 ;
             } else if (value == "contrast") {
-                var t = svg.transition().duration(3000);
+                var t = svg.transition().duration(5000);
                 t.selectAll(".cell")
                     .attr(
                     "x", function (d) {
