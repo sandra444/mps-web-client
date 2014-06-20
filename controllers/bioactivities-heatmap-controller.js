@@ -34,15 +34,15 @@ MPS.controller(
                 }
             ).success(
                 function (data) {
-                    $scope.data_url = window.data_url = "/media/heatmap/"
-                                                            + data["tsv"]
+                    $scope.data_url =
+                        "/media/heatmap/"
+                        + data["tsv"]
                         + ".tsv";
-                    console.log(
-                            "$http sez " + (
-                            $scope.data_url || {}
-                            )
-                    );
-                    $scope.load_d3_heatmap();
+                    
+                    if (data["tsv"] != undefined) {
+                        console.log("Loading d3 heatmap...");
+                        $scope.load_d3_heatmap();
+                    }
                 }
             ).error(
                 function () {
@@ -51,10 +51,7 @@ MPS.controller(
 
 
             $scope.load_d3_heatmap = function () {
-                if (!$scope.data_url) {
-                    return;
-                }
-
+                
                 var margin = { top: 150, right: 10, bottom: 50, left: 100 },
                     cellSize = 10;
                 var col_number = 60;
