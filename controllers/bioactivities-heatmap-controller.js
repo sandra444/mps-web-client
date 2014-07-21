@@ -36,21 +36,19 @@ MPS.controller(
                 function (data) {
 
                     if (data["data_csv"] != undefined &&
-                        data["rows"] != undefined &&
-                        data["cols"] != undefined) {
+                        data["rows_csv"] != undefined &&
+                        data["cols_csv"] != undefined) {
 
-                        $scope.data_url =
-                            "/media/heatmap/" + data["data_csv"];
-
-                        $scope.heatmap_rows = data["rows"];
-                        $scope.heatmap_cols = data["cols"];
+                        $scope.heatmap_data_csv = data["data_csv"];
+                        $scope.heatmap_rows_csv = data["rows_csv"];
+                        $scope.heatmap_cols_csv = data["cols_csv"];
                         $scope.load_d3_heatmap();
 
                     } else {
-                        console.log("------- critical -------");
-                        console.log("data csv  - " + data["data_csv"]);
-                        console.log("data rows - " + data["rows"]);
-                        console.log("data cols - " + data["cols"]);
+                        console.log("------- critical error -------");
+                        console.log("data csv  - " + $scope.heatmap_data_csv);
+                        console.log("data rows - " + $scope.heatmap_rows_csv);
+                        console.log("data cols - " + $scope.heatmap_cols_csv);
                     }
                 }
             ).error(
@@ -62,44 +60,61 @@ MPS.controller(
 
             $scope.load_d3_heatmap = function () {
 
-                var margin = { top: 150, right: 10, bottom: 50, left: 100 };
-                var cellSize = 10;
-                var col_number = $scope.heatmap_cols.length;
-                var row_number = $scope.heatmap_rows.length;
-                var width = cellSize * col_number;
-                var height = cellSize * row_number;
-                var legendElementWidth = cellSize * 2.5;
+//                var margin = { top: 150, right: 10, bottom: 50, left: 100 };
+//                var cellSize = 10;
+//
+//                var width = cellSize * col_number;
+//                var height = cellSize * row_number;
+//                var legendElementWidth = cellSize * 2.5;
+//
+//                var colors = [
+//                    '#005824', '#1A693B', '#347B53', '#4F8D6B', '#699F83',
+//                    '#83B09B',
+//                    '#9EC2B3', '#B8D4CB', '#D2E6E3', '#EDF8FB', '#FFFFFF',
+//                    '#F1EEF6',
+//                    '#E6D3E1', '#DBB9CD', '#D19EB9', '#C684A4', '#BB6990',
+//                    '#B14F7C',
+//                    '#A63467', '#9B1A53', '#91003F'
+//                ];
+//                var colorBuckets = colors.length;
 
-                var colors = [
-                    '#005824', '#1A693B', '#347B53', '#4F8D6B', '#699F83',
-                    '#83B09B',
-                    '#9EC2B3', '#B8D4CB', '#D2E6E3', '#EDF8FB', '#FFFFFF',
-                    '#F1EEF6',
-                    '#E6D3E1', '#DBB9CD', '#D19EB9', '#C684A4', '#BB6990',
-                    '#B14F7C',
-                    '#A63467', '#9B1A53', '#91003F'
-                ];
-                var colorBuckets = colors.length;
+//                var hcrow = [];
+//                var hccol = [];
+//
+//                var i;
+//                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
+//                    hcrow[i] = i;
+//                }
+//                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
+//                    hccol[i] = i;
+//                }
+//
+//                console.log(
+//                        "d3 will see: " + (
+//                        $scope.data_url || {}
+//                        )
+//                );
+//                var col_number = $scope.heatmap_cols.length;
+//                var row_number = $scope.heatmap_rows.length;
 
-                var hcrow = [];
-                var hccol = [];
+                var heatmap_rows;
+                d3.csv.parse(
+                    $scope.heatmap_rows_csv,
+                    function (data) {
+                        heatmap_rows = data;
+                    }
+                );
 
-                var i;
-                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
-                    hcrow[i] = i;
-                }
-                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
-                    hccol[i] = i;
-                }
-
-                console.log(
-                        "d3 will see: " + (
-                        $scope.data_url || {}
-                        )
+                var heatmap_cols;
+                d3.csv(
+                    $scope.heatmap_cols_csv,
+                    function (data) {
+                        heatmap_cols = data;
+                    }
                 );
 
                 d3.csv(
-                    $scope.data_url,
+                    $scope.heatmap_data_csv,
                     function (d) {
                         return {
                             row: +d.row_idx,
