@@ -1,8 +1,5 @@
 window.d3_heatmap_render = function (heatmap_data_csv) {
 
-    /* destroy existing heatmap if it exists */
-    $('svg').remove();
-
     var margin = { top: 650, right: 50, bottom: 50, left: 125 };
     var cell_size = 10;
     var legend_element_width = cell_size * 2.5;
