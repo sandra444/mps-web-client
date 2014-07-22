@@ -5,8 +5,10 @@ MPS.controller(
         function ($scope, $http, bioactivities_heatmap_filter) {
             'use strict';
 
-            /* destroy existing heatmap if it exists */
-            $('svg').remove();
+            /* destroy existing heatmap if it exists upon navigation */
+            $scope.$on('$routeChangeSuccess', function() {
+                $('svg').remove();
+            });
 
             var bioactivities_filter = bioactivities_heatmap_filter.bioactivities;
             var targets_filter = bioactivities_heatmap_filter.targets;
