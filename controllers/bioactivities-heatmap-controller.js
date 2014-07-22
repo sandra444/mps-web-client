@@ -5,24 +5,18 @@ MPS.controller(
         function ($scope, $http, bioactivities_heatmap_filter) {
             'use strict';
 
-            /* destroy existing heatmap if it exists upon navigation */
-            $scope.$on('$routeChangeSuccess', function() {
-                $('svg').remove();
-            });
-
+            $scope.error_message_visible = false;
             var bioactivities_filter = bioactivities_heatmap_filter.bioactivities;
             var targets_filter = bioactivities_heatmap_filter.targets;
             var compounds_filter = bioactivities_heatmap_filter.compounds;
 
-            $scope.alerts = [];
-
-            $scope.add_alert = function (message, level) {
-                $scope.alerts.push({type: level, msg: message});
-            };
-
-            $scope.close_alert = function () {
-                $scope.alerts.pop();
-            };
+            /* destroy existing heatmap if it exists upon navigation */
+            $scope.$on('$routeChangeSuccess', function() {
+                $('svg').remove();
+                window.spinner.spin(
+                    document.getElementById("spinner")
+                );
+            });
 
             $http(
                 {
@@ -39,19 +33,20 @@ MPS.controller(
                 }
             ).success(
                 function (data) {
-
+                    window.spinner.stop();
                     if (data["data_csv"] != undefined) {
                         $scope.heatmap_data_csv = data["data_csv"];
                         window.d3_heatmap_render($scope.heatmap_data_csv);
 
                     } else {
-                        console.log("------- critical error -------");
-                        console.log("data csv  - " + $scope.heatmap_data_csv);
+                        $scope.error_message_visible = true;
+                        window.spinner.stop();
                     }
                 }
             ).error(
                 function () {
-                    alert("HTTP Error: Could not get bioactivities data.");
+                    window.spinner.stop();
+                    $scope.error_message_visible = true;
                 }
             );
 

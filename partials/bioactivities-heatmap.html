@@ -1,6 +1,27 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <div class="alert alert-danger"
+                     role="alert"
+                     id="error_message"
+                     ng-show="error_message_visible">
+                    <p>
+                        The server could not find the result to your request.
+                    </p>
+                    <p>
+                        Please try a different query.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div ng-if="heatmap_data_csv">
         <div id="heatmap" style='overflow:auto; width:100%; height:100%;'>
         </div>
     </div>
 </div>
+
+<div id="spinner"></div>

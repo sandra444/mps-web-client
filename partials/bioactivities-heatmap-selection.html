@@ -7,17 +7,23 @@
                             type="submit">
                         Generate Heatmap
                     </button>
-
-                    <hr>
-
-                    <p>
-                        Large dataset searches may take several minutes to
-                        complete on slow machines. Please be patient.
-                    </p>
-
                 </div>
-
-                <hr>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-danger"
+                     role="alert"
+                     id="error_message"
+                     ng-show="error_message_visible">
+                    <p>
+                        The server could not find the result to your request.
+                    </p>
+                    <p>
+                        Please try a different query.
+                    </p>
+                </div>
 
                 <div class="container">
                     <div class="col-xs-4">
