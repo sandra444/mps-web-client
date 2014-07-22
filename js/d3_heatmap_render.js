@@ -550,7 +550,6 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 }
             }
 
-            //
             var sa = d3.select(".g3")
                     .on(
                     "mousedown", function () {
@@ -723,8 +722,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                             );
                         }
                     }
-                )
-                ;
+                );
         }
     );
 }
