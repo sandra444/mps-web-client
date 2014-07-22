@@ -222,11 +222,10 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 )
                     .attr(
                     "class", function (d) {
-                        return "cell cell-border cr" + (
-                            d["compound"] - 1
-                            ) + " cc" + (
-                                   d["bioactivity"] - 1
-                                   );
+                        return "cell cell-border cr" +
+                               (rows_list.indexOf(d["compound"]) - 1) +
+                               " cc" +
+                                (cols_list.indexOf(d["bioactivity"]) - 1);
                     }
                 )
                     .attr("width", cell_size)
@@ -240,7 +239,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                     "click", function (d) {
                         var rowtext = d3.select(
                                 ".r" + (
-                                d["compound"] - 1
+                                rows_list.indexOf(d["compound"]) - 1
                                 )
                         );
                         if (rowtext.classed("text-selected")
@@ -258,14 +257,14 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                         d3.selectAll(".row_label").classed(
                             "text-highlight", function (r, ri) {
                                 return ri == (
-                                    d["compound"] - 1
+                                    rows_list.indexOf(d["compound"]) - 1
                                     );
                             }
                         );
                         d3.selectAll(".col_label").classed(
                             "text-highlight", function (c, ci) {
                                 return ci == (
-                                    d["bioactivity"] - 1
+                                    cols_list.indexOf(d["bioactivity"]) - 1
                                     );
                             }
                         );
@@ -285,17 +284,18 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                             .select("#value")
                             .text(
                                 "lables:"
-                                + rows_list[d["compound"] - 1]
-                                + ","
-                                + cols_list[d["bioactivity"] - 1]
+                                + "row "
+                                + ", "
+                                + "cols "
                                 + "\ndata:"
                                 + d.value
-                                + "\nrow-col-idx:" + d["bioactivity"] + ","
+                                + "\nrow-col-idx:" + " - " + ","
                                 + d["compound"]
                                 + "\ncell-xy "
                                 + this.x.baseVal.value + ", "
                                 + this.y.baseVal.value
                         );
+
                         //Show the tooltip
                         d3.select("#tooltip").classed(
                             "hidden", false
@@ -317,15 +317,13 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                             "hidden", true
                         );
                     }
-                )
-                ;
+                );
 
             var legend = svg.selectAll(".legend")
                 .data(
                 [
-                    -10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1,
-                    2, 3, 4, 5, 6, 7,
-                    8, 9, 10
+                    -10, -9, -8, -7, -6, -5, -4, -3, -2,
+                    -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
                 ]
             )
                 .enter().append("g")
