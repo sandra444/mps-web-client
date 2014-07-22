@@ -35,20 +35,13 @@ MPS.controller(
             ).success(
                 function (data) {
 
-                    if (data["data_csv"] != undefined &&
-                        data["rows_csv"] != undefined &&
-                        data["cols_csv"] != undefined) {
-
+                    if (data["data_csv"] != undefined) {
                         $scope.heatmap_data_csv = data["data_csv"];
-                        $scope.heatmap_rows_csv = data["rows_csv"];
-                        $scope.heatmap_cols_csv = data["cols_csv"];
                         $scope.load_d3_heatmap();
 
                     } else {
                         console.log("------- critical error -------");
                         console.log("data csv  - " + $scope.heatmap_data_csv);
-                        console.log("data rows - " + $scope.heatmap_rows_csv);
-                        console.log("data cols - " + $scope.heatmap_cols_csv);
                     }
                 }
             ).error(
@@ -60,92 +53,74 @@ MPS.controller(
 
             $scope.load_d3_heatmap = function () {
 
-//                var margin = { top: 150, right: 10, bottom: 50, left: 100 };
-//                var cellSize = 10;
-//
-//                var width = cellSize * col_number;
-//                var height = cellSize * row_number;
-//                var legendElementWidth = cellSize * 2.5;
-//
-//                var colors = [
-//                    '#005824', '#1A693B', '#347B53', '#4F8D6B', '#699F83',
-//                    '#83B09B',
-//                    '#9EC2B3', '#B8D4CB', '#D2E6E3', '#EDF8FB', '#FFFFFF',
-//                    '#F1EEF6',
-//                    '#E6D3E1', '#DBB9CD', '#D19EB9', '#C684A4', '#BB6990',
-//                    '#B14F7C',
-//                    '#A63467', '#9B1A53', '#91003F'
-//                ];
-//                var colorBuckets = colors.length;
+                var margin = { top: 650, right: 50, bottom: 50, left: 125 };
+                var cell_size = 10;
+                var legend_element_width = cell_size * 2.5;
 
-//                var hcrow = [];
-//                var hccol = [];
-//
-//                var i;
-//                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
-//                    hcrow[i] = i;
-//                }
-//                for (i = 0; i < $scope.heatmap_rows.length; i += 1) {
-//                    hccol[i] = i;
-//                }
-//
-//                console.log(
-//                        "d3 will see: " + (
-//                        $scope.data_url || {}
-//                        )
-//                );
-//                var col_number = $scope.heatmap_cols.length;
-//                var row_number = $scope.heatmap_rows.length;
-
-                var heatmap_rows;
-                d3.csv.parse(
-                    $scope.heatmap_rows_csv,
-                    function (data) {
-                        heatmap_rows = data;
-                    }
-                );
-
-                var heatmap_cols;
-                d3.csv(
-                    $scope.heatmap_cols_csv,
-                    function (data) {
-                        heatmap_cols = data;
-                    }
-                );
+                var colors = [
+                    '#005824', '#1A693B', '#347B53', '#4F8D6B', '#699F83',
+                    '#83B09B',
+                    '#9EC2B3', '#B8D4CB', '#D2E6E3', '#EDF8FB', '#FFFFFF',
+                    '#F1EEF6',
+                    '#E6D3E1', '#DBB9CD', '#D19EB9', '#C684A4', '#BB6990',
+                    '#B14F7C',
+                    '#A63467', '#9B1A53', '#91003F'
+                ];
+                var color_buckets = colors.length;
 
                 d3.csv(
                     $scope.heatmap_data_csv,
                     function (d) {
                         return {
-                            row: +d.row_idx,
-                            col: +d.col_idx,
-                            value: +d.log2ratio
+                            compound: d.compound,
+                            bioactivity: d.bioactivity,
+                            value: +d.value  /* + converts string to number */
                         };
                     },
                     function (error, data) {
+
+                        var i;
+                        var cols_list = [];
+                        var rows_list = [];
+                        for (i = 0; i < data.length; i += 1) {
+                            var current_bioactivity = data[i]["bioactivity"];
+                            var current_compound = data[i]["compound"];
+                            if (cols_list.indexOf(current_bioactivity) === -1) {
+                                cols_list.push(current_bioactivity);
+                            }
+                            if (rows_list.indexOf(current_compound) === -1) {
+                                rows_list.push(current_compound);
+                            }
+
+                        }
+
+                        var width = cell_size * cols_list.length;
+                        var height = cell_size * rows_list.length;
+
                         var colorScale = d3.scale.quantile()
                             .domain([-10 , 0, 10])
                             .range(colors);
 
                         var svg = d3.select("#heatmap").append("svg")
-                                .attr(
-                                "width", width + margin.left + margin.right
-                            )
-                                .attr(
-                                "height", height + margin.top + margin.bottom
-                            )
-                                .append("g")
-                                .attr(
-                                "transform",
-                                "translate(" + margin.left + "," + margin.top
-                                    + ")"
-                            )
-                            ;
-                        var rowSortOrder = false;
-                        var colSortOrder = false;
-                        var rowLabels = svg.append("g")
-                                .selectAll(".rowLabelg")
-                                .data($scope.heatmap_rows)
+                            .attr(
+                            "width", width + margin.left + margin.right
+                        )
+                            .attr(
+                            "height", height + margin.top + margin.bottom
+                        )
+                            .append("g")
+                            .attr(
+                            "transform",
+                            "translate(" +
+                            margin.left + "," + margin.top
+                                + ")"
+                        );
+
+                        var row_sort_order = false;
+                        var col_sort_order = false;
+                        var row_labels = svg.append("g")
+                                .selectAll(".row_labelg")
+                                .data(rows_list)
                                 .enter()
                                 .append("text")
                                 .text(
@@ -156,17 +131,18 @@ MPS.controller(
                                 .attr("x", 0)
                                 .attr(
                                 "y", function (d, i) {
-                                    return hcrow.indexOf(i + 1) * cellSize;
+                                    console.log(i);
+                                    return (rows_list.indexOf(d) + 1) * cell_size;
                                 }
                             )
                                 .style("text-anchor", "end")
                                 .attr(
                                 "transform",
-                                "translate(-6," + cellSize / 1.5 + ")"
+                                "translate(-6," + cell_size / 1.5 + ")"
                             )
                                 .attr(
                                 "class", function (d, i) {
-                                    return "rowLabel mono r" + i;
+                                    return "row_label mono r" + i;
                                 }
                             )
                                 .on(
@@ -183,8 +159,8 @@ MPS.controller(
                             )
                                 .on(
                                 "click", function (d, i) {
-                                    rowSortOrder = !rowSortOrder;
-                                    sortbylabel("r", i, rowSortOrder);
+                                    row_sort_order = !row_sort_order;
+                                    sort_by_label("r", i, row_sort_order);
                                     d3.select("#order").property(
                                         "selectedIndex", 4
                                     ).node();
@@ -192,9 +168,9 @@ MPS.controller(
                             )
                             ;
 
-                        var colLabels = svg.append("g")
-                                .selectAll(".colLabelg")
-                                .data($scope.heatmap_cols)
+                        var col_labels = svg.append("g")
+                                .selectAll(".col_labelg")
+                                .data(cols_list)
                                 .enter()
                                 .append("text")
                                 .text(
@@ -205,17 +181,17 @@ MPS.controller(
                                 .attr("x", 0)
                                 .attr(
                                 "y", function (d, i) {
-                                    return hccol.indexOf(i + 1) * cellSize;
+                                    return (cols_list.indexOf(d) + 1) * cell_size;
                                 }
                             )
                                 .style("text-anchor", "left")
                                 .attr(
-                                "transform", "translate(" + cellSize / 2
+                                "transform", "translate(" + cell_size / 2
                                     + ",-6) rotate (-90)"
                             )
                                 .attr(
                                 "class", function (d, i) {
-                                    return "colLabel mono c" + i;
+                                    return "col_label mono c" + i;
                                 }
                             )
                                 .on(
@@ -232,8 +208,8 @@ MPS.controller(
                             )
                                 .on(
                                 "click", function (d, i) {
-                                    colSortOrder = !colSortOrder;
-                                    sortbylabel("c", i, colSortOrder);
+                                    col_sort_order = !col_sort_order;
+                                    sort_by_label("c", i, col_sort_order);
                                     d3.select("#order").property(
                                         "selectedIndex", 4
                                     ).node().focus();
@@ -242,23 +218,25 @@ MPS.controller(
                             )
                             ;
 
-                        var heatMap = svg.append("g").attr("class", "g3")
+                        var heat_map = svg.append("g").attr("class", "g3")
                                 .selectAll(".cellg")
                                 .data(
                                 data, function (d) {
-                                    return d.row + ":" + d.col;
+                                    return d["compound"] + ": " + d["bioactivity"];
                                 }
                             )
                                 .enter()
                                 .append("rect")
                                 .attr(
                                 "x", function (d) {
-                                    return hccol.indexOf(d.col) * cellSize;
+                                    console.log("heatmap x: " + d);
+                                    return (cols_list.indexOf(d["bioactivity"]) + 1) * cell_size;
                                 }
                             )
                                 .attr(
                                 "y", function (d) {
-                                    return hcrow.indexOf(d.row) * cellSize;
+                                    console.log("heatmap y: " + d);
+                                    return (rows_list.indexOf(d["compound"]) + 1) * cell_size;
                                 }
                             )
                                 .attr(
@@ -270,33 +248,40 @@ MPS.controller(
                                                );
                                 }
                             )
-                                .attr("width", cellSize)
-                                .attr("height", cellSize)
+                                .attr("width", cell_size)
+                                .attr("height", cell_size)
                                 .style(
                                 "fill", function (d) {
                                     return colorScale(d.value);
                                 }
                             )
-                                /* .on("click", function(d) {
-                                 var rowtext=d3.select(".r"+(d.row-1));
-                                 if(rowtext.classed("text-selected")==false){
-                                 rowtext.classed("text-selected",true);
-                                 }else{
-                                 rowtext.classed("text-selected",false);
-                                 }
-                                 })*/
+                                .on(
+                                "click", function (d) {
+                                    var rowtext = d3.select(
+                                            ".r" + (
+                                            d.row - 1
+                                            )
+                                    );
+                                    if (rowtext.classed("text-selected")
+                                        == false) {
+                                        rowtext.classed("text-selected", true);
+                                    } else {
+                                        rowtext.classed("text-selected", false);
+                                    }
+                                }
+                            )
                                 .on(
                                 "mouseover", function (d) {
                                     //highlight text
                                     d3.select(this).classed("cell-hover", true);
-                                    d3.selectAll(".rowLabel").classed(
+                                    d3.selectAll(".row_label").classed(
                                         "text-highlight", function (r, ri) {
                                             return ri == (
                                                 d.row - 1
                                                 );
                                         }
                                     );
-                                    d3.selectAll(".colLabel").classed(
+                                    d3.selectAll(".col_label").classed(
                                         "text-highlight", function (c, ci) {
                                             return ci == (
                                                 d.col - 1
@@ -319,9 +304,9 @@ MPS.controller(
                                         .select("#value")
                                         .text(
                                             "lables:"
-                                            + $scope.heatmap_rows[d.row - 1]
+                                            + rows_list[d.row - 1]
                                             + ","
-                                            + $scope.heatmap_cols[d.col - 1]
+                                            + cols_list[d.col - 1]
                                             + "\ndata:"
                                             + d.value
                                             + "\nrow-col-idx:" + d.col + ","
@@ -341,10 +326,10 @@ MPS.controller(
                                     d3.select(this).classed(
                                         "cell-hover", false
                                     );
-                                    d3.selectAll(".rowLabel").classed(
+                                    d3.selectAll(".row_label").classed(
                                         "text-highlight", false
                                     );
-                                    d3.selectAll(".colLabel").classed(
+                                    d3.selectAll(".col_label").classed(
                                         "text-highlight", false
                                     );
                                     d3.select("#tooltip").classed(
@@ -368,16 +353,16 @@ MPS.controller(
                         legend.append("rect")
                             .attr(
                             "x", function (d, i) {
-                                return legendElementWidth * i;
+                                return legend_element_width * i;
                             }
                         )
                             .attr(
                             "y", height + (
-                                cellSize * 2
+                                cell_size * 2
                                 )
                         )
-                            .attr("width", legendElementWidth)
-                            .attr("height", cellSize)
+                            .attr("width", legend_element_width)
+                            .attr("height", cell_size)
                             .style(
                             "fill", function (d, i) {
                                 return colors[i];
@@ -391,21 +376,21 @@ MPS.controller(
                                 return d;
                             }
                         )
-                            .attr("width", legendElementWidth)
+                            .attr("width", legend_element_width)
                             .attr(
                             "x", function (d, i) {
-                                return legendElementWidth * i;
+                                return legend_element_width * i;
                             }
                         )
                             .attr(
                             "y", height + (
-                                cellSize * 4
+                                cell_size * 4
                                 )
                         );
 
                         // Change ordering of cells
 
-                        function sortbylabel(rORc, i, sortOrder) {
+                        function sort_by_label(rORc, i, sortOrder) {
                             var t = svg.transition().duration(5000);
                             var log2r = [];
                             var sorted; // sorted is zero-based index
@@ -430,14 +415,14 @@ MPS.controller(
                                     .attr(
                                     "x", function (d) {
                                         return sorted.indexOf(d.col - 1)
-                                            * cellSize;
+                                            * cell_size;
                                     }
                                 )
                                 ;
-                                t.selectAll(".colLabel")
+                                t.selectAll(".col_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return sorted.indexOf(i) * cellSize;
+                                        return sorted.indexOf(i) * cell_size;
                                     }
                                 )
                                 ;
@@ -455,14 +440,14 @@ MPS.controller(
                                     .attr(
                                     "y", function (d) {
                                         return sorted.indexOf(d.row - 1)
-                                            * cellSize;
+                                            * cell_size;
                                     }
                                 )
                                 ;
-                                t.selectAll(".rowLabel")
+                                t.selectAll(".row_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return sorted.indexOf(i) * cellSize;
+                                        return sorted.indexOf(i) * cell_size;
                                     }
                                 )
                                 ;
@@ -481,28 +466,32 @@ MPS.controller(
                                 t.selectAll(".cell")
                                     .attr(
                                     "x", function (d) {
-                                        return hccol.indexOf(d.col) * cellSize;
+                                        return cols_list.indexOf(d.col)
+                                            * cell_size;
                                     }
                                 )
                                     .attr(
                                     "y", function (d) {
-                                        return hcrow.indexOf(d.row) * cellSize;
+                                        return rows_list.indexOf(d.row)
+                                            * cell_size;
                                     }
                                 )
                                 ;
 
-                                t.selectAll(".rowLabel")
+                                t.selectAll(".row_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return hcrow.indexOf(i + 1) * cellSize;
+                                        return rows_list.indexOf(i + 1)
+                                            * cell_size;
                                     }
                                 )
                                 ;
 
-                                t.selectAll(".colLabel")
+                                t.selectAll(".col_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return hccol.indexOf(i + 1) * cellSize;
+                                        return cols_list.indexOf(i + 1)
+                                            * cell_size;
                                     }
                                 )
                                 ;
@@ -514,30 +503,30 @@ MPS.controller(
                                     "x", function (d) {
                                         return (
                                                    d.col - 1
-                                                   ) * cellSize;
+                                                   ) * cell_size;
                                     }
                                 )
                                     .attr(
                                     "y", function (d) {
                                         return (
                                                    d.row - 1
-                                                   ) * cellSize;
+                                                   ) * cell_size;
                                     }
                                 )
                                 ;
 
-                                t.selectAll(".rowLabel")
+                                t.selectAll(".row_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return i * cellSize;
+                                        return i * cell_size;
                                     }
                                 )
                                 ;
 
-                                t.selectAll(".colLabel")
+                                t.selectAll(".col_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return i * cellSize;
+                                        return i * cell_size;
                                     }
                                 )
                                 ;
@@ -549,15 +538,15 @@ MPS.controller(
                                     "y", function (d) {
                                         return (
                                                    d.row - 1
-                                                   ) * cellSize;
+                                                   ) * cell_size;
                                     }
                                 )
                                 ;
 
-                                t.selectAll(".rowLabel")
+                                t.selectAll(".row_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return i * cellSize;
+                                        return i * cell_size;
                                     }
                                 )
                                 ;
@@ -568,14 +557,14 @@ MPS.controller(
                                     "x", function (d) {
                                         return (
                                                    d.col - 1
-                                                   ) * cellSize;
+                                                   ) * cell_size;
                                     }
                                 )
                                 ;
-                                t.selectAll(".colLabel")
+                                t.selectAll(".col_label")
                                     .attr(
                                     "y", function (d, i) {
-                                        return i * cellSize;
+                                        return i * cell_size;
                                     }
                                 )
                                 ;
@@ -590,10 +579,10 @@ MPS.controller(
                                         d3.selectAll(".cell-selected").classed(
                                             "cell-selected", false
                                         );
-                                        d3.selectAll(".rowLabel").classed(
+                                        d3.selectAll(".row_label").classed(
                                             "text-selected", false
                                         );
-                                        d3.selectAll(".colLabel").classed(
+                                        d3.selectAll(".col_label").classed(
                                             "text-selected", false
                                         );
                                     }
@@ -669,19 +658,21 @@ MPS.controller(
                                                     // inner circle inside selection frame
                                                     (
                                                         this.x.baseVal.value
-                                                        ) + cellSize >= d.x && (
-                                                                                   this.x.baseVal.value
-                                                                                   )
+                                                        ) + cell_size >= d.x
+                                                    && (
+                                                           this.x.baseVal.value
+                                                           )
                                                         <= d.x
-                                                                                   + d.width
+                                                           + d.width
                                                     &&
                                                     (
                                                         this.y.baseVal.value
-                                                        ) + cellSize >= d.y && (
-                                                                                   this.y.baseVal.value
-                                                                                   )
+                                                        ) + cell_size >= d.y
+                                                    && (
+                                                           this.y.baseVal.value
+                                                           )
                                                         <= d.y
-                                                                                   + d.height
+                                                           + d.height
                                                     ) {
 
                                                     d3.select(this)
@@ -745,10 +736,10 @@ MPS.controller(
                                         d3.selectAll('.cell-selection').classed(
                                             "cell-selection", false
                                         );
-                                        d3.selectAll(".rowLabel").classed(
+                                        d3.selectAll(".row_label").classed(
                                             "text-selected", false
                                         );
-                                        d3.selectAll(".colLabel").classed(
+                                        d3.selectAll(".col_label").classed(
                                             "text-selected", false
                                         );
                                     }
