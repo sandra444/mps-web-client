@@ -13,8 +13,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
         '#B14F7C',
         '#A63467', '#9B1A53', '#91003F'
     ];
-    var color_buckets = colors.length;
-
+    
     d3.csv(
         heatmap_data_csv,
         function (d) {
@@ -29,23 +28,50 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
             var i;
             var cols_list = [];
             var rows_list = [];
+            var max_row_name_length = 0;
+            var max_col_name_length = 0;
+            var min_value = 0;
+            var max_value = 0;
+            var median;
+            var list_of_all_values = [];
+
             for (i = 0; i < data.length; i += 1) {
                 var current_bioactivity = data[i]["bioactivity"];
                 var current_compound = data[i]["compound"];
                 if (cols_list.indexOf(current_bioactivity) === -1) {
                     cols_list.push(current_bioactivity);
+                    if(current_bioactivity.length >= max_col_name_length) {
+                        max_col_name_length = current_bioactivity.length;
+                    }
                 }
                 if (rows_list.indexOf(current_compound) === -1) {
                     rows_list.push(current_compound);
+                    if(current_compound.length >= max_row_name_length) {
+                        max_row_name_length = current_compound.length;
+                    }
                 }
-
+                if(min_value > data[i]["value"]) {
+                    min_value = data[i]["value"];
+                }
+                if(max_value < data[i]["value"]) {
+                    max_value = data[i]["value"];
+                }
+                list_of_all_values.push(data[i]["value"]);
             }
+
+            min_value -= min_value * 0.1;
+            max_value += max_value * 0.1;
+            median = d3.median(list_of_all_values);
+
+            var char_pixels_width = 8;
+            margin.top = char_pixels_width * max_col_name_length;
+            margin.left = char_pixels_width * max_row_name_length;
 
             var width = cell_size * cols_list.length;
             var height = cell_size * rows_list.length;
 
-            var colorScale = d3.scale.quantile()
-                .domain([-10 , 0, 10])
+            var color_scale = d3.scale.quantile()
+                .domain([min_value , median, max_value])
                 .range(colors);
 
             var svg = d3.select("#heatmap").append("svg")
@@ -207,7 +233,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                     .attr("height", cell_size)
                     .style(
                     "fill", function (d) {
-                        return colorScale(d.value);
+                        return color_scale(d.value);
                     }
                 )
                     .on(
