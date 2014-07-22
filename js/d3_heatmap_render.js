@@ -254,14 +254,14 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                         d3.selectAll(".row_label").classed(
                             "text-highlight", function (r, ri) {
                                 return ri == (
-                                    rows_list.indexOf(d["compound"]) - 1
+                                    rows_list.indexOf(d["compound"])
                                     );
                             }
                         );
                         d3.selectAll(".col_label").classed(
                             "text-highlight", function (c, ci) {
                                 return ci == (
-                                    cols_list.indexOf(d["bioactivity"]) - 1
+                                    cols_list.indexOf(d["bioactivity"])
                                     );
                             }
                         );
