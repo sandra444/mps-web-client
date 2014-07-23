@@ -2,7 +2,8 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
 
     var margin = { top: 650, right: 50, bottom: 50, left: 125 };
     var cell_size = 10;
-    var legend_element_width = cell_size * 2.5;
+    var legend_element_width = cell_size * 3;
+    var legend_element_height = cell_size;
 
     var colors = [
         '#005824', '#1A693B', '#347B53', '#4F8D6B', '#699F83',
@@ -316,7 +317,16 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                     }
                 );
 
-            var legend = svg.selectAll(".legend")
+            var svg_legend = d3.select("#heatmap_legend").append("svg")
+                .attr(
+                "width", legend_element_width * 21
+            )
+                .attr(
+                "height", cell_size * 4
+            )
+                .append("g");
+
+            var legend = svg_legend.selectAll(".legend")
                 .data(
                 [
                     -10, -9, -8, -7, -6, -5, -4, -3, -2,
@@ -333,12 +343,10 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 }
             )
                 .attr(
-                "y", height + (
-                    cell_size * 2
-                    )
+                "y", 0
             )
                 .attr("width", legend_element_width)
-                .attr("height", cell_size)
+                .attr("height", legend_element_height)
                 .style(
                 "fill", function (d, i) {
                     return colors[i];
@@ -359,9 +367,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 }
             )
                 .attr(
-                "y", height + (
-                    cell_size * 4
-                    )
+                "y", legend_element_height * 2
             );
 
             // Change ordering of cells
