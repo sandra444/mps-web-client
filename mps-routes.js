@@ -19,6 +19,10 @@ MPS.config(['$routeProvider',
                 templateUrl: '/static/partials/bioactivities-heatmap.html',
                 controller: 'bioactivities_heatmap_controller'
             }).
+            when('/bioactivities/plot', {
+                templateUrl: '/static/partials/predictive-modeling.html',
+                controller: 'predictive_modeling_controller'
+            }).
             otherwise({
                 redirectTo: '/'
             });
