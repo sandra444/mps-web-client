@@ -15,6 +15,17 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
         '#A63467', '#9B1A53', '#91003F'
     ];
 
+    var colors2 = [
+        '#008000', '#1A8C00', '#339800', '#4DA400', '#66B000',
+        '#80BC00',
+        '#99C800', '#B3D400', '#CCE000', '#E6EC00', '#FFFF00',
+        '#F3E600',
+        '#E7CC00', '#DBB300', '#CF9900', '#C38000', '#B76600',
+        '#AB4D00',
+        '#9F3300', '#931A00', '#870000'
+    ];
+
+
     d3.csv(
         heatmap_data_csv,
         function (d) {
@@ -73,7 +84,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
 
             var color_scale = d3.scale.quantile()
                 .domain([min_value , median, max_value])
-                .range(colors);
+                .range(colors2);
 
             var svg = d3.select("#heatmap").append("svg")
                 .attr(
@@ -349,7 +360,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 .attr("height", legend_element_height)
                 .style(
                 "fill", function (d, i) {
-                    return colors[i];
+                    return colors2[i];
                 }
             );
 
