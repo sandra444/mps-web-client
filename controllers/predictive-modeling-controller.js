@@ -1,5 +1,5 @@
 MPS.controller(
-    'scatterplot_controller',
+    'predictive_modeling_controller',
     [
         '$scope', '$http',
 
@@ -233,4 +233,3 @@ d3.tsv($scope.data_url, function(error, data) {
         }
     ]
 );
-
