@@ -39,6 +39,57 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
             var median;
             var list_of_all_values = [];
 
+            function sort_columns_on_row(row_name) {
+                var i;
+                var j;
+                var new_column_order = [];
+                var cols_list_length = cols_list.length;
+                var data_length = data.length;
+
+                for(j = 0; j < cols_list_length; j += 1) {
+                    for (i = 0; i < data_length; i += 1) {
+                        if (data[i]["compound"] === row_name
+                            && data[i]["bioactivity"] === cols_list[j]) {
+                            new_column_order.push(
+                                [
+                                    data[i]["value"],
+                                    data[i]["bioactivity"]
+                                ]
+                            );
+                        }
+                    }
+                }
+
+                new_column_order.sort(
+                    function(first, next) {
+
+                        // note: sorting direction greatest to smallest this way
+                        if (first[0] < next[0]) {
+                            return 1;
+                        }
+                        if (first[0] > next[0]) {
+                            return -1;
+                        }
+                        return 0;
+                    }
+                );
+
+                // now we begin to build the final array
+                cols_list = [];
+
+                for (i = 0; i < new_column_order.length; i += 1) {
+                    cols_list.push(new_column_order[i][1]);
+                }
+
+                // whatever isn't in the first part goes to the back of the array
+                // where we don't care about the order of the undefined elements
+                for (i = 0; i <= (cols_list_original.length - cols_list.length); i += 1) {
+                    if (cols_list.indexOf(cols_list_original[i]) === -1) {
+                        cols_list.push(cols_list_original[i]);
+                    }
+                }
+            }
+
             function sort_on_row() {
 
                 /* sort row labels */
@@ -46,7 +97,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 // used to select the column labels and move them
                 d3.selectAll('g text.col_label')
                     .transition() /* everything below this will be part of the transition */
-                    .duration(5000)
+                    .duration(3000)
                     .attr("y", function(d, i) {
                     return (cols_list.indexOf(d) + 1) * cell_size;
                 })
@@ -57,16 +108,14 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 // used to select the heat map elements and move them
                 d3.selectAll('g.g3 rect')
                     .transition() /* everything below this will be part of the transition */
-                    .duration(5000)
+                    .duration(3000)
                     .attr(
                     "x", function (d, i) {
-                        console.log("x d: " + d);
                         return (cols_list.indexOf(d["bioactivity"]) + 1) * cell_size;
                     }
                 )
                     .attr(
                     "y", function (d, i) {
-                        console.log("y d: " + d);
                         return (rows_list.indexOf(d["compound"]) + 1) * cell_size;
                     }
                 );
@@ -172,16 +221,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 .on(
                 "click", function (d, i) {
 
-                    // randomize columns list sort order
-                    cols_list = cols_list.sort(function() {
-                        return .5 - Math.random();
-                    });
-
-                    // randomize rows list sort order
-                    rows_list = rows_list.sort(function() {
-                        return .5 - Math.random();
-                    });
-
+                    sort_columns_on_row(d);
                     sort_on_row(d);
 
                 }
