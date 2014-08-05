@@ -45,6 +45,8 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 var new_column_order = [];
                 var cols_list_length = cols_list.length;
                 var data_length = data.length;
+                console.log("before: ");
+                console.log(cols_list.length);
 
                 for(j = 0; j < cols_list_length; j += 1) {
                     for (i = 0; i < data_length; i += 1) {
@@ -75,51 +77,37 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 );
 
                 // now we begin to build the final array
-                cols_list = [];
+                var temp_cols_list = [];
+
+                // left to right add columns in order of value from greatest to least
 
                 for (i = 0; i < new_column_order.length; i += 1) {
-                    cols_list.push(new_column_order[i][1]);
+                    temp_cols_list.push(new_column_order[i][1]);
                 }
+
+                // left to right add columns in alphabetical order
+                // for elements where there is no data
+                cols_list.sort();
 
                 // whatever isn't in the first part goes to the back of the array
                 // where we don't care about the order of the undefined elements
-                for (i = 0; i <= (cols_list_original.length - cols_list.length); i += 1) {
-                    if (cols_list.indexOf(cols_list_original[i]) === -1) {
-                        cols_list.push(cols_list_original[i]);
+                for (i = 0; i <= cols_list.length; i += 1) {
+                    if (temp_cols_list.indexOf(cols_list[i]) === -1) {
+                        temp_cols_list.push(cols_list[i]);
                     }
                 }
+                cols_list = temp_cols_list;
+
+                console.log("after:");
+                console.log(cols_list.length);
+
             }
 
-            function sort_on_row() {
-
-                /* sort row labels */
-
-                // used to select the column labels and move them
-                d3.selectAll('g text.col_label')
-                    .transition() /* everything below this will be part of the transition */
-                    .duration(3000)
-                    .attr("y", function(d, i) {
-                    return (cols_list.indexOf(d) + 1) * cell_size;
-                })
-                    .attr(
-                    "transform", "translate(" + cell_size / 2 + ", -6) rotate (-90)"
-                );
-
-                // used to select the heat map elements and move them
-                d3.selectAll('g.g3 rect')
-                    .transition() /* everything below this will be part of the transition */
-                    .duration(3000)
-                    .attr(
-                    "x", function (d, i) {
-                        return (cols_list.indexOf(d["bioactivity"]) + 1) * cell_size;
-                    }
-                )
-                    .attr(
-                    "y", function (d, i) {
-                        return (rows_list.indexOf(d["compound"]) + 1) * cell_size;
-                    }
-                );
-
+            function update_all() {
+                render_main_svg();
+                render_row_labels();
+                render_col_labels();
+                render_heatmap();
             }
 
             for (i = 0; i < data.length; i += 1) {
@@ -146,7 +134,11 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 list_of_all_values.push(data[i]["value"]);
             }
 
-            // archive the original arrays
+            // alphabetically sort row and column labels
+            rows_list = rows_list.sort();
+            cols_list = cols_list.sort();
+
+            // archive the original arrays in their respective copy of '_original'
             rows_list_original = rows_list.slice(0);
             cols_list_original = cols_list.slice(0);
 
@@ -165,179 +157,202 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 .domain([min_value , median, max_value])
                 .range(colors);
 
-            var svg = d3.select("#heatmap").append("svg")
-                .attr(
-                "width", width + margin.left + margin.right
-            )
-                .attr(
-                "height", height + margin.top + margin.bottom
-            )
-                .append("g")
-                .attr(
-                "transform",
-                "translate(" +
-                margin.left + "," + margin.top
-                    + ")"
-            );
+            var svg;
 
-            var row_labels = svg.append("g")
-                .selectAll(".row_labelg")
-                .data(rows_list)
-                .enter()
-                .append("text")
-                .text(
-                function (d) {
-                    return d;
-                }
-            )
-                .attr("x", 0)
-                .attr(
-                "y", function (d, i) {
-                    return (rows_list.indexOf(d) + 1) * cell_size;
-                }
-            )
-                .style("text-anchor", "end")
-                .attr(
+            var render_main_svg = function () {
+
+                // remove old svg canvas rendering
+                d3.select("svg").remove();
+
+                svg = d3.select("#heatmap").append("svg")
+                    .attr(
+                    "width", width + margin.left + margin.right
+                )
+                    .attr(
+                    "height", height + margin.top + margin.bottom
+                )
+                    .append("g")
+                    .attr(
+                    "transform",
+                    "translate(" +
+                    margin.left + "," + margin.top
+                        + ")"
+                );
+            };
+
+            render_main_svg();
+
+            var render_row_labels = function () {
+
+                svg.append("g")
+                    .selectAll(".row_labelg")
+                    .data(rows_list)
+                    .enter()
+                    .append("text")
+                    .text(
+                    function (d) {
+                        return d;
+                    }
+                )
+                    .attr("x", 0)
+                    .attr(
+                    "y", function (d, i) {
+                        return (rows_list.indexOf(d) + 1) * cell_size;
+                    }
+                )
+                    .style("text-anchor", "end")
+                    .attr(
                     "transform",
                     "translate(-6," + cell_size / 1.5 + ")"
-            )
-                .attr(
-                "class", function (d, i) {
-                    return "row_label mono r" + i;
-                }
-            )
-                .on(
-                "mouseover", function (d) {
-                    d3.select(this).classed("text-hover", true);
-                }
-            )
-                .on(
-                "mouseout", function (d) {
-                    d3.select(this).classed(
-                        "text-hover", false
-                    );
-                }
-            )
-                .on(
-                "click", function (d, i) {
+                )
+                    .attr(
+                    "class", function (d, i) {
+                        return "row_label mono r" + i;
+                    }
+                )
+                    .on(
+                    "mouseover", function (d) {
+                        d3.select(this).classed("text-hover", true);
+                    }
+                )
+                    .on(
+                    "mouseout", function (d) {
+                        d3.select(this).classed(
+                            "text-hover", false
+                        );
+                    }
+                )
+                    .on(
+                    "click", function (d, i) {
 
-                    sort_columns_on_row(d);
-                    sort_on_row(d);
+                        sort_columns_on_row(d);
+                        update_all(d);
 
-                }
-            );
+                    }
+                );
+            };
 
-            var col_labels = svg.append("g")
-                .selectAll(".col_labelg")
-                .data(cols_list)
-                .enter()
-                .append("text")
-                .text(
-                function (d) {
-                    return d;
-                }
-            )
-                .attr("x", 0)
-                .attr("y", function (d, i) {
-                    return (cols_list.indexOf(d) + 1) * cell_size;
-                }
-            )
-                .style("text-anchor", "left")
-                .attr(
-                "transform", "translate(" + cell_size / 2 + ",-6) rotate (-90)"
-            )
-                .attr(
-                "class", function (d, i) {
-                    return "col_label mono c" + i;
-                }
-            )
-                .on(
-                "mouseover", function (d) {
-                    d3.select(this).classed("text-hover", true);
-                }
-            )
-                .on(
-                "mouseout", function (d) {
-                    d3.select(this).classed("text-hover", false);
-                }
-            )
-                .on(
-                "click", function (d, i) {
+            render_row_labels();
 
-                }
-            );
+            var render_col_labels = function () {
+                svg.append("g")
+                    .selectAll(".col_labelg")
+                    .data(cols_list)
+                    .enter()
+                    .append("text")
+                    .text(
+                    function (d) {
+                        return d;
+                    }
+                )
+                    .attr("x", 0)
+                    .attr("y", function (d, i) {
+                              return (cols_list.indexOf(d) + 1) * cell_size;
+                          }
+                )
+                    .style("text-anchor", "left")
+                    .attr(
+                    "transform", "translate(" + cell_size / 2 + ",-6) rotate (-90)"
+                )
+                    .attr(
+                    "class", function (d, i) {
+                        return "col_label mono c" + i;
+                    }
+                )
+                    .on(
+                    "mouseover", function (d) {
+                        d3.select(this).classed("text-hover", true);
+                    }
+                )
+                    .on(
+                    "mouseout", function (d) {
+                        d3.select(this).classed("text-hover", false);
+                    }
+                )
+                    .on(
+                    "click", function (d, i) {
 
-            var heat_map = svg.append("g").attr("class", "g3")
-                .selectAll(".cellg")
-                .data(
-                data, function (d) {
-                    return d["compound"] + ": " + d["bioactivity"];
-                }
-            )
-                .enter()
-                .append("rect")
-                .attr(
-                "x", function (d) {
-                    return (cols_list.indexOf(d["bioactivity"]) + 1) * cell_size;
-                }
-            )
-                .attr(
-                "y", function (d) {
-                    return (rows_list.indexOf(d["compound"]) + 1) * cell_size;
-                }
-            )
-                .attr(
-                "class", function (d) {
-                    return "cell cell-border cr" + (
-                        rows_list.indexOf(d["compound"]) - 1 ) + " cc" + (  cols_list.indexOf(d["bioactivity"]) - 1);
-                }
-            )
-                .attr("width", cell_size)
-                .attr("height", cell_size)
-                .style(
-                "fill", function (d) {
-                    return color_scale(d.value);
-                }
-            )
-                .on(
-                "click", function (d) {
+                    }
+                );
+            };
 
-                }
-            )
-                .on(
-                "mouseover", function (d) {
-                    //highlight text
-                    d3.select(this).classed("cell-hover", true);
-                    d3.selectAll(".row_label").classed(
-                        "text-highlight", function (r, ri) {
-                            return ri == (
-                                rows_list.indexOf(d["compound"])
-                                );
-                        }
-                    );
-                    d3.selectAll(".col_label").classed(
-                        "text-highlight", function (c, ci) {
-                            return ci == (
-                                cols_list.indexOf(d["bioactivity"])
-                                );
-                        }
-                    );
+            render_col_labels();
 
-                }
-            )
-                .on(
-                "mouseout", function () {
-                    d3.select(this).classed(
-                        "cell-hover", false
-                    );
-                    d3.selectAll(".row_label").classed(
-                        "text-highlight", false
-                    );
-                    d3.selectAll(".col_label").classed(
-                        "text-highlight", false
-                    );
-                }
-            );
+            var render_heatmap = function () {
+                svg.append("g").attr("class", "g3")
+                    .selectAll(".cellg")
+                    .data(
+                    data, function (d) {
+                        return d["compound"] + ": " + d["bioactivity"];
+                    }
+                )
+                    .enter()
+                    .append("rect")
+                    .attr(
+                    "x", function (d) {
+                        return (cols_list.indexOf(d["bioactivity"]) + 1) * cell_size;
+                    }
+                )
+                    .attr(
+                    "y", function (d) {
+                        return (rows_list.indexOf(d["compound"]) + 1) * cell_size;
+                    }
+                )
+                    .attr(
+                    "class", function (d) {
+                        return "cell cell-border cr" + (
+                            rows_list.indexOf(d["compound"]) - 1 ) + " cc" + (  cols_list.indexOf(d["bioactivity"]) - 1);
+                    }
+                )
+                    .attr("width", cell_size)
+                    .attr("height", cell_size)
+                    .style(
+                    "fill", function (d) {
+                        return color_scale(d.value);
+                    }
+                )
+                    .on(
+                    "click", function (d) {
+
+                    }
+                )
+                    .on(
+                    "mouseover", function (d) {
+                        //highlight text
+                        d3.select(this).classed("cell-hover", true);
+                        d3.selectAll(".row_label").classed(
+                            "text-highlight", function (r, ri) {
+                                return ri == (
+                                    rows_list.indexOf(d["compound"])
+                                    );
+                            }
+                        );
+                        d3.selectAll(".col_label").classed(
+                            "text-highlight", function (c, ci) {
+                                return ci == (
+                                    cols_list.indexOf(d["bioactivity"])
+                                    );
+                            }
+                        );
+
+                    }
+                )
+                    .on(
+                    "mouseout", function () {
+                        d3.select(this).classed(
+                            "cell-hover", false
+                        );
+                        d3.selectAll(".row_label").classed(
+                            "text-highlight", false
+                        );
+                        d3.selectAll(".col_label").classed(
+                            "text-highlight", false
+                        );
+                    }
+                );
+            };
+
+            render_heatmap();
 
             var svg_legend = d3.select("#heatmap_legend").append("svg")
                 .attr(
