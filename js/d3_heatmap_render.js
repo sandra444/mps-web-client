@@ -39,17 +39,71 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
             var median;
             var list_of_all_values = [];
 
+            function sort_rows_on_columns(col_name) {
+                var i;
+                var j;
+                var new_row_order = [];
+
+                for(j = 0; j < rows_list.length; j += 1) {
+                    for (i = 0; i < data.length; i += 1) {
+                        if (data[i]["bioactivity"] === col_name
+                            && data[i]["compound"] === rows_list[j]) {
+                            new_row_order.push(
+                                [
+                                    data[i]["value"],
+                                    data[i]["compound"]
+                                ]
+                            );
+                        }
+                    }
+                }
+
+                new_row_order.sort(
+                    function(first, next) {
+
+                        // note: sorting direction greatest to smallest this way
+                        if (first[0] < next[0]) {
+                            return 1;
+                        }
+                        if (first[0] > next[0]) {
+                            return -1;
+                        }
+                        return 0;
+                    }
+                );
+
+                // now we begin to build the final array
+                var temp_rows_list = [];
+
+                // left to right add columns in order of value from greatest to least
+
+                for (i = 0; i < new_row_order.length; i += 1) {
+                    temp_rows_list.push(new_row_order[i][1]);
+                }
+
+                // left to right add columns in alphabetical order
+                // for elements where there is no data
+                rows_list.sort();
+
+                // whatever isn't in the first part goes to the back of the array
+                // where we don't care about the order of the undefined elements
+                for (i = 0; i <= rows_list.length; i += 1) {
+                    if (temp_rows_list.indexOf(rows_list[i]) === -1) {
+                        temp_rows_list.push(rows_list[i]);
+                    }
+                }
+
+                rows_list = temp_rows_list;
+
+            }
+
             function sort_columns_on_row(row_name) {
                 var i;
                 var j;
                 var new_column_order = [];
-                var cols_list_length = cols_list.length;
-                var data_length = data.length;
-                console.log("before: ");
-                console.log(cols_list.length);
 
-                for(j = 0; j < cols_list_length; j += 1) {
-                    for (i = 0; i < data_length; i += 1) {
+                for(j = 0; j < cols_list.length; j += 1) {
+                    for (i = 0; i < data.length; i += 1) {
                         if (data[i]["compound"] === row_name
                             && data[i]["bioactivity"] === cols_list[j]) {
                             new_column_order.push(
@@ -96,10 +150,8 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                         temp_cols_list.push(cols_list[i]);
                     }
                 }
-                cols_list = temp_cols_list;
 
-                console.log("after:");
-                console.log(cols_list.length);
+                cols_list = temp_cols_list;
 
             }
 
@@ -271,6 +323,9 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 )
                     .on(
                     "click", function (d, i) {
+
+                        sort_rows_on_columns(d);
+                        update_all(d);
 
                     }
                 );
