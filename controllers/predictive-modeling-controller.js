@@ -29,14 +29,14 @@ MPS.controller(
             ).success(
                 function (data) {
                     window.spinner.stop();
-                    if (data["data_csv"] != undefined) {
+//                    if (data["data_csv"] != undefined) {
                         $scope.scatterplot_data_csv = "/media/scatterplot/data.tsv"; // this was data["data_csv"];
                         window.d3_heatmap_render($scope.scatterplot_data_csv);
 
-                    } else {
-                        $scope.error_message_visible = true;
-                        window.spinner.stop();
-                    }
+//                    } else {
+//                        $scope.error_message_visible = true;
+//                        window.spinner.stop();
+//                    }
                 }
             ).error(
                 function () {
