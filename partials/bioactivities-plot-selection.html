@@ -1,0 +1,127 @@
+<form data-ng-submit="submit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center">
+                    <button class="btn btn-xlarge btn-primary text-center"
+                            type="submit">
+                        Create Plot
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="alert alert-danger"
+                     role="alert"
+                     id="error_message"
+                     ng-show="error_message_visible">
+                    <p>
+                        The server could not find the result to your request.
+                    </p>
+                    <p>
+                        Please try a different query.
+                    </p>
+                </div>
+
+                <div class="container">
+                    <div class="col-xs-6">
+
+                        <p class="text-center">
+                            <label>
+                                Bioactivities/Targets Filter:
+                                <input data-ng-model="bioactivities_search_name">
+                            </label>
+                        </p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered
+                            table-condensed">
+
+                                <thead>
+                                <th style="width: 10%;">
+                                    <three-state-checkbox
+                                            checkboxes="bioactivities_plot_filter.bioactivities">
+                                    </three-state-checkbox>
+                                </th>
+                                <th style="width: 90%;">
+                                    Select Bioactivities/Targets
+                                </th>
+                                </thead>
+
+                                <tbody>
+                                <tr data-ng-repeat="bioactivity in
+                                bioactivities_plot_filter.bioactivities
+                                | filter: {name: bioactivities_search_name}
+                                | orderBy: 'name'">
+
+                                    <td>
+                                        <input type="checkbox"
+                                               data-ng-model="bioactivity
+                                                   .is_selected"/>
+                                    </td>
+
+                                    <td>
+                                        {{ bioactivity.name }}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-6">
+
+                        <p class="text-center">
+                            Compounds Filter:
+                            <input data-ng-model="compounds_search_name">
+                        </p>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-bordered
+                            table-condensed">
+
+                                <thead>
+                                <th style="width: 10%;">
+                                    <three-state-checkbox
+                                            checkboxes="bioactivities_plot_filter.compounds">
+                                    </three-state-checkbox>
+                                </th>
+                                <th style="width: 90%;">
+                                    Select Compounds
+                                </th>
+                                </thead>
+
+                                <tbody>
+                                <tr data-ng-repeat="compound in
+                                bioactivities_plot_filter.compounds
+                                | filter: {name: compounds_search_name}
+                                | orderBy: 'name'">
+
+                                    <td>
+                                        <input type="checkbox"
+                                               data-ng-model="compound
+                                                   .is_selected"/>
+                                    </td>
+
+                                    <td>
+                                        {{ compound.name }}
+                                    </td>
+
+                                </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
