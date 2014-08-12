@@ -21,6 +21,9 @@ MPS.controller(
                     url: '/bioactivities/gen_plot/',
                     method: 'POST',
                     data: {
+                        'bioactivities_filter': bioactivities_filter,
+                        'targets_filter': targets_filter,
+                        'compounds_filter': compounds_filter
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -29,14 +32,14 @@ MPS.controller(
             ).success(
                 function (data) {
                     window.spinner.stop();
-//                    if (data["data_csv"] != undefined) {
+                    if (data["data_csv"] != undefined) {
                         $scope.scatterplot_data_csv = "/media/scatterplot/data.tsv"; // this was data["data_csv"];
                         window.d3_scatterplot_render($scope.scatterplot_data_csv);
 
-//                    } else {
-//                        $scope.error_message_visible = true;
-//                        window.spinner.stop();
-//                    }
+                    } else {
+                        $scope.error_message_visible = true;
+                        window.spinner.stop();
+                    }
                 }
             ).error(
                 function () {
