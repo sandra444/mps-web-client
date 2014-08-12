@@ -15,6 +15,10 @@ MPS.config(['$routeProvider',
                 templateUrl: '/static/partials/bioactivities-heatmap-selection.html',
                 controller: 'bioactivities_heatmap_selection_controller'
             }).
+            when('/bioactivities/plot_selection', {
+                templateUrl: '/static/partials/bioactivities-heatmap-selection.html',
+                controller: 'bioactivities_heatmap_selection_controller'
+            }).
             when('/bioactivities/heatmap', {
                 templateUrl: '/static/partials/bioactivities-heatmap.html',
                 controller: 'bioactivities_heatmap_controller'
