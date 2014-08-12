@@ -1,4 +1,4 @@
-window.d3_heatmap_render = function (data_csv_url) {
+window.d3_scatterplot_render = function (data_csv_url) {
 
     d3.tsv(
         data_csv_url, function (error, data) {
