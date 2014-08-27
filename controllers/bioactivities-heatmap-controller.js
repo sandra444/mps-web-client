@@ -9,6 +9,9 @@ MPS.controller(
             var bioactivities_filter = bioactivities_heatmap_filter.bioactivities;
             var targets_filter = bioactivities_heatmap_filter.targets;
             var compounds_filter = bioactivities_heatmap_filter.compounds;
+            var target_types_filter = bioactivities_heatmap_filter.target_types;
+            var organisms_filter = bioactivities_heatmap_filter.organisms;
+            var normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
 
             /* destroy existing heatmap if it exists upon navigation */
             $scope.$on('$routeChangeSuccess', function() {
@@ -25,7 +28,10 @@ MPS.controller(
                     data: {
                         'bioactivities_filter': bioactivities_filter,
                         'targets_filter': targets_filter,
-                        'compounds_filter': compounds_filter
+                        'compounds_filter': compounds_filter,
+                        'target_types_filter': target_types_filter,
+                        'organisms_filter': organisms_filter,
+                        'normalize_bioactivities': normalize_bioactivities
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

@@ -1,4 +1,4 @@
-<form data-ng-submit="submit()">
+<form ng-submit="submit()">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -27,10 +27,17 @@
         </div>
 
         <div class="row text-center">
-            <div class="center-block">
+            <div class="col-xs-4 col-xs-offset-2">
                 <label>Normalize Bioactivities?
                 <input type="checkbox"
-                       data-ng-model="bioactivities_heatmap_filter.normalize_bioactivities"/>
+                       ng-model="bioactivities_heatmap_filter.normalize_bioactivities">
+                </label>
+            </div>
+
+            <div class="col-xs-4">
+                <label>Minimum feature count per record?
+                    <input type="number"
+                           ng-model="bioactivities_heatmap_filter.min_feat_count">
                 </label>
             </div>
         </div>
@@ -40,7 +47,7 @@
                 <label>
                     <p class="text-center">
                         Target Type Filter:
-                        <input data-ng-model="target_type_search_name">
+                        <input ng-model="target_type_search_name">
                     </p>
                 </label>
 
@@ -61,14 +68,15 @@
                         </thead>
 
                         <tbody>
-                        <tr data-ng-repeat="target_type in
+                        <tr ng-repeat="target_type in
                                 bioactivities_heatmap_filter.target_types
                                 | filter: {name: target_type_search_name}
                                 | orderBy: 'name'">
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="target_type.is_selected"/>
+                                       ng-model="target_type.is_selected"
+                                       ng-change="bioactivities_heatmap_filter.refresh_all()">
                             </td>
 
                             <td>
@@ -85,7 +93,7 @@
                 <label>
                     <p class="text-center">
                         Organism Filter:
-                        <input data-ng-model="organisms_search_name">
+                        <input ng-model="organisms_search_name">
                     </p>
                 </label>
 
@@ -106,14 +114,15 @@
                         </thead>
 
                         <tbody>
-                        <tr data-ng-repeat="organism in
+                        <tr ng-repeat="organism in
                                 bioactivities_heatmap_filter.organisms
                                 | filter: {name: organisms_search_name}
                                 | orderBy: 'name'">
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="organism.is_selected"/>
+                                       ng-model="organism.is_selected"
+                                       ng-change="refresh_all()">
                             </td>
 
                             <td>
@@ -135,7 +144,7 @@
                 <p class="text-center">
                     <label>
                         Bioactivities Filter:
-                        <input data-ng-model="bioactivities_search_name">
+                        <input ng-model="bioactivities_search_name">
                     </label>
                 </p>
 
@@ -156,14 +165,14 @@
                         </thead>
 
                         <tbody>
-                        <tr data-ng-repeat="bioactivity in
+                        <tr ng-repeat="bioactivity in
                                 bioactivities_heatmap_filter.bioactivities
                                 | filter: {name: bioactivities_search_name}
                                 | orderBy: 'name'">
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="bioactivity.is_selected"/>
+                                       ng-model="bioactivity.is_selected">
                             </td>
 
                             <td>
@@ -181,7 +190,7 @@
                 <label>
                     <p class="text-center">
                         Targets Filter:
-                        <input data-ng-model="targets_search_name">
+                        <input ng-model="targets_search_name">
                     </p>
                 </label>
 
@@ -202,14 +211,14 @@
                         </thead>
 
                         <tbody>
-                        <tr data-ng-repeat="target in
+                        <tr ng-repeat="target in
                                 bioactivities_heatmap_filter.targets
                                 | filter: {name: targets_search_name}
                                 | orderBy: 'name'">
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="target.is_selected"/>
+                                       ng-model="target.is_selected">
                             </td>
 
                             <td>
@@ -228,7 +237,7 @@
                 <label>
                     <p class="text-center">
                         Compounds Filter:
-                        <input data-ng-model="compounds_search_name">
+                        <input ng-model="compounds_search_name">
                     </p>
                 </label>
 
@@ -249,14 +258,14 @@
                         </thead>
 
                         <tbody>
-                        <tr data-ng-repeat="compound in
+                        <tr ng-repeat="compound in
                                 bioactivities_heatmap_filter.compounds
                                 | filter: {name: compounds_search_name}
                                 | orderBy: 'name'">
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="compound.is_selected"/>
+                                       ng-model="compound.is_selected">
                             </td>
 
                             <td>
