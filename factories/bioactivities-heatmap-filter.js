@@ -6,7 +6,6 @@ MPS.factory(
             var i;
             var result = [];
 
-            //noinspection JSCheckFunctionSignatures
             $http({method: 'GET', url: resource_url}).
                 success(
                     function (data) {
@@ -29,6 +28,18 @@ MPS.factory(
             return result;
         }
 
+        var target_types = [
+            {name: 'Cell Line', is_selected: false},
+            {name: 'Organism', is_selected: false},
+            {name: 'Single Protein', is_selected: false},
+            {name: 'Tissue', is_selected: false}
+        ];
+        var organisms = [
+            {name: 'Homo Sapiens', is_selected: false},
+            {name: 'Rattus Norvegicus', is_selected: false},
+            {name: 'Canis Lupus Familiaris', is_selected: false}
+        ];
+
         var compounds = get_all_bioactivities_keys('/bioactivities/all_compounds');
         var bioactivities = get_all_bioactivities_keys('/bioactivities/all_bioactivities');
         var targets = get_all_bioactivities_keys('/bioactivities/all_targets');
@@ -44,7 +55,11 @@ MPS.factory(
 
             // expose the private `bioactivities` variable
             // as a public variable of the same name
-            bioactivities: bioactivities
+            bioactivities: bioactivities,
+
+            target_types: target_types,
+
+            organisms: organisms
         };
 
     }

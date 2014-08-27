@@ -26,6 +26,109 @@
             </div>
         </div>
 
+        <div class="row text-center">
+            <div class="center-block">
+                <label>Normalize Bioactivities?
+                <input type="checkbox"
+                       data-ng-model="bioactivities_heatmap_filter.normalize_bioactivities"/>
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-2">
+                <label>
+                    <p class="text-center">
+                        Target Type Filter:
+                        <input data-ng-model="target_type_search_name">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                        <th style="width: 10%;">
+                            <three-state-checkbox
+                                    checkboxes="bioactivities_heatmap_filter.target_types">
+                            </three-state-checkbox>
+                        </th>
+                        <th style="width: 90%;">
+                            Select Target Types:
+                        </th>
+                        </thead>
+
+                        <tbody>
+                        <tr data-ng-repeat="target_type in
+                                bioactivities_heatmap_filter.target_types
+                                | filter: {name: target_type_search_name}
+                                | orderBy: 'name'">
+
+                            <td>
+                                <input type="checkbox"
+                                       data-ng-model="target_type.is_selected"/>
+                            </td>
+
+                            <td>
+                                {{ target_type.name }}
+                            </td>
+
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <label>
+                    <p class="text-center">
+                        Organism Filter:
+                        <input data-ng-model="organisms_search_name">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                        <th style="width: 10%;">
+                            <three-state-checkbox
+                                    checkboxes="bioactivities_heatmap_filter.organisms">
+                            </three-state-checkbox>
+                        </th>
+                        <th style="width: 90%;">
+                            Select Organisms
+                        </th>
+                        </thead>
+
+                        <tbody>
+                        <tr data-ng-repeat="organism in
+                                bioactivities_heatmap_filter.organisms
+                                | filter: {name: organisms_search_name}
+                                | orderBy: 'name'">
+
+                            <td>
+                                <input type="checkbox"
+                                       data-ng-model="organism.is_selected"/>
+                            </td>
+
+                            <td>
+                                {{ organism.name }}
+                            </td>
+
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <hr>
         <div class="row">
             <div class="col-xs-4">
 
@@ -60,8 +163,7 @@
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="bioactivity
-                                                   .is_selected"/>
+                                       data-ng-model="bioactivity.is_selected"/>
                             </td>
 
                             <td>
@@ -107,8 +209,7 @@
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="target
-                                                   .is_selected"/>
+                                       data-ng-model="target.is_selected"/>
                             </td>
 
                             <td>
@@ -155,8 +256,7 @@
 
                             <td>
                                 <input type="checkbox"
-                                       data-ng-model="compound
-                                                   .is_selected"/>
+                                       data-ng-model="compound.is_selected"/>
                             </td>
 
                             <td>
