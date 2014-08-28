@@ -32,7 +32,7 @@ MPS.factory(
             $http(
                 {
                     method: 'GET',
-                    data: {
+                    params: {
                         'target_types': target_types,
                         'organisms': organisms
                     },
