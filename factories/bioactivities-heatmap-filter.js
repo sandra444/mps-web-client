@@ -49,18 +49,22 @@ MPS.factory(
                 }
             }
 
-            if (resource_url.search('compound') > -1) {
+            if (resource_url.search('all_compound') > -1) {
                 compounds = result;
+                //console.log(compounds);
             }
 
-            if (resource_url.search('bioactivities') > -1) {
-                bioactivities = result;
-            }
-
-            if (resource_url.search('targets') > -1) {
+            else if (resource_url.search('all_targets') > -1) {
                 targets = result;
+                //console.log(targets);
+            }
+            
+            else if (resource_url.search('all_bioactivities') > -1) {
+                bioactivities = result;
+                //console.log(bioactivities);
             }
 
+            $rootScope.$broadcast('heatmap_selection_update');
         };
 
         var get_all_bioactivities_keys = function(resource_url) {
@@ -86,9 +90,8 @@ MPS.factory(
             get_all_bioactivities_keys('/bioactivities/all_targets');
             get_all_bioactivities_keys('/bioactivities/all_compounds');
             get_all_bioactivities_keys('/bioactivities/all_bioactivities');
-            $rootScope.$broadcast('heatmap_selection_update');
         };
-
+        
         return {
 
             targets: targets,
@@ -99,7 +102,23 @@ MPS.factory(
             normalize_bioactivities: normalize_bioactivities,
             min_feat_count: min_feat_count,
             refresh_all: refresh_all,
-            messages: messages
+            messages: messages,
+            
+            get_targets: function() {
+                //get_all_bioactivities_keys('/bioactivities/all_targets');
+                return targets;
+            },
+            
+            get_bioactivities: function() {
+                //get_all_bioactivities_keys('/bioactivities/all_bioactivities');
+                return bioactivities;
+            },
+            
+            get_compounds: function() {
+                //get_all_bioactivities_keys('/bioactivities/all_compounds');
+                return compounds;
+            }
+            
         };
 
     });

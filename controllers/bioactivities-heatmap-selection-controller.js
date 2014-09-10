@@ -16,9 +16,9 @@ MPS.controller(
             $scope.refresh = bioactivities_heatmap_filter.refresh_all;
 
             $scope.$on('heatmap_selection_update', function() {
-                $scope.targets = bioactivities_heatmap_filter.targets;
-                $scope.bioactivities = bioactivities_heatmap_filter.bioactivities;
-                $scope.compounds = bioactivities_heatmap_filter.compounds;
+                $scope.targets = bioactivities_heatmap_filter.get_targets();
+                $scope.bioactivities = bioactivities_heatmap_filter.get_bioactivities();
+                $scope.compounds = bioactivities_heatmap_filter.get_compounds();
             });
 
             $scope.submit = function() {
