@@ -13,6 +13,10 @@ MPS.controller(
             var organisms_filter = bioactivities_heatmap_filter.organisms;
             var normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
 
+            var get_targets_filter = bioactivities_heatmap_filter.get_targets();
+            var get_bioactivities_filter = bioactivities_heatmap_filter.get_bioactivities();
+            var get_compounds_filter = bioactivities_heatmap_filter.get_compounds();
+            
             /* destroy existing heatmap if it exists upon navigation */
             $scope.$on('$routeChangeSuccess', function() {
                 $('svg').remove();
@@ -26,9 +30,9 @@ MPS.controller(
                     url: '/bioactivities/gen_heatmap/',
                     method: 'POST',
                     data: {
-                        'bioactivities_filter': bioactivities_filter,
-                        'targets_filter': targets_filter,
-                        'compounds_filter': compounds_filter,
+                        'bioactivities_filter': get_bioactivities_filter,
+                        'targets_filter': get_targets_filter,
+                        'compounds_filter': get_compounds_filter,
                         'target_types_filter': target_types_filter,
                         'organisms_filter': organisms_filter,
                         'normalize_bioactivities': normalize_bioactivities
