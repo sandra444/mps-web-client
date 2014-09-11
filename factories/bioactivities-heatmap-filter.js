@@ -4,38 +4,43 @@ MPS.factory(
     'bioactivities_heatmap_filter', function($rootScope, $http) {
         'use strict';
 
+        //console.log($rootScope);
+        
         var normalize_bioactivities = false;
         var messages = '';
 
+        //Initial values are true: elimate in lieu of add
         var target_types = [{
             name: 'Cell-Line',
-            is_selected: false
+            is_selected: true
         }, {
             name: 'Organism',
-            is_selected: false
+            is_selected: true
         }, {
             name: 'Single Protein',
-            is_selected: false
+            is_selected: true
         }, {
             name: 'Tissue',
-            is_selected: false
+            is_selected: true
         }];
         var organisms = [{
             name: 'Homo Sapiens',
-            is_selected: false
+            is_selected: true
         }, {
             name: 'Rattus Norvegicus',
-            is_selected: false
+            is_selected: true
         }, {
             name: 'Canis Lupus Familiaris',
-            is_selected: false
+            is_selected: true
         }];
 
         var compounds = [];
         var bioactivities = [];
         var targets = [];
+        //Currently hard-coded: Can change for testing purposes
+        //Must bind to input soon
         var min_feat_count = 10;
-
+        
         var process_data = function(data, resource_url) {
             var result = [];
             var i;
@@ -49,6 +54,8 @@ MPS.factory(
                 }
             }
 
+            //Sloppy URL search: Originally redundant for biactivities
+            
             if (resource_url.search('all_compound') > -1) {
                 compounds = result;
                 //console.log(compounds);
@@ -64,6 +71,8 @@ MPS.factory(
                 //console.log(bioactivities);
             }
 
+            //Moved broadcast: Race condition when inside refresh_all
+            //Consider more effective solution
             $rootScope.$broadcast('heatmap_selection_update');
         };
 
@@ -92,6 +101,9 @@ MPS.factory(
             get_all_bioactivities_keys('/bioactivities/all_bioactivities');
         };
         
+        //Crude refresh to acquire initial values
+        refresh_all();
+        
         return {
 
             targets: targets,
@@ -103,6 +115,10 @@ MPS.factory(
             min_feat_count: min_feat_count,
             refresh_all: refresh_all,
             messages: messages,
+            
+            //AngularJS does not magically update returned values
+            //That is, calling "targets" from the controller will be empty
+            //Crude solution below: funtions for value return
             
             get_targets: function() {
                 //get_all_bioactivities_keys('/bioactivities/all_targets');

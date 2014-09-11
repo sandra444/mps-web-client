@@ -13,6 +13,7 @@ MPS.controller(
             var organisms_filter = bioactivities_heatmap_filter.organisms;
             var normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
 
+            //Once again needed getters in lieu of variables
             var get_targets_filter = bioactivities_heatmap_filter.get_targets();
             var get_bioactivities_filter = bioactivities_heatmap_filter.get_bioactivities();
             var get_compounds_filter = bioactivities_heatmap_filter.get_compounds();
