@@ -54,7 +54,7 @@ MPS.factory(
                 }
             }
 
-            //Sloppy URL search: Originally redundant for biactivities
+            //Sloppy URL search: Originally redundant for bioactivities
             
             if (resource_url.search('all_compound') > -1) {
                 compounds = result;
@@ -118,7 +118,7 @@ MPS.factory(
             
             //AngularJS does not magically update returned values
             //That is, calling "targets" from the controller will be empty
-            //Crude solution below: funtions for value return
+            //Crude solution below: functions for value return
             
             get_targets: function() {
                 //get_all_bioactivities_keys('/bioactivities/all_targets');
