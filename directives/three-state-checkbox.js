@@ -22,7 +22,14 @@ MPS.directive('threeStateCheckbox', function ($rootScope) {
                         checkbox.is_selected = false;
                     });
                 }
-                $rootScope.$broadcast('heatmap_selection_update_all');
+                
+                //console.log($scope);
+                
+                
+                if($scope.$id == '004' || $scope.$id == '005'){
+                    $rootScope.$broadcast('heatmap_selection_update_all');
+                }
+                
             };
             $scope.$watch('checkboxes', function () {
                 var all_are_set = true, all_are_clear = true;
