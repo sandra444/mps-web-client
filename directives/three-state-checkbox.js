@@ -1,6 +1,6 @@
 // Defines a new HTML directive <three-state-checkbox>
 // Directive *MUST BE IN CAMEL CASE* for AngularJS to pick it up!
-MPS.directive('threeStateCheckbox', function () {
+MPS.directive('threeStateCheckbox', function ($rootScope) {
 
     return {
         replace: true,
@@ -22,6 +22,7 @@ MPS.directive('threeStateCheckbox', function () {
                         checkbox.is_selected = false;
                     });
                 }
+                $rootScope.$broadcast('heatmap_selection_update_all');
             };
             $scope.$watch('checkboxes', function () {
                 var all_are_set = true, all_are_clear = true;
