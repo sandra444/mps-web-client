@@ -96,6 +96,8 @@ MPS.factory(
         };
 
         var refresh_all = function() {
+            //Get min_feat_count from rootScope
+            min_feat_count = $rootScope.min_feat_count ? $rootScope.min_feat_count : 10;
             get_all_bioactivities_keys('/bioactivities/all_targets');
             get_all_bioactivities_keys('/bioactivities/all_compounds');
             get_all_bioactivities_keys('/bioactivities/all_bioactivities');
