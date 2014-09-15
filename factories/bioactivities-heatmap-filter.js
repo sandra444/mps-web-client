@@ -120,7 +120,7 @@ MPS.factory(
             get_all_bioactivities_keys('/bioactivities/all_bioactivities');
         };
         
-        //Crude refresh to acquire initial values
+        //Force refresh to acquire initial values
         refresh_all();
         
         return {
