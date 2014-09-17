@@ -37,8 +37,9 @@ MPS.factory(
         var compounds = [];
         var bioactivities = [];
         var targets = [];
+        
         //Currently hard-coded: Can change for testing purposes
-        //Must bind to input soon
+        //Bound to input, needs this statement to display initially (currently)
         var min_feat_count = 10;
         
         var process_data = function(data, resource_url) {
@@ -96,6 +97,7 @@ MPS.factory(
         };
 
         var refresh_all = function() {
+            $rootScope.isSaving = true;
             //Get min_feat_count from rootScope
             min_feat_count = $rootScope.min_feat_count ? $rootScope.min_feat_count : 10;
             get_all_bioactivities_keys('/bioactivities/all_targets');
@@ -104,7 +106,7 @@ MPS.factory(
         };
         
         //Crude refresh to acquire initial values
-        refresh_all();
+        //refresh_all();
         
         return {
 

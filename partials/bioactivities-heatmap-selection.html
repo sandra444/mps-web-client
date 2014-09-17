@@ -41,7 +41,7 @@
                 <label>
                     <p class="text-center">
                         Target Type Filter:
-                        <input ng-model="target_type_search_name" ng-change="refresh()">
+                        <input ng-model="target_type_search_name" ng-change="refresh()" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -52,7 +52,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="target_types">
+                                <three-state-checkbox checkboxes="target_types" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -66,7 +66,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="target_type.is_selected" ng-change="refresh()">
+                                    <input type="checkbox" ng-model="target_type.is_selected" ng-change="refresh()" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
@@ -83,7 +83,7 @@
                 <label>
                     <p class="text-center">
                         Organism Filter:
-                        <input ng-model="organisms_search_name" ng-change="refresh()">
+                        <input ng-model="organisms_search_name" ng-change="refresh()" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -94,7 +94,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="organisms">
+                                <three-state-checkbox checkboxes="organisms" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -108,7 +108,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="organism.is_selected" ng-change="refresh()">
+                                    <input type="checkbox" ng-model="organism.is_selected" ng-change="refresh()" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
