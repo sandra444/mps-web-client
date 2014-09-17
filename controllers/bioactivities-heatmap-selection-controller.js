@@ -18,29 +18,34 @@ MPS.controller(
             $scope.refresh = bioactivities_heatmap_filter.refresh_all;
 
             //In very poor taste: force refresh; remove after refactor
+            $rootScope.isSaving = false;
+            $rootScope.min_feat_count = 10;
             $scope.refresh();
+            
             
             //Originally called simply targets etc. from factory, that does not work
             $scope.$on('heatmap_selection_update', function() {
                 
-                //console.log('Refresh');
+                console.log('Refresh');
                 
                 $scope.targets = bioactivities_heatmap_filter.get_targets();
                 $scope.bioactivities = bioactivities_heatmap_filter.get_bioactivities();
                 $scope.compounds = bioactivities_heatmap_filter.get_compounds();
+                
+                $rootScope.isSaving = false;
             });
 
             //Early handler for selectall, not optimal
             $scope.$on('heatmap_selection_update_all', function() {
                 
-                //console.log('Refresh All');
+                console.log('Refresh All');
                 $scope.refresh();
             });
             
             //Early handler for changing min_feat_count
             $scope.new_min = function(val) {
                 
-                //console.log('New Feature Count');
+                console.log('New Feature Count');
                 $rootScope.min_feat_count = val;
                 $scope.refresh();
             }
