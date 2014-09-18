@@ -58,23 +58,38 @@ MPS.factory(
             //Sloppy URL search: Originally redundant for bioactivities
             
             if (resource_url.search('all_compound') > -1) {
-                compounds = result;
+                if (compounds.length != result.length) {
+                    compounds = result;
+                    $rootScope.$broadcast('heatmap_selection_update_compounds');
+                }
                 //console.log(compounds);
+                $rootScope.compounds_clear = true;
             }
 
             else if (resource_url.search('all_targets') > -1) {
-                targets = result;
+                if (targets.length != result.length) {
+                    targets = result;
+                    $rootScope.$broadcast('heatmap_selection_update_targets');
+                }
                 //console.log(targets);
+                $rootScope.targets_clear = true;
             }
             
             else if (resource_url.search('all_bioactivities') > -1) {
-                bioactivities = result;
+                if (bioactivities.length != result.length) {
+                    bioactivities = result;
+                    $rootScope.$broadcast('heatmap_selection_update_bioactivities');
+                }
                 //console.log(bioactivities);
+                $rootScope.bioactivities_clear = true;
             }
 
             //Moved broadcast: Race condition when inside refresh_all
             //Consider more effective solution
-            $rootScope.$broadcast('heatmap_selection_update');
+            if ($rootScope.targets_clear && $rootScope.bioactivities_clear && $rootScope.compounds_clear) {
+                console.log('Refresh Complete');
+                $rootScope.isSaving = false;
+            }
         };
 
         var get_all_bioactivities_keys = function(resource_url) {
@@ -98,6 +113,11 @@ MPS.factory(
 
         var refresh_all = function() {
             $rootScope.isSaving = true;
+            
+            $rootScope.targets_clear = false;
+            $rootScope.bioactivities_clear = false;
+            $rootScope.compounds_clear = false;
+            
             //Get min_feat_count from rootScope
             min_feat_count = $rootScope.min_feat_count ? $rootScope.min_feat_count : 10;
             get_all_bioactivities_keys('/bioactivities/all_targets');

@@ -22,21 +22,35 @@ MPS.controller(
             $rootScope.min_feat_count = 10;
             $scope.refresh();
             
+            $rootScope.targets_clear = false;
+            $rootScope.bioactivities_clear = false;
+            $rootScope.compounds_clear = false;
             
-            //Originally called simply targets etc. from factory, that does not work
-            $scope.$on('heatmap_selection_update', function() {
+            $scope.$on('heatmap_selection_update_targets', function() {
                 
-                console.log('Refresh');
-                
+                console.log('Refresh Targets');
                 $scope.targets = bioactivities_heatmap_filter.get_targets();
+            });
+            
+            $scope.$on('heatmap_selection_update_bioactivities', function() {
+
+                console.log('Refresh Bioactivities');
                 $scope.bioactivities = bioactivities_heatmap_filter.get_bioactivities();
-                $scope.compounds = bioactivities_heatmap_filter.get_compounds();
+            });
+            
+            $scope.$on('heatmap_selection_update_compounds', function() {
                 
-                $rootScope.isSaving = false;
+                console.log('Refresh Compounds');
+                $scope.compounds = bioactivities_heatmap_filter.get_compounds();
             });
 
             //Early handler for selectall, not optimal
             $scope.$on('heatmap_selection_update_all', function() {
+                
+                $rootScope.targets_clear = false;
+                $rootScope.bioactivities_clear = false;
+                $rootScope.compounds_clear = false;
+                $rootScope.isSaving = true;
                 
                 console.log('Refresh All');
                 $scope.refresh();
@@ -44,6 +58,11 @@ MPS.controller(
             
             //Early handler for changing min_feat_count
             $scope.new_min = function(val) {
+                
+                $rootScope.targets_clear = false;
+                $rootScope.bioactivities_clear = false;
+                $rootScope.compounds_clear = false;
+                $rootScope.isSaving = true;
                 
                 console.log('New Feature Count');
                 $rootScope.min_feat_count = val;
