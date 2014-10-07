@@ -135,8 +135,11 @@ MPS.factory(
             get_compounds: function() {
                 //get_all_bioactivities_keys('/bioactivities/all_compounds');
                 return compounds;
-            }
+            },
             
+            get_normalize_bioactivities: function() {
+                return $rootScope.normalize_bioactivities;
+            }
         };
 
     });

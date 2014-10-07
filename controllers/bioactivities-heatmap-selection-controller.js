@@ -11,11 +11,13 @@ MPS.controller(
             $scope.targets = bioactivities_heatmap_filter.targets;
             $scope.bioactivities = bioactivities_heatmap_filter.bioactivities;
             $scope.compounds = bioactivities_heatmap_filter.compounds;
-            $scope.normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
+            $rootScope.normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
             $scope.min_feat_count = bioactivities_heatmap_filter.min_feat_count;
             $scope.target_types = bioactivities_heatmap_filter.target_types;
             $scope.organisms = bioactivities_heatmap_filter.organisms;
             $scope.refresh = bioactivities_heatmap_filter.refresh_all;
+            
+            console.log($rootScope.normalize_bioactivities);
 
             //In very poor taste: force refresh; remove after refactor
             $scope.refresh();
@@ -43,6 +45,11 @@ MPS.controller(
                 //console.log('New Feature Count');
                 $rootScope.min_feat_count = val;
                 $scope.refresh();
+            }
+            
+            $scope.norm = function(val) {
+                $rootScope.normalize_bioactivities = val;
+                console.log($rootScope.normalize_bioactivities);
             }
             
             $scope.submit = function() {

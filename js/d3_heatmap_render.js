@@ -368,7 +368,7 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 )
                     .on(
                     "click", function (d) {
-
+                        alert(d.value);
                     }
                 )
                     .on(
