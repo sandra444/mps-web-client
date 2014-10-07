@@ -8,11 +8,11 @@ MPS.controller(
 
             //console.log($scope);
             
-            $scope.targets = bioactivities_heatmap_filter.targets;
-            $scope.bioactivities = bioactivities_heatmap_filter.bioactivities;
-            $scope.compounds = bioactivities_heatmap_filter.compounds;
+            $scope.targets = [];
+            $scope.bioactivities = [];
+            $scope.compounds = [];
             $rootScope.normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
-            $scope.min_feat_count = bioactivities_heatmap_filter.min_feat_count;
+            $rootScope.min_feat_count = bioactivities_heatmap_filter.min_feat_count;
             $scope.target_types = bioactivities_heatmap_filter.target_types;
             $scope.organisms = bioactivities_heatmap_filter.organisms;
             $scope.refresh = bioactivities_heatmap_filter.refresh_all;

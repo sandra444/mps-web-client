@@ -6,9 +6,6 @@ MPS.controller(
             'use strict';
 
             $scope.error_message_visible = false;
-            var bioactivities_filter = bioactivities_heatmap_filter.bioactivities;
-            var targets_filter = bioactivities_heatmap_filter.targets;
-            var compounds_filter = bioactivities_heatmap_filter.compounds;
             var target_types_filter = bioactivities_heatmap_filter.target_types;
             var organisms_filter = bioactivities_heatmap_filter.organisms;
             
