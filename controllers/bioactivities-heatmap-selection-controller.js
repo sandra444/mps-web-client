@@ -17,7 +17,7 @@ MPS.controller(
             $scope.organisms = bioactivities_heatmap_filter.organisms;
             $scope.refresh = bioactivities_heatmap_filter.refresh_all;
             
-            console.log($rootScope.normalize_bioactivities);
+            //console.log($rootScope.normalize_bioactivities);
 
             //In very poor taste: force refresh; remove after refactor
             $scope.refresh();
@@ -49,7 +49,7 @@ MPS.controller(
             
             $scope.norm = function(val) {
                 $rootScope.normalize_bioactivities = val;
-                console.log($rootScope.normalize_bioactivities);
+                //console.log($rootScope.normalize_bioactivities);
             }
             
             $scope.submit = function() {

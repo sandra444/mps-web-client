@@ -41,11 +41,10 @@ MPS.factory(
         //Must bind to input soon
         var min_feat_count = 10;
         
-        var process_data = function(data, resource_url) {
+        var get_list = function(data) {
             var result = [];
             var i;
             for (i = 0; i < data.length; i += 1) {
-
                 if (data[i][1] >= min_feat_count) {
                     result.push({
                         name: data[i][0],
@@ -53,40 +52,31 @@ MPS.factory(
                     });
                 }
             }
-
-            //Sloppy URL search: Originally redundant for bioactivities
-            
-            if (resource_url.search('all_compound') > -1) {
-                compounds = result;
-                //console.log(compounds);
-            }
-
-            else if (resource_url.search('all_targets') > -1) {
-                targets = result;
-                //console.log(targets);
-            }
-            
-            else if (resource_url.search('all_bioactivities') > -1) {
-                bioactivities = result;
-                //console.log(bioactivities);
-            }
+            return result;
+        }
+        
+        var process_data = function(data) {
+            targets = get_list(data.targets);
+            compounds = get_list(data.compounds);
+            bioactivities = get_list(data.bioactivities);
 
             //Moved broadcast: Race condition when inside refresh_all
             //Consider more effective solution
             $rootScope.$broadcast('heatmap_selection_update');
         };
 
-        var get_all_bioactivities_keys = function(resource_url) {
+        var get_all_bioactivities_keys = function() {
             $http({
                 method: 'GET',
                 params: {
                     'target_types': JSON.stringify(target_types),
                     'organisms': JSON.stringify(organisms)
                 },
-                url: resource_url
+                url: '/bioactivities/all_data'
             }).success(
                 function(data) {
-                    process_data(data, resource_url);
+                    //console.log(data);
+                    process_data(data);
                 }
             ).error(
                 function() {
@@ -98,9 +88,7 @@ MPS.factory(
         var refresh_all = function() {
             //Get min_feat_count from rootScope
             min_feat_count = $rootScope.min_feat_count ? $rootScope.min_feat_count : 10;
-            get_all_bioactivities_keys('/bioactivities/all_targets');
-            get_all_bioactivities_keys('/bioactivities/all_compounds');
-            get_all_bioactivities_keys('/bioactivities/all_bioactivities');
+            get_all_bioactivities_keys();
         };
         
         //Crude refresh to acquire initial values
