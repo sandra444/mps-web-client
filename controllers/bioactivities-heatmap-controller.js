@@ -6,12 +6,10 @@ MPS.controller(
             'use strict';
 
             $scope.error_message_visible = false;
-            var bioactivities_filter = bioactivities_heatmap_filter.bioactivities;
-            var targets_filter = bioactivities_heatmap_filter.targets;
-            var compounds_filter = bioactivities_heatmap_filter.compounds;
             var target_types_filter = bioactivities_heatmap_filter.target_types;
             var organisms_filter = bioactivities_heatmap_filter.organisms;
-            var normalize_bioactivities = bioactivities_heatmap_filter.normalize_bioactivities;
+            
+            var normalize_bioactivities = bioactivities_heatmap_filter.get_normalize_bioactivities();
 
             //Once again needed getters in lieu of variables
             var get_targets_filter = bioactivities_heatmap_filter.get_targets();

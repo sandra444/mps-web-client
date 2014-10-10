@@ -1,3 +1,17 @@
+<script>
+    $(':input[type=number]').on('mousewheel', function(e){
+        e.preventDefault();
+    });
+</script>
+
+<style>
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+</style>
+
 <form ng-submit="submit()">
     <div class="container">
         <div class="row">
@@ -25,7 +39,7 @@
         <div class="row text-center">
             <div class="col-xs-4 col-xs-offset-2">
                 <label>Normalize Bioactivities?
-                    <input type="checkbox" ng-model="normalize_bioactivities">
+                    <input type="checkbox" ng-model="normalize_bioactivities" ng-change="norm(normalize_bioactivities)">
                 </label>
             </div>
 
@@ -41,7 +55,7 @@
                 <label>
                     <p class="text-center">
                         Target Type Filter:
-                        <input ng-model="target_type_search_name" ng-change="refresh()">
+                        <input ng-model="target_type_search_name" ng-change="refresh()" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -52,7 +66,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="target_types">
+                                <three-state-checkbox checkboxes="target_types" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -66,7 +80,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="target_type.is_selected" ng-change="refresh()">
+                                    <input type="checkbox" ng-model="target_type.is_selected" ng-change="refresh()" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
@@ -83,7 +97,7 @@
                 <label>
                     <p class="text-center">
                         Organism Filter:
-                        <input ng-model="organisms_search_name" ng-change="refresh()">
+                        <input ng-model="organisms_search_name" ng-change="refresh()" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -94,7 +108,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="organisms">
+                                <three-state-checkbox checkboxes="organisms" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -108,7 +122,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="organism.is_selected" ng-change="refresh()">
+                                    <input type="checkbox" ng-model="organism.is_selected" ng-change="refresh()" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
@@ -130,7 +144,7 @@
                 <p class="text-center">
                     <label>
                         Bioactivities Filter:
-                        <input ng-model="bioactivities_search_name">
+                        <input ng-model="bioactivities_search_name" ng-disabled="isSaving">
                     </label>
                 </p>
 
@@ -141,7 +155,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="bioactivities">
+                                <three-state-checkbox checkboxes="bioactivities" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -155,7 +169,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="bioactivity.is_selected">
+                                    <input type="checkbox" ng-model="bioactivity.is_selected" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
@@ -173,7 +187,7 @@
                 <label>
                     <p class="text-center">
                         Targets Filter:
-                        <input ng-model="targets_search_name">
+                        <input ng-model="targets_search_name" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -184,7 +198,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="targets">
+                                <three-state-checkbox checkboxes="targets" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -198,7 +212,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="target.is_selected">
+                                    <input type="checkbox" ng-model="target.is_selected" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
@@ -217,7 +231,7 @@
                 <label>
                     <p class="text-center">
                         Compounds Filter:
-                        <input ng-model="compounds_search_name">
+                        <input ng-model="compounds_search_name" ng-disabled="isSaving">
                     </p>
                 </label>
 
@@ -228,7 +242,7 @@
 
                         <thead>
                             <th style="width: 10%;">
-                                <three-state-checkbox checkboxes="compounds">
+                                <three-state-checkbox checkboxes="compounds" ng-disabled="isSaving">
                                 </three-state-checkbox>
                             </th>
                             <th style="width: 90%;">
@@ -242,7 +256,7 @@
                                 | orderBy: 'name'">
 
                                 <td>
-                                    <input type="checkbox" ng-model="compound.is_selected">
+                                    <input type="checkbox" ng-model="compound.is_selected" ng-disabled="isSaving">
                                 </td>
 
                                 <td>
