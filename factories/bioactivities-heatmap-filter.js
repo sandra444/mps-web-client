@@ -96,13 +96,8 @@ MPS.factory(
         
         return {
 
-            targets: targets,
-            compounds: compounds,
-            bioactivities: bioactivities,
             target_types: target_types,
             organisms: organisms,
-            normalize_bioactivities: normalize_bioactivities,
-            min_feat_count: min_feat_count,
             refresh_all: refresh_all,
             messages: messages,
             
