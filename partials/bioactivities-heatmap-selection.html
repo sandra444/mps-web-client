@@ -166,7 +166,7 @@
                         <tbody>
                             <tr ng-repeat="bioactivity in bioactivities
                                 | filter: {name: bioactivities_search_name}
-                                | orderBy: 'name'">
+                                | orderBy: ['-is_selected', 'name']">
 
                                 <td>
                                     <input type="checkbox" ng-model="bioactivity.is_selected" ng-disabled="isSaving">
@@ -209,7 +209,7 @@
                         <tbody>
                             <tr ng-repeat="target in targets
                                 | filter: {name: targets_search_name}
-                                | orderBy: 'name'">
+                                | orderBy: ['-is_selected', 'name']">
 
                                 <td>
                                     <input type="checkbox" ng-model="target.is_selected" ng-disabled="isSaving">
@@ -253,7 +253,7 @@
                         <tbody>
                             <tr ng-repeat="compound in compounds
                                 | filter: {name: compounds_search_name}
-                                | orderBy: 'name'">
+                                | orderBy: ['-is_selected', 'name']">
 
                                 <td>
                                     <input type="checkbox" ng-model="compound.is_selected" ng-disabled="isSaving">
