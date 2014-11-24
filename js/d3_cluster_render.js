@@ -1,5 +1,7 @@
 window.d3_cluster_render = function (cluster_data_json) {
 
+    console.log(cluster_data_json);
+    
     var width = 1000,
         height = 1200;
 
@@ -14,10 +16,8 @@ window.d3_cluster_render = function (cluster_data_json) {
         .attr("height", height)
       .append("g")
         .attr("transform", "translate(40,0)");
-
-    d3.json(cluster_data_json, function(error, root) {
     
-      console.log(cluster_data_json);
+      var root = cluster_data_json;
         
       var nodes = cluster.nodes(root),
           links = cluster.links(nodes);
@@ -41,8 +41,7 @@ window.d3_cluster_render = function (cluster_data_json) {
           .attr("dx", function(d) { return d.children ? -8 : 8; })
           .attr("dy", 3)
           .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-          .text(function(d) { return d.name; });
-    });
+          .text(function(d) { return d.name.indexOf("-") > -1 ? "-" : d.name; });
 
     d3.select(self.frameElement).style("height", height + "px");
 
