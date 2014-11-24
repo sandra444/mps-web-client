@@ -41,7 +41,7 @@ window.d3_cluster_render = function (cluster_data_json) {
           .attr("dx", function(d) { return d.children ? -8 : 8; })
           .attr("dy", 3)
           .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-          .text(function(d) { return d.name.indexOf("-") > -1 ? "-" : d.name; });
+          .text(function(d) { return d.name.indexOf("~") > -1 ? "~" : d.name; });
 
     d3.select(self.frameElement).style("height", height + "px");
 
