@@ -1,9 +1,9 @@
 window.d3_cluster_render = function (cluster_data_json) {
 
-    console.log(cluster_data_json);
+    //console.log(cluster_data_json);
     
     var width = 1000,
-        height = 1200;
+        height = 2000;
 
     var cluster = d3.layout.cluster()
         .size([height, width - 160]);
