@@ -1,0 +1,274 @@
+<script>
+    $(':input[type=number]').on('mousewheel', function(e){
+        e.preventDefault();
+    });
+</script>
+
+<style>
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+    }
+</style>
+
+<form ng-submit="submit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="text-center">
+                    <button class="btn btn-xlarge btn-primary text-center" type="submit">
+                        Generate Dendrogram
+                    </button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="alert alert-danger" role="alert" id="error_message" ng-show="error_message_visible">
+                <p>
+                    The server could not find the result to your request.
+                </p>
+
+                <p>
+                    Please try a different query.
+                </p>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-xs-4 col-xs-offset-2">
+                <label>Normalize Bioactivities?
+                    <input type="checkbox" ng-model="normalize_bioactivities" ng-change="norm(normalize_bioactivities)">
+                </label>
+            </div>
+
+            <div class="col-xs-4">
+                <label>Minimum feature count per record?
+                    <input type="number" ng-model="min_feat_count" ng-change="new_min(min_feat_count)">
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-2">
+                <label>
+                    <p class="text-center">
+                        Target Type Filter:
+                        <input ng-model="target_type_search_name" ng-change="refresh()" ng-disabled="isSaving">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                            <th style="width: 10%;">
+                                <three-state-checkbox checkboxes="target_types" ng-disabled="isSaving">
+                                </three-state-checkbox>
+                            </th>
+                            <th style="width: 90%;">
+                                Select Target Types:
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="target_type in target_types
+                                | filter: {name: target_type_search_name}
+                                | orderBy: 'name'">
+
+                                <td>
+                                    <input type="checkbox" ng-model="target_type.is_selected" ng-change="refresh()" ng-disabled="isSaving">
+                                </td>
+
+                                <td>
+                                    {{ target_type.name }}
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <label>
+                    <p class="text-center">
+                        Organism Filter:
+                        <input ng-model="organisms_search_name" ng-change="refresh()" ng-disabled="isSaving">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                            <th style="width: 10%;">
+                                <three-state-checkbox checkboxes="organisms" ng-disabled="isSaving">
+                                </three-state-checkbox>
+                            </th>
+                            <th style="width: 90%;">
+                                Select Organisms
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="organism in organisms
+                                | filter: {name: organisms_search_name}
+                                | orderBy: 'name'">
+
+                                <td>
+                                    <input type="checkbox" ng-model="organism.is_selected" ng-change="refresh()" ng-disabled="isSaving">
+                                </td>
+
+                                <td>
+                                    {{ organism.name }}
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-4">
+
+                <p class="text-center">
+                    <label>
+                        Bioactivities Filter:
+                        <input ng-model="bioactivities_search_name" ng-disabled="isSaving">
+                    </label>
+                </p>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                            <th style="width: 10%;">
+                                <three-state-checkbox checkboxes="bioactivities" ng-disabled="isSaving">
+                                </three-state-checkbox>
+                            </th>
+                            <th style="width: 90%;">
+                                Select Bioactivities
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="bioactivity in bioactivities
+                                | filter: {name: bioactivities_search_name}
+                                | orderBy: ['-is_selected', 'name']">
+
+                                <td>
+                                    <input type="checkbox" ng-model="bioactivity.is_selected" ng-disabled="isSaving">
+                                </td>
+
+                                <td>
+                                    {{ bioactivity.name }}
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="col-xs-4">
+
+                <label>
+                    <p class="text-center">
+                        Targets Filter:
+                        <input ng-model="targets_search_name" ng-disabled="isSaving">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                            <th style="width: 10%;">
+                                <three-state-checkbox checkboxes="targets" ng-disabled="isSaving">
+                                </three-state-checkbox>
+                            </th>
+                            <th style="width: 90%;">
+                                Select Targets
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="target in targets
+                                | filter: {name: targets_search_name}
+                                | orderBy: ['-is_selected', 'name']">
+
+                                <td>
+                                    <input type="checkbox" ng-model="target.is_selected" ng-disabled="isSaving">
+                                </td>
+
+                                <td>
+                                    {{ target.name }}
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-xs-4">
+
+                <label>
+                    <p class="text-center">
+                        Compounds Filter:
+                        <input ng-model="compounds_search_name" ng-disabled="isSaving">
+                    </p>
+                </label>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered
+                            table-condensed">
+
+                        <thead>
+                            <th style="width: 10%;">
+                                <three-state-checkbox checkboxes="compounds" ng-disabled="isSaving">
+                                </three-state-checkbox>
+                            </th>
+                            <th style="width: 90%;">
+                                Select Compounds
+                            </th>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="compound in compounds
+                                | filter: {name: compounds_search_name}
+                                | orderBy: ['-is_selected', 'name']">
+
+                                <td>
+                                    <input type="checkbox" ng-model="compound.is_selected" ng-disabled="isSaving">
+                                </td>
+
+                                <td>
+                                    {{ compound.name }}
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
