@@ -1,3 +1,21 @@
+<style>
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -18,14 +36,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div ng-if="heatmap_data_csv">
-        <div id="download" class="container text-center">
-            <a class="btn btn-xlarge btn-primary btn-lg" href="{{heatmap_data_csv}}">Download Heatmap</a>
-        </div>
-        <div id="heatmap" style='overflow:auto; width:100%; height:100%;'>
-        </div>
-        <div id="heatmap_legend">
-        </div>
+    <div id="cluster" style='overflow:auto; width:100%; height:100%;'>
     </div>
 </div>
 
