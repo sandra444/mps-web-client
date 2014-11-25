@@ -15,7 +15,7 @@ MPS.controller(
             $scope.organisms = bioactivities_heatmap_filter.organisms;
             
             // Scope values for cluster specifically
-            $rootScope.compound_data = false;
+            //$rootScope.compound_data = false;
             $rootScope.method = 'single';
             $rootScope.metric = 'euclidean';
             
