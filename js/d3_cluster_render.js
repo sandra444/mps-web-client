@@ -2,7 +2,7 @@ window.d3_cluster_render = function (cluster_data_json) {
 
     //console.log(cluster_data_json);
 
-    var width = 1000,
+    var width = 800,
         height = 2000;
 
     var cluster = d3.layout.cluster()
@@ -70,8 +70,8 @@ window.d3_cluster_render = function (cluster_data_json) {
     //Titles for hovering
     node.append("title")
         .text(function (d) {
-            return d.name;
-        });
+            return d.name.indexOf("\n") > -1 ? "" : d.name;
+    });
 
     node.append("text")
         .attr("dx", function (d) {
