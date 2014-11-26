@@ -16,6 +16,10 @@ MPS.controller(
             var get_bioactivities_filter = bioactivities_heatmap_filter.get_bioactivities();
             var get_compounds_filter = bioactivities_heatmap_filter.get_compounds();
             
+            // Cluster specific
+            var get_method = bioactivities_heatmap_filter.get_method();
+            var get_metric = bioactivities_heatmap_filter.get_metric();
+            
             /* destroy existing cluster if it exists upon navigation */
             $scope.$on('$routeChangeSuccess', function() {
                 $('svg').remove();
@@ -34,7 +38,9 @@ MPS.controller(
                         'compounds_filter': get_compounds_filter,
                         'target_types_filter': target_types_filter,
                         'organisms_filter': organisms_filter,
-                        'normalize_bioactivities': normalize_bioactivities
+                        'normalize_bioactivities': normalize_bioactivities,
+                        'metric': get_metric,
+                        'method': get_method
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

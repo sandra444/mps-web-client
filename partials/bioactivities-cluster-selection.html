@@ -1,14 +1,14 @@
 <script>
-    $(':input[type=number]').on('mousewheel', function(e){
+    $(':input[type=number]').on('mousewheel', function (e) {
         e.preventDefault();
     });
 </script>
 
 <style>
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 </style>
 
@@ -46,6 +46,31 @@
             <div class="col-xs-4">
                 <label>Minimum feature count per record?
                     <input type="number" ng-model="min_feat_count" ng-change="new_min(min_feat_count)">
+                </label>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-center">
+            <div class="col-xs-4 col-xs-offset-2">
+                <label>Method
+                    <select class="form-control" ng-model="method" ng-change="new_method(method)">
+                        <option>single</option>
+                        <option>complete</option>
+                        <option>average</option>
+                        <option>weighted</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="col-xs-4">
+                <label>Metric
+                    <select class="form-control" ng-model="metric" ng-change="new_metric(metric)">
+                        <option>euclidean</option>   
+                        <option>cosine</option>
+                        <option>cityblock</option>
+                        <option>correlation</option>
+                        <option>minkowski</option>
+                    </select>
                 </label>
             </div>
         </div>

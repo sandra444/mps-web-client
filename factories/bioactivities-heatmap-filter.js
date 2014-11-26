@@ -80,6 +80,14 @@ MPS.factory(
                 return $rootScope.normalize_bioactivities;
             },
             
+            get_method: function() {
+                return $rootScope.method;
+            },
+            
+            get_metric: function() {
+                return $rootScope.metric;
+            },
+            
             promise: function() {
                 return $http({
                     method: 'GET',
