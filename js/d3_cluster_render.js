@@ -34,15 +34,38 @@ window.d3_cluster_render = function (cluster_data_json) {
         .data(nodes)
         .enter().append("g")
         .attr("class", "node")
+        .attr("id", function (d) {
+            return d.name.replace(/\s/g, "");
+        })
         .attr("transform", function (d) {
             return "translate(" + d.y + "," + d.x + ")";
-        })
-        .on("mouseover", function (d) {
-            console.log(d);    
-        })
+        });
 
     node.append("circle")
         .attr("r", 4.5);
+        
+    node.on("mouseover", function (d) {
+        var recurse = function(node) {
+            // Change the class to selected node
+            $('#'+node.name.replace(/\s/g, "")).attr('class', 'node-s');
+            
+            // Stop at leaves
+            if (!node.children) {
+                return;
+            }
+            // For nodes with children
+            else {
+                for (child in node.children) {
+                    recurse(node.children[child]);    
+                }
+            }
+        }
+        recurse(d);
+    });
+    
+    node.on("mouseout", function (d) {
+        node.attr("class", "node");
+    });
 
     //Titles for hovering
     node.append("title")
