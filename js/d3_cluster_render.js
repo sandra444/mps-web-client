@@ -1,4 +1,4 @@
-window.d3_cluster_render = function (cluster_data_json) {
+window.d3_cluster_render = function (cluster_data_json, bioactivities) {
 
     //console.log(cluster_data_json);
 
@@ -55,7 +55,7 @@ window.d3_cluster_render = function (cluster_data_json) {
             }
             // For nodes with children
             else {
-                for (child in node.children) {
+                for (var child in node.children) {
                     recurse(node.children[child]);    
                 }
             }
@@ -86,5 +86,13 @@ window.d3_cluster_render = function (cluster_data_json) {
         });
 
     d3.select(self.frameElement).style("height", height + "px");
-
+    
+    var query = "";
+    
+    for (var bioactivity in bioactivities){
+        bioactivity = bioactivity.split('_');
+        query += "<p>"+bioactivity[0]+" : "+bioactivity[1]+"</p>";        
+    }
+    
+    $('#query').html(query);
 }
