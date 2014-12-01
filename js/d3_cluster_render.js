@@ -1,6 +1,6 @@
-window.d3_cluster_render = function (cluster_data_json, bioactivities) {
+window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds) {
 
-    //console.log(cluster_data_json);
+    console.log(compounds);
 
     var width = 800,
         height = 2000;
@@ -66,6 +66,13 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities) {
     node.on("mouseout", function (d) {
         node.attr("class", "node");
     });
+    
+    node.on("click", function (d) {
+        if (compounds[d.name]){
+            $('#compound').html(compounds[d.name]);
+        }
+        console.log(compounds[d.name]);
+    });
 
     //Titles for hovering
     node.append("title")
@@ -87,12 +94,25 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities) {
 
     d3.select(self.frameElement).style("height", height + "px");
     
-    var query = "";
+    // Display the original query in terms of what bioactivity-target pairs were used
+    var query = "<div style='width: 100%;height: 800px !important;overflow: scroll;'><table class='table table-striped'><thead><tr><td><b>Target</b></td><td><b>Bioactivity</b></td></tr></thead>";
     
-    for (var bioactivity in bioactivities){
-        bioactivity = bioactivity.split('_');
-        query += "<p>"+bioactivity[0]+" : "+bioactivity[1]+"</p>";        
+    for (var i in bioactivities){
+        bioactivity = bioactivities[i].split('_');
+        query += "<tr><td>"+bioactivity[0]+"</td><td>"+bioactivity[1]+"</td></tr>";        
     }
     
+    query += "</table></div>";
+    
     $('#query').html(query);
+    
+    $(function () {
+        $(document).on("click", function (e) {
+            if (e.target.id == "X") {
+                $("#com").fadeToggle(200);
+                e.stopPropagation();
+                return false;
+            }
+        });
+    });
 }
