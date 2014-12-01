@@ -1,8 +1,6 @@
 window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds) {
 
-    console.log(compounds);
-
-    var width = 800,
+    var width = $("#cluster").width(),
         height = 2000;
 
     var cluster = d3.layout.cluster()
@@ -67,11 +65,11 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
         node.attr("class", "node");
     });
     
+    // Spawn compound info (compounds is prepopulated HTML from the Python Parser!)
     node.on("click", function (d) {
         if (compounds[d.name]){
             $('#compound').html(compounds[d.name]);
         }
-        console.log(compounds[d.name]);
     });
 
     //Titles for hovering
@@ -95,7 +93,7 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
     d3.select(self.frameElement).style("height", height + "px");
     
     // Display the original query in terms of what bioactivity-target pairs were used
-    var query = "<div style='width: 100%;height: 800px !important;overflow: scroll;'><table class='table table-striped'><thead><tr><td><b>Target</b></td><td><b>Bioactivity</b></td></tr></thead>";
+    var query = "<div style='width: 100%;height: 600px !important;overflow: scroll;'><table class='table table-striped'><thead><tr><td><b>Target</b></td><td><b>Bioactivity</b></td></tr></thead>";
     
     for (var i in bioactivities){
         bioactivity = bioactivities[i].split('_');
