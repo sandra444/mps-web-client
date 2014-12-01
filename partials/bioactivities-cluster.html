@@ -8,6 +8,17 @@
 .node {
   font: 10px sans-serif;
 }
+    
+.node-s circle {
+  fill: steelblue;
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.node-s {
+  font: 10px serif;
+  font-weight: bold;
+}
 
 .link {
   fill: none;
@@ -36,7 +47,11 @@
     </div>
 </div>
 <div class="container-fluid">
-    <div id="cluster" style='overflow:auto; width:100%; height:100%;'>
+    <div id="query" class="col-xs-3 affix">
+    </div>
+    <div id="cluster" class="col-xs-8 col-xs-offset-3">
+    </div>
+    <div id="compound" class="col-xs-1">
     </div>
 </div>
 

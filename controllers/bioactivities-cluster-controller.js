@@ -51,7 +51,9 @@ MPS.controller(
                     window.spinner.stop();
                     if (data["data_json"] != undefined) {
                         $scope.cluster_data_json = data["data_json"];
-                        window.d3_cluster_render($scope.cluster_data_json);
+                        $scope.bioactivities = data["bioactivities"];
+                        $scope.compounds = data["compounds"];
+                        window.d3_cluster_render($scope.cluster_data_json,$scope.bioactivities,$scope.compounds);
 
                     } else {
                         $scope.error_message_visible = true;
