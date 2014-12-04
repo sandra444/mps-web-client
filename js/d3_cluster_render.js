@@ -104,6 +104,8 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
     
     $('#query').html(query);
     
+    $('#compound').html('<div id="com" class="thumbnail text-center affix">Click a node or compound name to view additional information</div>');
+    
     $(function () {
         $(document).on("click", function (e) {
             if (e.target.id == "X") {

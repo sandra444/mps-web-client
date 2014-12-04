@@ -88,6 +88,10 @@ MPS.factory(
                 return $rootScope.metric;
             },
             
+            get_chemical_properties: function() {
+                return $rootScope.chemical_properties;
+            },
+            
             promise: function() {
                 return $http({
                     method: 'GET',
