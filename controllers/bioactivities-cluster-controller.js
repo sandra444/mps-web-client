@@ -19,6 +19,7 @@ MPS.controller(
             // Cluster specific
             var get_method = bioactivities_heatmap_filter.get_method();
             var get_metric = bioactivities_heatmap_filter.get_metric();
+            var get_chemical_properties = bioactivities_heatmap_filter.get_chemical_properties();
             
             /* destroy existing cluster if it exists upon navigation */
             $scope.$on('$routeChangeSuccess', function() {
@@ -40,7 +41,8 @@ MPS.controller(
                         'organisms_filter': organisms_filter,
                         'normalize_bioactivities': normalize_bioactivities,
                         'metric': get_metric,
-                        'method': get_method
+                        'method': get_method,
+                        'chemical_properties': get_chemical_properties
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'

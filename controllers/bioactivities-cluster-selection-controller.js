@@ -18,6 +18,7 @@ MPS.controller(
             //$rootScope.compound_data = false;
             $rootScope.method = 'single';
             $rootScope.metric = 'euclidean';
+            $rootScope.chemical_properties = false;
             
             $scope.isSaving = 0;
             
@@ -46,19 +47,21 @@ MPS.controller(
             
             //Early handler for selectall, not optimal
             $scope.$on('heatmap_selection_update_all', function() {
-
                 $scope.refresh();
             });
             
             //Early handler for changing min_feat_count
             $scope.new_min = function(val) {
-                
                 $rootScope.min_feat_count = val;
                 $scope.refresh();
             }
             
             $scope.norm = function(val) {
                 $rootScope.normalize_bioactivities = val;
+            }
+            
+            $scope.chem = function(val) {
+                $rootScope.chemical_properties = val;
             }
             
             $scope.new_metric = function(val) {
