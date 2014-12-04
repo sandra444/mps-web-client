@@ -109,7 +109,7 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
     $(function () {
         $(document).on("click", function (e) {
             if (e.target.id == "X") {
-                $("#com").fadeToggle(200);
+                $("#com").remove();
                 e.stopPropagation();
                 return false;
             }
