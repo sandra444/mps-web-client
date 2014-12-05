@@ -34,6 +34,8 @@
     <!-- d3.js User Libraries -->
 
     <script src="/static/js/d3_heatmap_render.js"></script>
+    
+    <script src="/static/js/d3_cluster_render.js"></script>
 
     <!-- AngularJS Initialization -->
 
@@ -66,6 +68,12 @@
     </script>
 
     <script src="/static/controllers/bioactivities-heatmap-controller.js">
+    </script>
+    
+    <script src="/static/controllers/bioactivities-cluster-selection-controller.js">
+    </script>
+
+    <script src="/static/controllers/bioactivities-cluster-controller.js">
     </script>
 
     <!-- AngularJS Directives -->
@@ -238,7 +246,13 @@
                         <li class="divider"></li>
                         <li>
                             <a href="#/bioactivities/heatmap_selection">
-                               Bioactivities Heatmap Selection
+                               Bioactivities Heatmap
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#/bioactivities/cluster_selection">
+                               Bioactivities Cluster
                             </a>
                         </li>
                     </ul>
