@@ -89,243 +89,50 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-default"
-         role="navigation"
-         data-ng-controller="main_navigation_controller">
-
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="\#">MPS Database</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/admin">
-                        Admin Home
-                    </a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Microdevices <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/microdevices/microphysiologycenter/">
-                                Microphysiology Centers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/microdevices/organmodel/">
-                                Organ Models
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/microdevices/microdevice">
-                                Devices
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/microdevices/manufacturer">
-                                Manufacturers
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Resources <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/resources/resource/">
-                                Resources
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/resources/resourcetype/">
-                                Resource Types
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/admin/compounds/compound/">
-                        Compounds
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Assays <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/assays/assaytestresult/">
-                                Assay Chip Results
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assaychipreadout/">
-                                Chip Readouts
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assayrun/">
-                                Chip Runs
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/assays/assayplatetestresult/">
-                                Assay Plate Results
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assaydevicereadout/">
-                                Plate Readouts
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assaymodel/">
-                                Assays
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/assays/assaylayout/">
-                                Assay Layouts
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assaybaselayout/">
-                                Base Layouts
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/assays/assaylayoutformat/">
-                                Layout Formats
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/assays/assayreader/">
-                                Assay Reader Devices
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Bioactivities <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/bioactivities/bioactivity/">
-                                Bioactivities
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/bioactivities/bioactivitytype/">
-                                Bioactivity Types
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/bioactivities/assay/">
-                                External Assays
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/bioactivities/target/">
-                                Targets
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#/bioactivities/heatmap_selection">
-                               Bioactivities Heatmap
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#/bioactivities/cluster_selection">
-                               Bioactivities Cluster
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Drug Trials <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/drugtrials/drugtrial/">
-                                Drug Trials
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/drugtrials/species/">
-                                Species
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/drugtrials/finding/">
-                                Findings
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/drugtrials/findingtype/">
-                                Finding Types
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                        Cellsamples <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="/admin/cellsamples/organ/">
-                                Organs
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/cellsamples/cellsample/">
-                                Cell Samples
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/cellsamples/celltype/">
-                                Cell Types
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/cellsamples/cellsubtype/">
-                                Cell Subtypes
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="/admin/cellsamples/supplier/">
-                                Suppliers
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/admin/auth">
-                        Users
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/admin">Admin</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Assays<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li class="dropdown-header">Add/Edit Studies</li>
+                  <li><a href="/assays/user_index">My Studies</a></li>
+                  <li><a href="/assays/group_index">Group Studies</a></li>
+                  <li class="divider"></li>
+                  <li class="dropdown-header">View All Public Data</li>
+                  <li><a href="/assays/organchipstudy">Studies</a></li>
+                  <li><a href="/assays/assaychipsetup">Setups</a></li>
+                  <li><a href="/assays/assaychipreadout">Readouts</a></li>
+                  <li><a href="/assays/assaytestresult">Results</a></li>
+                </ul>
+            </li>
+            <li><a href="/compounds">Compounds</a></li>
+            <li><a href="\#/bioactivities/heatmap_selection">Heatmap</a></li>
+            <li><a href="\#/bioactivities/cluster_selection#">Cluster</a></li>
+          </ul>
+<!-- Can't use Django template here: Revise soon
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_active %}
+                <li><a href="/accounts/logout">Logout</a></li>
+            {% else %}
+                <li><a href="/accounts/login">Log In</a></li>
+            {% endif %}
+          </ul>
+-->
+        </div><!--/.nav-collapse -->
+      </div>
     </nav>
 </div>
 
