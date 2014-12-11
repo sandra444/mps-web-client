@@ -27,7 +27,7 @@ MPS.directive('threeStateCheckbox', function ($rootScope) {
                 
                 //Use the given ID to broadcast only when organism or target_type is clicked
                 //Needs refactoring
-                if ($scope.$id == '004' || $scope.$id == '005') {
+                if ($scope.$id == '003' || $scope.$id == '004') {
                     $rootScope.$broadcast('heatmap_selection_update_all');
                 }
                 
