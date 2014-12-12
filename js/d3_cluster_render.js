@@ -65,12 +65,32 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
         node.attr("class", "node");
     });
     
-    // Spawn compound info (compounds is prepopulated HTML from the Python Parser!)
     node.on("click", function (d) {
-        if (compounds[d.name]){
-            $('#compound').html(compounds[d.name]);
+        $('#compound').html("");
+        var names = d.name.split('\n');
+        var box = "";
+        for (var i  in names){
+            if (compounds[names[i]]){
+                var com = compounds[names[i]];
+                var box = box = "<div id='com" + i + "' class='thumbnail text-center'>"
+                box += '<button id="X' + i + '" type="button" class="btn-xs btn-danger">X</button>'
+                box += "<img src='https://www.ebi.ac.uk/chembldb/compound/displayimage/"+ com.CHEMBL + "' class='img-polaroid'>"
+                box += "<strong>" + com.name + "</strong><br>"
+                box += "Known Drug: "
+                box += com.knownDrug ? "<span class='glyphicon glyphicon-ok'></span><br>" : "<span class='glyphicon glyphicon-remove'></span><br>"
+                box += "Passes Rule of 3: "
+                box += com.ro3 ? "<span class='glyphicon glyphicon-ok'></span><br>" : "<span class='glyphicon glyphicon-remove'></span><br>"
+                box += "Rule of 5 Violations: " + com.ro5 + "<br>"
+                box += "Species: " + com.species
+                box += "</div>" 
+                $('#compound').prepend(box);
+            }
+            // Break at 10
+            if (i >= 9){
+                break;    
+            }
         }
-    });
+    }); 
 
     //Titles for hovering
     node.append("title")
@@ -104,12 +124,13 @@ window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds
     
     $('#query').html(query);
     
-    $('#compound').html('<div id="com" class="thumbnail text-center affix">Click a node or compound name to view additional information</div>');
+    $('#compound').html('<div id="com" class="thumbnail text-center">Click a node or compound name to view additional information</div>');
     
     $(function () {
         $(document).on("click", function (e) {
-            if (e.target.id == "X") {
-                $("#com").remove();
+            if (e.target.id.indexOf("X") > -1) {
+                var num = e.target.id.replace( /^\D+/g, '');
+                $("#com" + num).remove();
                 e.stopPropagation();
                 return false;
             }
