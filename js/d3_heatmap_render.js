@@ -1,5 +1,8 @@
 
-window.d3_heatmap_render = function (heatmap_data_csv) {
+window.d3_heatmap_render = function (heatmap_data_csv, row_order, col_order) {
+    
+//    console.log(row_order);
+//    console.log(col_order);
 
     var margin = { top: 650, right: 50, bottom: 50, left: 125 };
     var cell_size = 10;
@@ -186,9 +189,16 @@ window.d3_heatmap_render = function (heatmap_data_csv) {
                 list_of_all_values.push(data[i]["value"]);
             }
 
+            // Old sorting just on name
             // alphabetically sort row and column labels
-            rows_list = rows_list.sort();
-            cols_list = cols_list.sort();
+            //rows_list = rows_list.sort();
+            //cols_list = cols_list.sort();
+            
+            rows_list = row_order;
+            cols_list = col_order;
+            
+//            console.log(rows_list);
+//            console.log(cols_list);
 
             // archive the original arrays in their respective copy of '_original'
             rows_list_original = rows_list.slice(0);
