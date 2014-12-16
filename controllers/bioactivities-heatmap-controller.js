@@ -45,7 +45,9 @@ MPS.controller(
                     window.spinner.stop();
                     if (data["data_csv"] != undefined) {
                         $scope.heatmap_data_csv = data["data_csv"];
-                        window.d3_heatmap_render($scope.heatmap_data_csv);
+                        $scope.row_order = data["row_order"];
+                        $scope.col_order = data["col_order"];
+                        window.d3_heatmap_render($scope.heatmap_data_csv, $scope.row_order, $scope.col_order);
 
                     } else {
                         $scope.error_message_visible = true;

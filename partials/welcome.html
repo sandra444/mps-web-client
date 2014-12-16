@@ -1,3 +1,9 @@
+<style>
+.btn-primary {
+    font-weight: bold;
+}
+</style>
+
 <div class="container text-center">
     <div class="row">
         <div class="col-xs-12">
@@ -8,86 +14,153 @@
                 </strong>
             </p>
             <br/>
-            <a href="/admin"
-               class="btn btn-primary btn-lg">
-                Enter Data Input Interface
-            </a>
         </div>
     </div>
-    <br/>
-    <br/>
     <div class="row">
         <div class="col-xs-12">
-            <h3>Data Analysis Tools</h3>
+            <h3>Add Data</h3>
         </div>
     </div>
     <br/>
     <div class="row">
-            <div class="col-md-3">
-                <div class="thumbnail">
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <a href="/compounds/add">
+                    <img src="/static/img/button_addcompound.png"
+                         style="height: 80px;">
+                </a>
+                <div class="caption">
+                    <a href="/compounds/add"
+                       class="btn btn-primary btn-large">
+                        Add New Compound
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <a href="/assays/user_index">
+                    <img src="/static/img/button_import.png"
+                         style="height: 80px;">
+                </a>
+                <div class="caption">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-large dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Upload Assay Data <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/assays/user_index">My Studies</a></li>
+                        <li><a href="/assays/group_index">Group Studies</a></li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+        <div class="row">
+        <div class="col-xs-12">
+            <h3>View Data</h3>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="/microdevices/">
+                    <img src="/static/img/liver_model.png"
+                         style="height: 80px;">
+                </a>
+                <div class="caption">
+                    <a href="/microdevices/"
+                       class="btn btn-primary btn-large">
+                        View Devices &amp; Models
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="/compounds/">
                     <img src="/static/img/button_browse.png"
                          style="height: 80px;">
-                    <div class="caption">
-                        <a href="/admin/compounds/compound/"
-                           class="btn btn-primary btn-large">
-                        Browse Compounds
-                        </a>
-                    </div>
+                </a>
+                <div class="caption">
+                    <a href="/compounds/"
+                       class="btn btn-primary btn-large">
+                    View Compounds
+                    </a>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="/static/img/button_heatmap.png"
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="/drugtrials/">
+                    <img src="/static/img/button_trials.png"
                          style="height: 80px;">
-                    <div class="caption">
-                        <a href="/#/bioactivities/heatmap_selection"
-                           class="btn btn-primary btn-large">
-                        Create Data Report
-                        </a>
-                    </div>
+                </a>
+                <div class="caption">
+                    <a href="/drugtrials/"
+                       class="btn btn-primary btn-large">
+                    View Drug Trials
+                    </a>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="/static/img/button_cluster.png"
+        </div>
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="/assays/organchipstudy">
+                    <img src="/static/img/button_chip.png"
                          style="height: 80px;">
-                    <div class="caption">
-                        <a href="/#/bioactivities/cluster_selection"
-                           class="btn btn-primary btn-large">
-                            Cluster Compounds
-                        </a>
+                </a>
+                <div class="caption">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-large dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        View Assay Data <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/assays/organchipstudy">Studies</a></li>
+                        <li><a href="/assays/assaychipsetup">Setups</a></li>
+                        <li><a href="/assays/assaychipreadout">Readouts</a></li>
+                        <li><a href="/assays/assaytestresult">Results</a></li>
+                      </ul>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <img src="/static/img/button_predictive.png"
-                         style="height: 80px;">
-                    <div class="caption">
-                        <a href="/#/in_development"
-                           class="btn btn-primary btn-large">
-                        Predictive Modeling
-                        </a>
-                    </div>
-                </div>
-            </div>
+        </div>
     </div>
+    <br/>
     <div class="row">
         <div class="col-xs-12">
-            <h3>Administration Tools</h3>
+            <h3>Analysis Tools</h3>
         </div>
     </div>
     <br/>
     <div class="row">
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="/static/img/button_addcompound.png"
-                     style="height: 80px;">
+                <a href="/#/bioactivities/heatmap_selection">
+                    <img src="/static/img/button_heatmap.png"
+                         style="height: 80px;">
+                </a>
                 <div class="caption">
-                    <a href="/admin/compounds/compound/add/"
+                    <a href="/#/bioactivities/heatmap_selection"
                        class="btn btn-primary btn-large">
-                        Add Custom Compounds
+                    Create Data Report
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="/#/bioactivities/cluster_selection">
+                    <img src="/static/img/button_cluster.png"
+                         style="height: 80px;">
+                </a>
+                <div class="caption">
+                    <a href="/#/bioactivities/cluster_selection"
+                       class="btn btn-primary btn-large">
+                        Cluster Compounds
                     </a>
                 </div>
             </div>
@@ -95,25 +168,14 @@
 
         <div class="col-md-4">
             <div class="thumbnail">
-                <img src="/static/img/liver_model.png"
-                     style="height: 80px;">
+                <a href="/#/in_development">
+                    <img src="/static/img/button_predictive.png"
+                         style="height: 80px;">
+                </a>
                 <div class="caption">
-                    <a href="/admin/assays/assaybaselayout"
+                    <a href="/#/in_development"
                        class="btn btn-primary btn-large">
-                        Design Device Layout
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="/static/img/button_import.png"
-                     style="height: 80px;">
-                <div class="caption">
-                    <a href="/admin/assays/assaydevicereadout/add/"
-                       class="btn btn-primary btn-large">
-                        Import Data
+                    Modeling
                     </a>
                 </div>
             </div>
