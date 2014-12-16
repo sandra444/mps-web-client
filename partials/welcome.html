@@ -44,10 +44,15 @@
                          style="height: 80px;">
                 </a>
                 <div class="caption">
-                    <a href="/assays/user_index"
-                       class="btn btn-primary btn-large">
-                        Upload Assay Data
-                    </a>
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-large dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Upload Assay Data <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/assays/user_index">My Studies</a></li>
+                        <li><a href="/assays/group_index">Group Studies</a></li>
+                      </ul>
+                    </div>
                 </div>
             </div>
         </div>
