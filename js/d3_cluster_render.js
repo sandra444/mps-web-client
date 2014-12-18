@@ -1,7 +1,25 @@
 window.d3_cluster_render = function (cluster_data_json, bioactivities, compounds) {
 
-    var width = $("#cluster").width(),
-        height = 2000;
+    var height = null;
+    var find = Object.keys(compounds).length;
+    
+    if (find < 11) {
+        height = 600;   
+    }
+    else if (find < 20) {
+        height = 800;   
+    }
+    else if (find < 50) {
+        height = 1000;   
+    }
+    else if (find < 80) {
+        height = 1600;   
+    }
+    else {
+        height = 2000; 
+    }
+    
+    var width = $("#cluster").width();
 
     var cluster = d3.layout.cluster()
         .size([height, width - 160]);
