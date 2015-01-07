@@ -10,16 +10,16 @@ MPS.factory(
         //Initial values are true: elimate in lieu of add
         var target_types = [{
             name: 'Cell-Line',
-            is_selected: true
+            is_selected: false
         }, {
             name: 'Organism',
-            is_selected: true
+            is_selected: false
         }, {
             name: 'Single Protein',
             is_selected: true
         }, {
             name: 'Tissue',
-            is_selected: true
+            is_selected: false
         }];
         var organisms = [{
             name: 'Homo Sapiens',
@@ -29,7 +29,7 @@ MPS.factory(
             is_selected: true
         }, {
             name: 'Canis Lupus Familiaris',
-            is_selected: true
+            is_selected: false
         }];
 
         var compounds = [];
