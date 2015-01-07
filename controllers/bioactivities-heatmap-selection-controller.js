@@ -14,6 +14,9 @@ MPS.controller(
             $scope.target_types = bioactivities_heatmap_filter.target_types;
             $scope.organisms = bioactivities_heatmap_filter.organisms;
             
+            $rootScope.method = 'single';
+            $rootScope.metric = 'euclidean';
+            
             $scope.isSaving = 0;
             
             $scope.refresh = function() {
@@ -54,6 +57,14 @@ MPS.controller(
             
             $scope.norm = function(val) {
                 $rootScope.normalize_bioactivities = val;
+            }
+            
+            $scope.new_metric = function(val) {
+                $rootScope.metric = val;
+            }
+                        
+            $scope.new_method = function(val) {
+                $rootScope.method = val;
             }
             
             $scope.submit = function() {
