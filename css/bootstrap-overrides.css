@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+/**
+ * Allows for responsive right-aligned text (class dissapears on small screens)
+ */
+
+@media (min-width:768px) {
+    .text-right-responsive {text-align:right;}
+    .text-left-responsive {text-align:left;}
+}
+
 .dropdown-menu, .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
     cursor: pointer;
     font-size: 16px;
