@@ -9,10 +9,17 @@
     .text-left-responsive {text-align:left;}
 }
 
+/**
+ * Make buttons bold
+ */
+
+.btn {
+    font-weight: bold;
+}
+
 .dropdown-menu, .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
+    font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: bolder;
 }
 
 #data-table tr, #data-table td {
