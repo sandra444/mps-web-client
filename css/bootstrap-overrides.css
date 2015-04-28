@@ -17,7 +17,7 @@
     font-weight: bold;
 }
 
-.dropdown-menu, .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
+.dropdown-menu, a .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
