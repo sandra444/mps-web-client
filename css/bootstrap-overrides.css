@@ -10,6 +10,14 @@
 }
 
 /**
+ * Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
+ */
+
+.readjust-pulled {
+    margin-top: 5px;
+}
+
+/**
  * Make buttons bold
  */
 
