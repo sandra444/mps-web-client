@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/**
+/*
  * Allows for responsive right-aligned text (class dissapears on small screens)
  */
 
@@ -9,7 +9,7 @@
     .text-left-responsive {text-align:left;}
 }
 
-/**
+/*
  * Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
  */
 
@@ -17,9 +17,7 @@
     margin-top: 5px;
 }
 
-/**
- * Make buttons bold
- */
+/* Make buttons bold */
 
 .btn {
     font-weight: bold;
@@ -37,7 +35,7 @@
     width: 12em !important;
 }
 
-/**
+/*
  * Extra large button extensions. Extends `.btn`.
  */
 
@@ -56,7 +54,7 @@
     border-radius: 25px !important;
 }
 
-/*** Heatmap ***/
+/* Heatmap */
 
 svg {
     display: block;
