@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+@media print {
+    a[href]:after {
+        content: none !important;
+    }
+}
+
 /*
  * Allows for responsive right-aligned text (class dissapears on small screens)
  */
