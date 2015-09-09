@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+/* Used to have padded rows */
+.padded-row {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Do not print hrefs */
+
 @media print {
     a[href]:after {
         content: none !important;
