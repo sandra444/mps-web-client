@@ -1,5 +1,15 @@
 @charset "UTF-8";
 
+/* Used to remove fluidity in tables */
+.table-nonfluid {
+   width: auto !important;
+}
+
+/* Used to wrap text */
+.text-wrapped {
+    word-wrap: break-word;
+}
+
 /* Used to have padded rows */
 .padded-row {
     margin-left: 15px;
