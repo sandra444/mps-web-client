@@ -17,7 +17,6 @@
 }
 
 /* Do not print hrefs */
-
 @media print {
     a[href]:after {
         content: none !important;
@@ -25,7 +24,7 @@
 }
 
 /*
- * Allows for responsive right-aligned text (class dissapears on small screens)
+ Allows for responsive right-aligned text (class dissapears on small screens)
  */
 
 @media (min-width:768px) {
@@ -34,7 +33,7 @@
 }
 
 /*
- * Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
+ Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
  */
 
 .readjust-pulled {
@@ -59,9 +58,15 @@
     width: 12em !important;
 }
 
+/* Add border to table */
+.layout-table th {
+    border: 1px solid black;
+    padding: 2px;
+}
+
 /*
- * Extra large button extensions. Extends `.btn`.
- */
+ Extra large button extensions. Extends `.btn`.
+*/
 
 .btn-xlarge {
     padding: 20px 50px;
