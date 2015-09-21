@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* Background for title */
+#title {
+    background: #F8F8FF;
+}
+
 /* Used to remove fluidity in tables */
 .table-nonfluid {
    width: auto !important;
