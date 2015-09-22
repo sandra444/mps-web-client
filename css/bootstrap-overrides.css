@@ -31,7 +31,6 @@
 /*
  Allows for responsive right-aligned text (class dissapears on small screens)
  */
-
 @media (min-width:768px) {
     .text-right-responsive {text-align:right;}
     .text-left-responsive {text-align:left;}
@@ -40,7 +39,6 @@
 /*
  Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
  */
-
 .readjust-pulled {
     margin-top: 5px;
 }
@@ -92,9 +90,17 @@
     display: none;
 }
 
-/*
- Extra large button extensions. Extends `.btn`.
-*/
+/* CSS for compound report (sparklines) */
+.sparkline {
+    fill: none;
+    stroke: #FF2400;
+    stroke-width: 0.75px;
+}
+.inner>tbody>tr>td {
+    padding: 2px;
+}
+
+/* Extra large button extensions. Extends `.btn`. */
 .btn-xlarge {
     padding: 20px 50px;
     font-size: 36px;
