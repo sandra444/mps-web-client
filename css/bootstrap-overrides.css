@@ -90,6 +90,11 @@
     display: none;
 }
 
+/* Prevent links being filled for study configuration */
+.link {
+    fill: none;
+}
+
 /* CSS for compound report (sparklines) */
 .sparkline {
     fill: none;
