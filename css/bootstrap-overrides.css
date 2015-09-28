@@ -1,5 +1,32 @@
 @charset "UTF-8";
 
+/* Padded bottom to avoid content being to close */
+.padded-bottom {
+    padding-bottom: 20px;
+}
+
+/* Background for title */
+#title {
+    background: #F8F8FF;
+}
+
+/* Used to remove fluidity in tables */
+.table-nonfluid {
+   width: auto !important;
+}
+
+/* Used to wrap text */
+.text-wrapped {
+    word-wrap: break-word;
+}
+
+/* Used to have padded rows */
+.padded-row {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Do not print hrefs */
 @media print {
     a[href]:after {
         content: none !important;
@@ -7,24 +34,21 @@
 }
 
 /*
- * Allows for responsive right-aligned text (class dissapears on small screens)
+ Allows for responsive right-aligned text (class dissapears on small screens)
  */
-
 @media (min-width:768px) {
     .text-right-responsive {text-align:right;}
     .text-left-responsive {text-align:left;}
 }
 
 /*
- * Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
+ Pulling (since it uses float) can place items in the incorrect position, use this class to help prevent that; TODO Crude: revise ASAP
  */
-
 .readjust-pulled {
     margin-top: 5px;
 }
 
 /* Make buttons bold */
-
 .btn {
     font-weight: bold;
 }
@@ -41,10 +65,52 @@
     width: 12em !important;
 }
 
-/*
- * Extra large button extensions. Extends `.btn`.
- */
+/* Add border to table */
+.layout-table th {
+    border: 1px solid black;
+    padding: 2px;
+}
 
+/* Code snippet for fancy checkboxes (used in bioactivity search) */
+.adjusted-addon {
+    min-width:100px;
+    text-align:left;
+}
+.fancy-checkbox input[type="checkbox"] {
+    display: none;
+}
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span {
+    width: 20px;
+}
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span:first-child {
+    display: none;
+}
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span:last-child {
+    display: inline-block;
+}
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:first-child {
+    display: inline-block;
+}
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:last-child {
+    display: none;
+}
+
+/* Prevent links being filled for study configuration */
+.link {
+    fill: none;
+}
+
+/* CSS for compound report (sparklines) */
+.sparkline {
+    fill: none;
+    stroke: #FF2400;
+    stroke-width: 0.75px;
+}
+.inner>tbody>tr>td {
+    padding: 2px;
+}
+
+/* Extra large button extensions. Extends `.btn`. */
 .btn-xlarge {
     padding: 20px 50px;
     font-size: 36px;
@@ -61,7 +127,6 @@
 }
 
 /* Heatmap */
-
 svg {
     display: block;
     margin: 0 auto;
