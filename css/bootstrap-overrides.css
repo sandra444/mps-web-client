@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+/* For submit row */
+.floating-submit-row {
+    background: #F8F8FF;
+    border-style: solid;
+}
+.large-padding-top {
+    padding-top: 15px;
+}
+.small-padding-top {
+    padding-top: 5px;
+}
+
+/* For plate readouts */
+.invalid-well {
+    background-color: #110011 !important;
+}
+
+.invalid-well .value {
+    background-color: #FF0000;
+}
+
 /* Padded bottom to avoid content being to close */
 .padded-bottom {
     padding-bottom: 20px;
