@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
+.ui-dialog {
+    z-index: 99999999999999999;
+}
+
 /* For submit row */
 .floating-submit-row {
     background: #F8F8FF;
