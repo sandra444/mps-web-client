@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* Used to prevent scrolling (for modal dialogs) */
+.stop-scrolling {
+	height: 100%;
+	overflow: hidden;
+}
+
 /* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
 .ui-dialog {
     z-index: 99999999999999999;
