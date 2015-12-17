@@ -32,6 +32,12 @@
     background-color: #FF0000;
 }
 
+/* Remove all padding */
+.no-padding {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
 /* Padded bottom to avoid content being to close */
 .padded-bottom {
     padding-bottom: 20px;
