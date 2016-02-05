@@ -142,7 +142,7 @@
 .sparkline {
     fill: none;
     stroke: #FF2400;
-    stroke-width: 0.75px;
+    stroke-width: 1.75px;
 }
 .inner>tbody>tr>td {
     padding: 2px;
