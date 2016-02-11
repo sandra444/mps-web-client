@@ -25,11 +25,11 @@
 
 /* For plate readouts */
 .invalid-well {
-    background-color: #110011 !important;
+    background-color: #606060 !important;
 }
 
 .invalid-well .value {
-    background-color: #FF0000;
+    background-color: #DD1111;
 }
 
 /* Remove all padding */
