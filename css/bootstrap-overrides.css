@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+/* Modify appearance of C3 line plots */
+.c3-line {
+    stroke-width: 2px !important;
+}
+
+.c3-circle {
+    r: 3px !important;
+}
+
+.c3 svg {
+    font: 14px sans-serif !important;
+    font-weight: bold !important;
+}
+
 /* Used to prevent scrolling (for modal dialogs) */
 .stop-scrolling {
 	height: 100%;
