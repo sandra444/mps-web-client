@@ -2,11 +2,11 @@
 
 /* Modify appearance of C3 line plots */
 .c3-line {
-    stroke-width: 2px !important;
+    stroke-width: 2.5px !important;
 }
 
 .c3-circle {
-    r: 3px !important;
+    r: 3.5px !important;
 }
 
 .c3 svg {
