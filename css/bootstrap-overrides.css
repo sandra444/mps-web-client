@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
+.fluid-container {
+    margin-top: -20px;
+}
+
 /* Modify appearance of C3 line plots */
 .c3-line {
     stroke-width: 2.5px !important;
