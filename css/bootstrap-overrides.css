@@ -1,5 +1,27 @@
 @charset "UTF-8";
 
+/* Offset navbar in help */
+.offset-help-navbar {
+    padding-top: 50px;
+}
+
+/* Colors for navbar */
+.navbar-help {
+    color: rgb(200,40,35) !important;
+}
+
+.navbar-help:hover {
+    color: rgb(100,10,5) !important
+}
+
+.navbar-feedback {
+    color: rgb(40,10,175) !important;
+}
+
+.navbar-feedback:hover {
+    color: rgb(10,0,75) !important;
+}
+
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
 .fluid-container {
     margin-top: -20px;
