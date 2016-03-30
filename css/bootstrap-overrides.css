@@ -43,8 +43,8 @@
 
 /* Used to prevent scrolling (for modal dialogs) */
 .stop-scrolling {
-	height: 100%;
-	overflow: hidden;
+    height: 100%;
+    overflow: hidden;
 }
 
 /* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
@@ -75,8 +75,8 @@
 
 /* Remove all padding */
 .no-padding {
-	padding: 0 !important;
-	margin: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 /* Padded bottom to avoid content being to close */
