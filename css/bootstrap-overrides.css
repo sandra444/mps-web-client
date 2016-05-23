@@ -27,6 +27,15 @@
     margin-top: -20px;
 }
 
+/* Chart container has a minimum width */
+.chart-container {
+    min-width: 350px;
+}
+
+.large-chart-container {
+    min-width: 800px;
+}
+
 /* Modify appearance of C3 line plots */
 .c3-line {
     stroke-width: 2.5px !important;
