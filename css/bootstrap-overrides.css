@@ -96,6 +96,8 @@
 /* Background for title */
 #title {
     background: #F8F8FF;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 /* Used to remove fluidity in tables */
