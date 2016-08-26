@@ -185,6 +185,20 @@
     display: none;
 }
 
+/* CSS for tracking */
+.tracking-box {
+    padding: 4px;
+    margin: 4px 0px 4px 0px;
+    border-left: 4px solid #ccc !important;
+    border-bottom: 2.5px solid #bbb !important;
+    border-right: 2px solid #ddd !important;
+    border-top: 1.5px solid #eee !important;
+}
+
+.tracking-text {
+    margin:0em 0em 0em 1em;
+}
+
 /* Prevent links being filled for study configuration */
 .link {
     fill: none;
@@ -269,9 +283,11 @@ text.text-selected {
 text.text-highlight {
     fill: #c00;
 }
+
 text.text-hover {
     fill: #00C;
 }
+
 #tooltip {
     position: absolute;
     width: 200px;
