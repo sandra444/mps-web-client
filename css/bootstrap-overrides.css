@@ -79,11 +79,72 @@
 }
 
 /* For plate readouts */
-.invalid-well {
+
+/* .invalid-well {
     background-color: #606060 !important;
 }
 
 .invalid-well .value {
+    background-color: #DD1111;
+} */
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 100;
+    border: 1px dotted black;
+}
+
+.layout-table td {
+    border: 1px solid black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
+}
+
+.layout-table th {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 12px;
+}
+
+ul.layout-list {
+    margin: 0;
+    padding: 0;
+}
+
+.layout-list li {
+    list-style-type: none;
+    padding-left: 2px;
+
+}
+
+.layout-list li:hover {
+    /*text-decoration: line-through;*/
+    cursor: pointer;
+    background-color: #FFFFFF;
+    opacity: 0.6;
+}
+
+.control_list ul {
+    list-style-type: none;
+    width: 100%;
+    /* margin-left:-5%;
+    height: 50px; */
+}
+
+.control_list li {
+    list-style-type: none;
+    margin-left: 3%;
+    float: left;
+}
+
+.value {
+    background-color: white;
+    text-align: center;
+    font-size: 12px;
+}
+
+.invalid {
     background-color: #DD1111;
 }
 
