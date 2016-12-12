@@ -221,8 +221,8 @@ ul.layout-list {
     width: 12em !important;
 }
 
-/* Add border to table */
-.layout-table th {
+/* Add border to chip table */
+.chip-table th {
     border: 1px solid black;
     padding: 4px;
 }
