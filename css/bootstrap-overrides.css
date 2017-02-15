@@ -37,6 +37,13 @@
     min-width: 350px;
 }
 
+.single-chip-chart {
+    width: 44.9%;
+    float: right;
+    margin-right: 0.1%;
+    margin-left: -100%px;
+}
+
 .large-chart-container {
     min-width: 800px;
 }
@@ -227,10 +234,15 @@ ul.layout-list {
     width: 12em !important;
 }
 
+/*.data-table {
+    width: 100%;
+}*/
+
 /* Add border to chip table */
-.chip-table th {
+.data-table th, .data-table td {
     border: 1px solid black;
     padding: 4px;
+    font-weight: bold;
 }
 
 /* Code snippet for fancy checkboxes (used in bioactivity search) */
