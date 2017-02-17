@@ -151,8 +151,12 @@ ul.layout-list {
     float: left;
 }
 
-.value {
+.bg-white {
     background-color: white;
+}
+
+.value {
+/*    background-color: white;*/
     text-align: center;
     font-size: 12px;
 }
