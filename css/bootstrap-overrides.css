@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* Remove top padding for control labels */
+.form-horizontal .control-label {
+    padding-top: 0px;
+}
+
 /* Offset navbar in help */
 .offset-help-navbar {
     padding-top: 50px;
@@ -32,6 +37,13 @@
     min-width: 350px;
 }
 
+.single-chip-chart {
+    width: 44.9%;
+    float: right;
+    margin-right: 0.1%;
+    margin-left: -100%px;
+}
+
 .large-chart-container {
     min-width: 800px;
 }
@@ -48,6 +60,12 @@
 .c3 svg {
     font: 14px sans-serif !important;
     font-weight: bold !important;
+}
+
+.c3-title {
+    font: 16px sans-serif !important;
+    font-weight: bold !important;
+    text-decoration: underline;
 }
 
 /* Used to prevent scrolling (for modal dialogs) */
@@ -74,11 +92,76 @@
 }
 
 /* For plate readouts */
-.invalid-well {
+
+/* .invalid-well {
     background-color: #606060 !important;
 }
 
 .invalid-well .value {
+    background-color: #DD1111;
+} */
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 100;
+    border: 1px dotted black;
+}
+
+.layout-table td {
+    border: 1px solid black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 10px;
+}
+
+.layout-table th {
+    border: 1px solid black;
+    text-align: center;
+    font-size: 12px;
+}
+
+ul.layout-list {
+    margin: 0;
+    padding: 0;
+}
+
+.layout-list li {
+    list-style-type: none;
+    padding-left: 2px;
+
+}
+
+.layout-list li:hover {
+    /*text-decoration: line-through;*/
+    cursor: pointer;
+    background-color: #FFFFFF;
+    opacity: 0.6;
+}
+
+.control_list ul {
+    list-style-type: none;
+    width: 100%;
+    /* margin-left:-5%;
+    height: 50px; */
+}
+
+.control_list li {
+    list-style-type: none;
+    margin-left: 3%;
+    float: left;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.value {
+/*    background-color: white;*/
+    text-align: center;
+    font-size: 12px;
+}
+
+.invalid {
     background-color: #DD1111;
 }
 
@@ -155,10 +238,15 @@
     width: 12em !important;
 }
 
-/* Add border to table */
-.layout-table th {
+/*.data-table {
+    width: 100%;
+}*/
+
+/* Add border to chip table */
+.data-table th, .data-table td {
     border: 1px solid black;
     padding: 4px;
+    font-weight: bold;
 }
 
 /* Code snippet for fancy checkboxes (used in bioactivity search) */
