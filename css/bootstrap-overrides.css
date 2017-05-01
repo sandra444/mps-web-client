@@ -34,7 +34,12 @@
 
 /* Chart container has a minimum width */
 .chart-container {
-    min-width: 350px;
+    min-width: 400px;
+    /* Purge padding */
+    padding-left: 0px;
+    padding-right: 0px;
+/*    border-style: solid; */
+/*    border-width: 1px; */
 }
 
 .single-chip-chart {
@@ -318,6 +323,7 @@ ul.layout-list {
     border-radius: 25px !important;
 }
 
+/*
 /* Heatmap */
 svg {
     display: block;
@@ -336,6 +342,7 @@ svg *::-moz-selection {
 svg *::-webkit-selection {
     background:transparent;
 }
+
 rect.selection {
     stroke          : #333;
     stroke-dasharray: 4px;
@@ -401,3 +408,4 @@ text.text-hover {
     font-size: 12px;
     line-height: 20px;
 }
+*/
