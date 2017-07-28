@@ -243,14 +243,14 @@ ul.layout-list {
     width: 12em !important;
 }
 
-/*.data-table {
-    width: 100%;
-}*/
+.overflow-auto {
+    overflow:auto;
+}
 
 /* Add border to chip table */
 .data-table th, .data-table td {
     border: 1px solid black;
-    padding: 4px;
+    padding: 2px;
     font-weight: bold;
 }
 
