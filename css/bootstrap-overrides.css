@@ -243,6 +243,23 @@ ul.layout-list {
     width: 12em !important;
 }
 
+/* For forcing certain colors */
+.force-bg-success {
+    background-color: #dff0d8 !important;
+}
+.force-bg-warning {
+    background-color: #fcf8e3 !important;
+}
+.force-bg-danger {
+    background-color: #f2dede !important;
+}
+.force-bg-info {
+    background-color: #d9edf7 !important;
+}
+.force-bg-primary {
+    background-color: #337ab7 !important;
+}
+
 .overflow-auto {
     overflow:auto;
 }
