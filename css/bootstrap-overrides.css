@@ -260,6 +260,10 @@ ul.layout-list {
     background-color: #337ab7 !important;
 }
 
+#matrix_table td {
+    border: 2px solid black;
+}
+
 .overflow-auto {
     overflow:auto;
 }
