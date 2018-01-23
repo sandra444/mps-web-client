@@ -289,8 +289,13 @@ ul.layout-list {
     background-color: #337ab7 !important;
 }
 
+/* Matrix */
 #matrix_table td {
     border: 2px solid black;
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 .overflow-auto {
