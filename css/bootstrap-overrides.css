@@ -312,22 +312,27 @@ ul.layout-list {
     min-width:100px;
     text-align:left;
 }
+
+/* Fancy checkbox
+ * 
+ * Needs to be refactored (:not is a little ugly)
+ */
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span {
     width: 20px;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span:first-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:first-child {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span:last-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:last-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:first-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:first-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:last-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:last-child {
     display: none;
 }
 
