@@ -300,6 +300,11 @@ ul.layout-list {
     border: 4px solid #333;
 }
 
+/* Only works with selectable */
+.ui-selecting {
+    background-color: #fcf8e3 !important;
+}
+
 .strikethrough {
   text-decoration: line-through;
 }
