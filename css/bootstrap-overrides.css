@@ -297,7 +297,7 @@ ul.layout-list {
 
 /* Matrix */
 #matrix_table td {
-    border: 2px solid #333;
+    border: 4px solid #333;
 }
 
 .strikethrough {
