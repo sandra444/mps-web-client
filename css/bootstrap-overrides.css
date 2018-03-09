@@ -305,6 +305,11 @@ ul.layout-list {
     background-color: #fcf8e3 !important;
 }
 
+/* For reproducibility (and perhaps other locations) */
+.big-checkbox {
+    transform: scale(2.5);
+}
+
 .strikethrough {
   text-decoration: line-through;
 }
