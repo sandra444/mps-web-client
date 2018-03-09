@@ -1,5 +1,34 @@
 @charset "UTF-8";
 
+/* test autocollapse for navbar */
+#autocollapse.collapsed .navbar-header {
+    float: none;
+}
+#autocollapse.collapsed .navbar-toggle {
+    display: block;
+}
+#autocollapse.collapsed .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+#autocollapse.collapsed .navbar-collapse.collapse {
+    display: none!important;
+}
+#autocollapse.collapsed .navbar-collapse.collapse.in {
+    display: block!important;
+}
+#autocollapse.collapsed .navbar-nav {
+    float: none!important;
+    margin: 7.5px -15px;
+}
+#autocollapse.collapsed .navbar-nav>li {
+    float: none;
+}
+#autocollapse.collapsed .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 /* Remove top padding for control labels */
 .form-horizontal .control-label {
     padding-top: 0px;
@@ -283,22 +312,27 @@ ul.layout-list {
     min-width:100px;
     text-align:left;
 }
+
+/* Fancy checkbox
+ * 
+ * Needs to be refactored (:not is a little ugly)
+ */
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span {
     width: 20px;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span:first-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:first-child {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label span:last-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:last-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:first-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:first-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:last-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:last-child {
     display: none;
 }
 
