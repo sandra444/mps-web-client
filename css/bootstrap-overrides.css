@@ -298,6 +298,8 @@ ul.layout-list {
 /* Matrix */
 #matrix_table td {
     border: 4px solid #333;
+    padding: 0px;
+    margin: 0px;
 }
 
 /* Only works with selectable */
@@ -335,6 +337,10 @@ ul.layout-list {
  * 
  * Needs to be refactored (:not is a little ugly)
  */
+.fancy-checkbox > .btn {
+    /* Prevent checkbox from overlapping */
+    position: static;
+}
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
