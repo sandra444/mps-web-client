@@ -297,7 +297,19 @@ ul.layout-list {
 
 /* Matrix */
 #matrix_table td {
-    border: 2px solid #333;
+    border: 4px solid #333;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Only works with selectable */
+.ui-selecting {
+    background-color: #fcf8e3 !important;
+}
+
+/* For reproducibility (and perhaps other locations) */
+.big-checkbox {
+    transform: scale(2.5);
 }
 
 .strikethrough {
@@ -325,6 +337,10 @@ ul.layout-list {
  * 
  * Needs to be refactored (:not is a little ugly)
  */
+.fancy-checkbox > .btn {
+    /* Prevent checkbox from overlapping */
+    position: static;
+}
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
