@@ -371,6 +371,11 @@ a[disabled], a[disabled]:hover {
     display: none;
 }
 
+/* Force btn-group buttons from appearing above other elements */
+.btn-group>.btn.active, .btn-group-vertical>.btn.active {
+    z-index: 0;
+}
+
 /* CSS for tracking */
 .tracking-box {
     padding: 4px;
