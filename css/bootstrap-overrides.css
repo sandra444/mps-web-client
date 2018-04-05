@@ -1,34 +1,5 @@
 @charset "UTF-8";
 
-/* test autocollapse for navbar */
-#autocollapse.collapsed .navbar-header {
-    float: none;
-}
-#autocollapse.collapsed .navbar-toggle {
-    display: block;
-}
-#autocollapse.collapsed .navbar-collapse {
-    border-top: 1px solid transparent;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
-}
-#autocollapse.collapsed .navbar-collapse.collapse {
-    display: none!important;
-}
-#autocollapse.collapsed .navbar-collapse.collapse.in {
-    display: block!important;
-}
-#autocollapse.collapsed .navbar-nav {
-    float: none!important;
-    margin: 7.5px -15px;
-}
-#autocollapse.collapsed .navbar-nav>li {
-    float: none;
-}
-#autocollapse.collapsed .navbar-nav>li>a {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 /* Remove top padding for control labels */
 .form-horizontal .control-label {
     padding-top: 0px;
@@ -138,18 +109,18 @@
 .ui-selectable-helper {
     position: absolute;
     z-index: 100;
-    border: 1px dotted #333;
+    border: 1px dotted black;
 }
 
 .layout-table td {
-    border: 1px solid #333;
+    border: 1px solid black;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 10px;
 }
 
 .layout-table th {
-    border: 1px solid #333;
+    border: 1px solid black;
     text-align: center;
     font-size: 12px;
 }
@@ -241,6 +212,9 @@ ul.layout-list {
     a[href]:after {
         content: none !important;
     }
+    body {
+        -webkit-print-color-adjust: exact;
+    }
 }
 
 /*
@@ -291,29 +265,9 @@ ul.layout-list {
 .force-bg-primary {
     background-color: #337ab7 !important;
 }
-.force-off-black-text {
-    color: #333;
-}
 
-/* Matrix */
 #matrix_table td {
-    border: 4px solid #333;
-    padding: 0px;
-    margin: 0px;
-}
-
-/* Only works with selectable */
-.ui-selecting {
-    background-color: #fcf8e3 !important;
-}
-
-/* For reproducibility (and perhaps other locations) */
-.big-checkbox {
-    transform: scale(2.5);
-}
-
-.strikethrough {
-  text-decoration: line-through;
+    border: 2px solid black;
 }
 
 .overflow-auto {
@@ -322,7 +276,7 @@ ul.layout-list {
 
 /* Add border to chip table */
 .data-table th, .data-table td {
-    border: 1px solid #333;
+    border: 1px solid black;
     padding: 2px;
     font-weight: bold;
 }
@@ -332,31 +286,22 @@ ul.layout-list {
     min-width:100px;
     text-align:left;
 }
-
-/* Fancy checkbox
- * 
- * Needs to be refactored (:not is a little ugly)
- */
-.fancy-checkbox > .btn {
-    /* Prevent checkbox from overlapping */
-    position: static;
-}
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span {
     width: 20px;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:first-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span:first-child {
     display: none;
 }
-.fancy-checkbox input[type="checkbox"] + .btn-group > label:not(.active) span:last-child {
+.fancy-checkbox input[type="checkbox"] + .btn-group > label span:last-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:first-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:first-child {
     display: inline-block;
 }
-.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:last-child {
+.fancy-checkbox input[type="checkbox"]:checked + .btn-group > label span:last-child {
     display: none;
 }
 
@@ -489,5 +434,50 @@ text.text-hover {
     font-family: sans-serif;
     font-size: 12px;
     line-height: 20px;
+}
+
+#handle-contrast, #handle-brightness {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+
+.hidden-checkboxes input[type=checkbox]{
+    display: none;
+}
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+.btn-3d {
+    position:relative;
+    outline:medium none !important;
+    -moz-outline-style:none;
+    margin-right:10px;
+    margin-top:15px;
+    color: grey;
+}
+
+.btn-3d:focus {
+    -moz-outline-style:none;
+}
+
+.btn-3d.active {
+    top:9px;
+    color: black;
+    box-shadow:none !important;
+}
+
+.btn-3d.active:hover {
+    color: grey;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+
+div#filter_table .btn-default {
+    box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #adadad, 0 8px 0 1px rgba(0,0,0,0.4), 0 8px 8px 1px rgba(0,0,0,0.5);
 }
 */
