@@ -130,7 +130,6 @@
 /* .invalid-well {
     background-color: #606060 !important;
 }
-
 .invalid-well .value {
     background-color: #DD1111;
 } */
@@ -345,7 +344,7 @@ a[disabled], a[disabled]:hover {
 }
 
 /* Fancy checkbox
- * 
+ *
  * Needs to be refactored (:not is a little ugly)
  */
 .fancy-checkbox > .btn {
@@ -505,5 +504,50 @@ text.text-hover {
     font-family: sans-serif;
     font-size: 12px;
     line-height: 20px;
+}
+
+#handle-contrast, #handle-brightness {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+
+.hidden-checkboxes input[type=checkbox]{
+    display: none;
+}
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+.btn-3d {
+    position:relative;
+    outline:medium none !important;
+    -moz-outline-style:none;
+    margin-right:10px;
+    margin-top:15px;
+    color: grey;
+}
+
+.btn-3d:focus {
+    -moz-outline-style:none;
+}
+
+.btn-3d.active {
+    top:9px;
+    color: black;
+    box-shadow:none !important;
+}
+
+.btn-3d.active:hover {
+    color: grey;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+
+div#filter_table .btn-default {
+    box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #adadad, 0 8px 0 1px rgba(0,0,0,0.4), 0 8px 8px 1px rgba(0,0,0,0.5);
 }
 */
