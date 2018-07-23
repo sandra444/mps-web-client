@@ -343,6 +343,19 @@ a[disabled], a[disabled]:hover {
     text-align:left;
 }
 
+/* If a element needs to have a subdued appearance */
+.gray-out {
+    opacity: 0.6; /* Other browsers */
+    filter: alpha(opacity = 60); /* MSIE */
+    pointer-events: none;
+}
+
+.phase-out {
+    opacity: 0.8; /* Other browsers */
+    filter: alpha(opacity = 80); /* MSIE */
+    pointer-events: none;
+}
+
 /* Fancy checkbox
  *
  * Needs to be refactored (:not is a little ugly)
