@@ -568,3 +568,8 @@ path[stroke-width="6.5"] {
 div.google-visualization-tooltip {
     pointer-events: none;
 }
+
+/* Revise colvis buttons */
+a.dt-button {
+    white-space: normal;
+}
