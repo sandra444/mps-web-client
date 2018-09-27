@@ -568,3 +568,7 @@ path[stroke-width="6.5"] {
 div.google-visualization-tooltip {
     pointer-events: none;
 }
+
+.selectize-control {
+    min-width: 120px !important;
+}

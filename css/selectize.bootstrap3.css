@@ -301,6 +301,7 @@
 .selectize-control.single .selectize-input.input-active input {
   cursor: text;
 }
+/*
 .selectize-control.single .selectize-input:after {
   content: ' ';
   display: block;
@@ -314,6 +315,7 @@
   border-width: 5px 5px 0 5px;
   border-color: #333333 transparent transparent transparent;
 }
+*/
 .selectize-control.single .selectize-input.dropdown-active:after {
   margin-top: -4px;
   border-width: 0 5px 5px 5px;
