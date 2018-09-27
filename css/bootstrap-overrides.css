@@ -569,6 +569,10 @@ div.google-visualization-tooltip {
     pointer-events: none;
 }
 
+.selectize-control {
+    min-width: 120px !important;
+}
+
 /* Revise colvis buttons */
 a.dt-button {
     white-space: normal;
