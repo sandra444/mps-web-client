@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
 /* test autocollapse for navbar */
+@media (min-width: 992px) {
+    .navbar-btn {
+        display: none;
+    }
+}
+
 #autocollapse.collapsed .navbar-header {
     float: none;
 }
-#autocollapse.collapsed .navbar-toggle {
+#autocollapse.collapsed .navbar-toggle .navbar-btn {
     display: block;
 }
 #autocollapse.collapsed .navbar-collapse {
