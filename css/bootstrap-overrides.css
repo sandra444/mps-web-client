@@ -7,6 +7,10 @@
     }
 }
 
+#autocollapse.collapsed .navbar-toggle {
+    display: block;
+}
+
 #autocollapse.collapsed .navbar-header {
     float: none;
 }
