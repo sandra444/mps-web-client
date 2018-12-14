@@ -68,7 +68,10 @@
 
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
 .fluid-container {
-    margin-top: -20px;
+    /* margin-top: -20px; */
+    /* EXPERIMENTAL */
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 /* Chart container has a minimum width */
