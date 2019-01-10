@@ -123,7 +123,7 @@
 
 /* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
 .ui-dialog {
-    z-index: 99999999999999999;
+    z-index: 1031;
 }
 
 /* For submit row */
