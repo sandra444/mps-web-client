@@ -342,6 +342,14 @@ a[disabled], a[disabled]:hover {
     overflow:auto;
 }
 
+/* Remove bottom border from bordered-table */
+.table-bordered {
+    border: 0px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
 /* Add border to chip table */
 .data-table th, .data-table td {
     border: 1px solid #333;
