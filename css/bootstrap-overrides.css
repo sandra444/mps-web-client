@@ -74,6 +74,16 @@
     margin-right: 1%;
 }
 
+/* Grouping popup styles */
+#group_display {
+    z-index: 2000;
+}
+
+#group_display a {
+    color: #333;
+}
+/* end group popup styles */
+
 /* Chart container has a minimum width */
 .chart-container {
     min-width: 400px;
