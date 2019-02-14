@@ -82,6 +82,12 @@
 #group_display a {
     color: #333;
 }
+
+/* Make sure goog-tooltip visibile */
+.goog-tooltip {
+    z-index: 3000;
+}
+
 /* end group popup styles */
 
 /* Chart container has a minimum width */
