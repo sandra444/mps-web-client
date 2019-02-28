@@ -1,10 +1,20 @@
 @charset "UTF-8";
 
 /* test autocollapse for navbar */
+@media (min-width: 992px) {
+    .navbar-btn {
+        display: none;
+    }
+}
+
+#autocollapse.collapsed .navbar-toggle {
+    display: block;
+}
+
 #autocollapse.collapsed .navbar-header {
     float: none;
 }
-#autocollapse.collapsed .navbar-toggle {
+#autocollapse.collapsed .navbar-toggle .navbar-btn {
     display: block;
 }
 #autocollapse.collapsed .navbar-collapse {
@@ -58,8 +68,27 @@
 
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
 .fluid-container {
-    margin-top: -20px;
+    /* margin-top: -20px; */
+    /* EXPERIMENTAL */
+    margin-left: 1%;
+    margin-right: 1%;
 }
+
+/* Grouping popup styles */
+#group_display {
+    z-index: 2000;
+}
+
+#group_display a {
+    color: #333;
+}
+
+/* Make sure goog-tooltip visibile */
+.goog-tooltip {
+    z-index: 3000;
+}
+
+/* end group popup styles */
 
 /* Chart container has a minimum width */
 .chart-container {
@@ -110,7 +139,7 @@
 
 /* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
 .ui-dialog {
-    z-index: 99999999999999999;
+    z-index: 1031;
 }
 
 /* For submit row */
@@ -327,6 +356,14 @@ a[disabled], a[disabled]:hover {
 
 .overflow-auto {
     overflow:auto;
+}
+
+/* Remove bottom border from bordered-table */
+.table-bordered {
+    border: 0px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
 }
 
 /* Add border to chip table */
@@ -591,4 +628,18 @@ div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-c
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#41607a', EndColorStr='#23527c');
     box-shadow: inset 1px 1px 3px #666;
     color: #fff;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 0;
+}
+
+/* Remove input spin box for numbers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
