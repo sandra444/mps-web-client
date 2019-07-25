@@ -226,6 +226,7 @@ ul.layout-list {
     font-size: 12px;
 }
 
+/* PLEASE TRY TO AVOID USING !important
 /* Remove all padding (and margins, apparently) */
 .no-padding {
     padding: 0 !important;
@@ -290,9 +291,20 @@ ul.layout-list {
     margin-top: 5px;
 }
 
-/* Make buttons bold */
+/* Make buttons bold and allow wrapping */
 .btn {
     font-weight: bold;
+    white-space: normal;
+}
+
+/* Crude: no-wrap on dropdown toggles */
+.btn.dropdown-toggle {
+	white-space: nowrap;
+}
+
+.btn-lg {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .dropdown-menu, a .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
@@ -462,6 +474,8 @@ a[disabled], a[disabled]:hover {
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
     border-radius: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .round-border {
@@ -642,4 +656,15 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* Crude */
+h1, h2, h3, h4, h5 {
+	word-wrap: break-word;
+}
+
+/* Revise footer */
+#footer {
+	margin-top: 15px;
+	margin-bottom: 150px;
 }
