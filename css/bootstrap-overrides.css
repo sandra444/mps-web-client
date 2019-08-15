@@ -263,6 +263,10 @@ ul.layout-list {
     word-wrap: break-word;
 }
 
+.no-wrap {
+	white-space: nowrap;
+}
+
 /* Used to have padded rows */
 .padded-row {
     margin-left: 15px;
