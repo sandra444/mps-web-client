@@ -66,6 +66,14 @@
     color: rgb(10,0,75) !important;
 }
 
+.navbar-about {
+    color: rgb(125,150,35) !important;
+}
+
+.navbar-about:hover {
+    color: rgb(80,90,20) !important
+}
+
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
 .fluid-container {
     /* margin-top: -20px; */
