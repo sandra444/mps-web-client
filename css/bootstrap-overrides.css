@@ -7,6 +7,11 @@
     }
 }
 
+/* Too many navbar elements causes overflow of hamburger menu at certain sizes ~768px */
+.navbar-collapse {
+  max-height: initial !important;
+}
+
 #autocollapse.collapsed .navbar-toggle {
     display: block;
 }
