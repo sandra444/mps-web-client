@@ -7,6 +7,11 @@
     }
 }
 
+/* Too many navbar elements causes overflow of hamburger menu at certain sizes ~768px */
+.navbar-collapse {
+  max-height: initial !important;
+}
+
 #autocollapse.collapsed .navbar-toggle {
     display: block;
 }
@@ -64,6 +69,14 @@
 
 .navbar-feedback:hover {
     color: rgb(10,0,75) !important;
+}
+
+.navbar-about {
+    color: rgb(125,150,35) !important;
+}
+
+.navbar-about:hover {
+    color: rgb(80,90,20) !important
 }
 
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
