@@ -1,10 +1,25 @@
 @charset "UTF-8";
 
 /* test autocollapse for navbar */
+@media (min-width: 992px) {
+    .navbar-btn {
+        display: none;
+    }
+}
+
+/* Too many navbar elements causes overflow of hamburger menu at certain sizes ~768px */
+.navbar-collapse {
+  max-height: initial !important;
+}
+
+#autocollapse.collapsed .navbar-toggle {
+    display: block;
+}
+
 #autocollapse.collapsed .navbar-header {
     float: none;
 }
-#autocollapse.collapsed .navbar-toggle {
+#autocollapse.collapsed .navbar-toggle .navbar-btn {
     display: block;
 }
 #autocollapse.collapsed .navbar-collapse {
@@ -56,10 +71,37 @@
     color: rgb(10,0,75) !important;
 }
 
+.navbar-about {
+    color: rgb(125,150,35) !important;
+}
+
+.navbar-about:hover {
+    color: rgb(80,90,20) !important
+}
+
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
 .fluid-container {
-    margin-top: -20px;
+    /* margin-top: -20px; */
+    /* EXPERIMENTAL */
+    margin-left: 1%;
+    margin-right: 1%;
 }
+
+/* Grouping popup styles */
+#group_display {
+    z-index: 2000;
+}
+
+#group_display a {
+    color: #333;
+}
+
+/* Make sure goog-tooltip visibile */
+.goog-tooltip {
+    z-index: 3000;
+}
+
+/* end group popup styles */
 
 /* Chart container has a minimum width */
 .chart-container {
@@ -110,7 +152,7 @@
 
 /* For dialog boxes to make sure they are not obscured by nabvbars etc.*/
 .ui-dialog {
-    z-index: 99999999999999999;
+    z-index: 1031;
 }
 
 /* For submit row */
@@ -124,13 +166,15 @@
 .small-padding-top {
     padding-top: 5px;
 }
+.large-margin-top {
+    margin-top: 15px;
+}
 
 /* For plate readouts */
 
 /* .invalid-well {
     background-color: #606060 !important;
 }
-
 .invalid-well .value {
     background-color: #DD1111;
 } */
@@ -138,18 +182,18 @@
 .ui-selectable-helper {
     position: absolute;
     z-index: 100;
-    border: 1px dotted black;
+    border: 1px dotted #333;
 }
 
 .layout-table td {
-    border: 1px solid black;
+    border: 1px solid #333;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 10px;
 }
 
 .layout-table th {
-    border: 1px solid black;
+    border: 1px solid #333;
     text-align: center;
     font-size: 12px;
 }
@@ -195,14 +239,16 @@ ul.layout-list {
     font-size: 12px;
 }
 
-.invalid {
-    background-color: #DD1111;
-}
-
-/* Remove all padding */
+/* PLEASE TRY TO AVOID USING !important
+/* Remove all padding (and margins, apparently) */
 .no-padding {
     padding: 0 !important;
     margin: 0 !important;
+}
+
+/* Remove all margins */
+.no-margins {
+    margin: 0;
 }
 
 /* Padded bottom to avoid content being to close */
@@ -228,6 +274,10 @@ ul.layout-list {
 /* Used to wrap text */
 .text-wrapped {
     word-wrap: break-word;
+}
+
+.no-wrap {
+	white-space: nowrap;
 }
 
 /* Used to have padded rows */
@@ -258,9 +308,20 @@ ul.layout-list {
     margin-top: 5px;
 }
 
-/* Make buttons bold */
+/* Make buttons bold and allow wrapping */
 .btn {
     font-weight: bold;
+    white-space: normal;
+}
+
+/* Crude: no-wrap on dropdown toggles */
+.btn.dropdown-toggle {
+	white-space: nowrap;
+}
+
+.btn-lg {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .dropdown-menu, a .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
@@ -291,18 +352,52 @@ ul.layout-list {
 .force-bg-primary {
     background-color: #337ab7 !important;
 }
+.force-off-black-text {
+    color: #333;
+}
 
+/* Matrix */
 #matrix_table td {
-    border: 2px solid black;
+    border: 4px solid #333;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Rules for disabled anchors */
+a[disabled], a[disabled]:hover {
+   pointer-events: none;
+   color: #333;
+}
+
+/* Only works with selectable */
+.ui-selecting {
+    background-color: #fcf8e3 !important;
+}
+
+/* For reproducibility (and perhaps other locations) */
+.big-checkbox {
+    transform: scale(2.5);
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 .overflow-auto {
     overflow:auto;
 }
 
+/* Remove bottom border from bordered-table */
+.table-bordered {
+    border: 0px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
 /* Add border to chip table */
 .data-table th, .data-table td {
-    border: 1px solid black;
+    border: 1px solid #333;
     padding: 2px;
     font-weight: bold;
 }
@@ -313,10 +408,27 @@ ul.layout-list {
     text-align:left;
 }
 
+/* If a element needs to have a subdued appearance */
+.gray-out {
+    opacity: 0.6; /* Other browsers */
+    filter: alpha(opacity = 60); /* MSIE */
+    pointer-events: none;
+}
+
+.phase-out {
+    opacity: 0.8; /* Other browsers */
+    filter: alpha(opacity = 80); /* MSIE */
+    pointer-events: none;
+}
+
 /* Fancy checkbox
- * 
+ *
  * Needs to be refactored (:not is a little ugly)
  */
+.fancy-checkbox > .btn {
+    /* Prevent checkbox from overlapping */
+    position: static;
+}
 .fancy-checkbox input[type="checkbox"] {
     display: none;
 }
@@ -334,6 +446,11 @@ ul.layout-list {
 }
 .fancy-checkbox input[type="checkbox"]:checked + .btn-group > label:not(.active) span:last-child {
     display: none;
+}
+
+/* Force btn-group buttons from appearing above other elements */
+.btn-group>.btn.active, .btn-group-vertical>.btn.active {
+    z-index: 0;
 }
 
 /* CSS for tracking */
@@ -374,6 +491,8 @@ ul.layout-list {
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
     border-radius: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .round-border {
@@ -466,4 +585,103 @@ text.text-hover {
     font-size: 12px;
     line-height: 20px;
 }
-*/
+
+#handle-contrast, #handle-brightness {
+    width: 3em;
+    height: 1.6em;
+    top: 50%;
+    margin-top: -.8em;
+    text-align: center;
+    line-height: 1.6em;
+}
+
+.hidden-checkboxes input[type=checkbox]{
+    display: none;
+}
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+.btn-3d {
+    position:relative;
+    outline:medium none !important;
+    -moz-outline-style:none;
+    margin-right:10px;
+    margin-top:15px;
+    color: grey;
+}
+
+.btn-3d:focus {
+    -moz-outline-style:none;
+}
+
+.btn-3d.active {
+    top:9px;
+    color: black;
+    box-shadow:none !important;
+}
+
+.btn-3d.active:hover {
+    color: grey;
+    background-color:rgba(0, 0, 0, 0.1);
+}
+
+div#filter_table .btn-default {
+    box-shadow:0 0 0 1px #ebebeb inset, 0 0 0 2px rgba(255,255,255,0.15) inset, 0 8px 0 0 #adadad, 0 8px 0 1px rgba(0,0,0,0.4), 0 8px 8px 1px rgba(0,0,0,0.5);
+}
+
+path[stroke-width="6.5"] {
+  stroke: transparent;
+}
+
+/* Attempt to fix flickering */
+div.google-visualization-tooltip {
+    pointer-events: none;
+}
+
+.selectize-control {
+    min-width: 120px !important;
+}
+
+/* Revise colvis buttons */
+a.dt-button {
+    white-space: normal;
+}
+
+div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-collection button.dt-button.active:not(.disabled), div.dt-button-collection div.dt-button:active:not(.disabled), div.dt-button-collection div.dt-button.active:not(.disabled), div.dt-button-collection a.dt-button:active:not(.disabled), div.dt-button-collection a.dt-button.active:not(.disabled) {
+    background-color: #23527c;
+    background-image: -webkit-linear-gradient(top, #41607a 0%, #23527c 100%);
+    background-image: -moz-linear-gradient(top, #41607a 0%, #23527c 100%);
+    background-image: -ms-linear-gradient(top, #41607a 0%, #23527c 100%);
+    background-image: -o-linear-gradient(top, #41607a 0%, #23527c 100%);
+    background-image: linear-gradient(to bottom, #41607a 0%, #23527c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#41607a', EndColorStr='#23527c');
+    box-shadow: inset 1px 1px 3px #666;
+    color: #fff;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    border-bottom: 0;
+}
+
+/* Remove input spin box for numbers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Crude */
+h1, h2, h3, h4, h5 {
+	word-wrap: break-word;
+}
+
+/* Revise footer */
+#footer {
+	margin-top: 15px;
+	margin-bottom: 150px;
+}
