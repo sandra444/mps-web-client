@@ -7,6 +7,11 @@
     }
 }
 
+/* Too many navbar elements causes overflow of hamburger menu at certain sizes ~768px */
+.navbar-collapse {
+  max-height: initial !important;
+}
+
 #autocollapse.collapsed .navbar-toggle {
     display: block;
 }
@@ -64,6 +69,14 @@
 
 .navbar-feedback:hover {
     color: rgb(10,0,75) !important;
+}
+
+.navbar-about {
+    color: rgb(125,150,35) !important;
+}
+
+.navbar-about:hover {
+    color: rgb(80,90,20) !important
 }
 
 /* Add negative margin to fluid containers (REFACTOR! VERY CRUDE!)*/
@@ -226,6 +239,7 @@ ul.layout-list {
     font-size: 12px;
 }
 
+/* PLEASE TRY TO AVOID USING !important
 /* Remove all padding (and margins, apparently) */
 .no-padding {
     padding: 0 !important;
@@ -262,6 +276,10 @@ ul.layout-list {
     word-wrap: break-word;
 }
 
+.no-wrap {
+	white-space: nowrap;
+}
+
 /* Used to have padded rows */
 .padded-row {
     margin-left: 15px;
@@ -290,9 +308,20 @@ ul.layout-list {
     margin-top: 5px;
 }
 
-/* Make buttons bold */
+/* Make buttons bold and allow wrapping */
 .btn {
     font-weight: bold;
+    white-space: normal;
+}
+
+/* Crude: no-wrap on dropdown toggles */
+.btn.dropdown-toggle {
+	white-space: nowrap;
+}
+
+.btn-lg {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .dropdown-menu, a .dropdown-toggle, .dropdown, .nav, .pagination, .carousel, .panel-title a {
@@ -462,6 +491,8 @@ a[disabled], a[disabled]:hover {
     -webkit-border-radius: 14px;
     -moz-border-radius: 14px;
     border-radius: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .round-border {
@@ -642,4 +673,15 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* Crude */
+h1, h2, h3, h4, h5 {
+	word-wrap: break-word;
+}
+
+/* Revise footer */
+#footer {
+	margin-top: 15px;
+	margin-bottom: 150px;
 }
