@@ -685,3 +685,13 @@ h1, h2, h3, h4, h5 {
 	margin-top: 15px;
 	margin-bottom: 150px;
 }
+
+/* Highlight required fields */
+/* Sloppy */
+.required {
+	background: #fffabb;
+}
+
+.required > .selectize-input {
+	background: #fffabb;
+}
