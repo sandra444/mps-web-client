@@ -387,6 +387,10 @@ a[disabled], a[disabled]:hover {
     overflow: auto;
 }
 
+.overflow-scroll {
+    overflow: scroll;
+}
+
 /* Remove bottom border from bordered-table */
 .table-bordered {
     border: 0px solid #ddd;
