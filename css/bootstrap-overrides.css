@@ -385,8 +385,6 @@ a[disabled], a[disabled]:hover {
 
 .overflow-auto {
     overflow: auto;
-    /* Attempt to allow scrolling Apple */
-    -webkit-overflow-scrolling: touch;
 }
 
 /* Remove bottom border from bordered-table */
@@ -704,6 +702,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Attempt to force scroll bars */
+/*
 ::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 7px;
@@ -714,3 +713,4 @@ h1, h2, h3, h4, h5 {
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
+*/
