@@ -695,3 +695,8 @@ h1, h2, h3, h4, h5 {
 .required > .selectize-input {
 	background: #fffabb;
 }
+
+/* Fix cursor for popup (subject to change) */
+.popup-link {
+	cursor: pointer;
+}
