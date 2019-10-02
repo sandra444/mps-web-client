@@ -384,7 +384,9 @@ a[disabled], a[disabled]:hover {
 }
 
 .overflow-auto {
-    overflow:auto;
+    overflow: auto;
+    /* Attempt to allow scrolling Apple */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Remove bottom border from bordered-table */
