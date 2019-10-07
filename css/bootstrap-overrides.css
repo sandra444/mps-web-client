@@ -706,10 +706,11 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Attempt to force scroll bars */
+/* Many browsers will not bother with these (firefox, IE, etc.) */
 #matrix_wrapper::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 7px;
-    height: 7px;
+    width: 21px;
+    height: 21px;
 }
 #matrix_wrapper::-webkit-scrollbar-thumb {
     border-radius: 4px;
