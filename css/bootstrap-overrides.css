@@ -726,3 +726,8 @@ h1, h2, h3, h4, h5 {
   width: 100px;
   height: 1px;
 }
+
+/* Attempt to fix datepicker for IE */
+table.ui-datepicker-calendar tbody td.highlight > a {
+	filter:none !important;
+}
