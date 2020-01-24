@@ -384,7 +384,11 @@ a[disabled], a[disabled]:hover {
 }
 
 .overflow-auto {
-    overflow:auto;
+    overflow: auto;
+}
+
+.overflow-scroll {
+    overflow: scroll;
 }
 
 /* Remove bottom border from bordered-table */
@@ -690,7 +694,7 @@ h1, h2, h3, h4, h5 {
 .plate-matrix-item {background-color: yellow}
 .plate-location {background-color: #b99d74}
 .plate-dilution-factor {background-color: #87cbd5}
-.plate-time {background-color: #20a206
+.plate-time {background-color: #27fa06
 }
 .plate-default-time {background-color: #6cee9e
 }
@@ -714,7 +718,7 @@ h1, h2, h3, h4, h5 {
 .map-dilution-factor {display: block; background-color: #87cbd5;
     border-radius: 1px;
     padding:3px; margin:0px; border: 1px solid white}
-.map-time {display: block; background-color: #20a206;
+.map-time {display: block; background-color: #27fa06;
     border-radius: 1px;
     padding:3px; margin:0px; border: 1px solid white}
 .map-default-time {display: block; background-color: #6cee9e;
@@ -762,4 +766,45 @@ h1, h2, h3, h4, h5 {
 /*so starts hidden and must click button to see the checkbox options*/
 .toggle-display-none { display:none; }
 
+/* Highlight required fields */
+/* Sloppy */
+.required {
+	background: #fffabb;
+}
+
+.required > .selectize-input {
+	background: #fffabb;
+}
+
+/* Fix cursor for popup (subject to change) */
+.popup-link {
+	cursor: pointer;
+}
+
+/* Attempt to force scroll bars */
+/* Many browsers will not bother with these (firefox, IE, etc.) */
+#matrix_wrapper::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 21px;
+    height: 21px;
+}
+#matrix_wrapper::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+#matrix_container:after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: -100px;
+  width: 100px;
+  height: 1px;
+}
+
+/* Attempt to fix datepicker for IE */
+table.ui-datepicker-calendar tbody td.highlight > a {
+	filter:none !important;
+}
 
