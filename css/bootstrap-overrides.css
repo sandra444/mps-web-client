@@ -761,7 +761,7 @@ h1, h2, h3, h4, h5 {
 .plate-map-page-radio-contents {margin-top: 6px; margin-left: 7px; margin-right: 7px; }
 .plate-map-radio-spacing  {margin-top: 5px; margin-left: 10px; margin-right: 25px}
 .plate-map-no-wrap {display: inline-block !important; white-space: nowrap !important;}
-.plate-file-block-well {background-color: #fafafa; border: 1px solid LightGray  ; border-radius: 1px;}
+.plate-file-block-well {background-color: #e5e5e5; border: 1px solid LightGray  ; border-radius: 1px;}
 
 /*so starts hidden and must click button to see the checkbox options*/
 .toggle-display-none { display:none; }
