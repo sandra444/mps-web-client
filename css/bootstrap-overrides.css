@@ -802,17 +802,9 @@ h1, h2, h3, h4, h5 {
   width: 100px;
   height: 1px;
 }
-<<<<<<< HEAD
-
-/* Attempt to fix datepicker for IE */
-table.ui-datepicker-calendar tbody td.highlight > a {
-	filter:none !important;
-}
-=======
 
 /* Attempt to fix datepicker for IE */
 table.ui-datepicker-calendar tbody td.highlight > a {
 	filter:none !important;
 }
 
->>>>>>> 5bea08c12357cbf165a0d603f3efeb013de2c45e
