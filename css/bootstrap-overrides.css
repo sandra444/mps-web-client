@@ -865,6 +865,8 @@ table.ui-datepicker-calendar tbody td.highlight > a {
 /*so starts hidden and must click button to see the checkbox options*/
 .toggle-display-none { display:none; }
 /* end plate reader integration class section */
+
+/* start for help section (help might use a plate map or two) */
 .help-collapsible {
     font-size: 115%;
     /*color: lightgrey;*/
@@ -985,3 +987,4 @@ table.ui-datepicker-calendar tbody td.highlight > a {
  padding:1px 4px;
  margin:0 -4px;
 }
+/* end help class section */
