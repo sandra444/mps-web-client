@@ -948,6 +948,10 @@ table.ui-datepicker-calendar tbody td.highlight > a {
     font-size: 130%;
     margin-top: 6px;
     color: DarkOliveGreen;}
+/*need something for extra info under titles and under bars*/
+.h1-level-3 {
+    font-size: 115%;
+    color: DimGray;}
 .navi-special-1 {
     font-size: 100%;
     margin-top: 10px;
