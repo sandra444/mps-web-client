@@ -961,19 +961,12 @@ table.ui-datepicker-calendar tbody td.highlight > a {
     margin-top: 6px;
     }
 
-/*glossary term that is in text*/
-.glst {
-    /*color: #001a1a;*/
-    color: firebrick;
-    background-color: papayawhip;
-    text-transform:capitalize;
-}
-/*glossary term that extracted directly from the glossary*/
+/*glossary extract with stripped term, eg {{ glossary_dict.mpsdb_term }}*/
 .gse0 {
     color: firebrick;
     /*background-color: papayawhip;*/
 }
-/*glossary definition or other except term that extracted directly from the glossary*/
+/*glossary extract in loop - only depends on how loop queryset created in the views.py*/
 .gse1 {
     color: firebrick;
     /*background-color: papayawhip;*/
