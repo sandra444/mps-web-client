@@ -996,3 +996,28 @@ mark.current {
 }
 
 /* end help class section */
+
+/* start omic upload file */
+/* used some plate map formats, but needed a few others */
+.column-section-padding {
+    padding-top: 2px;
+    padding-left: 7px;
+    padding-bottom: 0px;
+    padding-right: 7px;
+}
+.left-pad {padding-left: 12px; padding-top: 3px;}
+.extra-bottom-padding {padding-bottom: 10px;}
+.extra-top-margin {margin-top: 10px;}
+.special-selected1 {
+    background: gold;
+    border: 1px solid #c0a24e !important;
+}
+.special-selected2 {
+    background: steelblue;
+    border: 1px solid darkblue;
+}
+
+.btn-sm {
+    transform: scale(0.9);
+}
+/* end omic upload file */
