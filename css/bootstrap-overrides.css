@@ -1008,13 +1008,16 @@ mark.current {
 .left-pad {padding-left: 12px; padding-top: 3px;}
 .extra-bottom-padding {padding-bottom: 10px;}
 .extra-top-margin {margin-top: 10px;}
+
 .special-selected1 {
-    background: gold;
-    border: 1px solid #c0a24e !important;
+    /*background: gold;*/
+    /*border: 1px solid #c0af4e !important;*/
+     border: 3px solid darkorange !important;
 }
 .special-selected2 {
-    background: steelblue;
-    border: 1px solid darkblue;
+    /*background: steelblue;*/
+    /*border: 1px solid darkblue;*/
+     border: 3px solid mediumblue !important;
 }
 
 .btn-sm {
