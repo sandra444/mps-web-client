@@ -1023,4 +1023,7 @@ mark.current {
     padding: 2px !important;
 }
 
+/* Added to sck page help to control color*/
+.page-help-font { color: #012b44 !important;}
+
 /* end omic upload file */
